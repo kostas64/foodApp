@@ -10,7 +10,7 @@ const Header = ({leftIcon, rightIcon, label}) => {
         <Image source={leftIcon} style={styles.image} />
       </View>
       <View style={styles.midContainer}>
-        <Text>{label}</Text>
+        <Text style={styles.label}>{label}</Text>
       </View>
       <View>
         <Image source={rightIcon} style={styles.image} />
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   image: {
     height: 30,
@@ -34,6 +35,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     paddingHorizontal: 24,
     paddingVertical: 12,
+  },
+  label: {
+    fontFamily: 'Poppins-Medium',
   },
 });
 

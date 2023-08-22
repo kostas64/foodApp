@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
 import {images} from '../constants';
 import Screen from '../components/Screen';
@@ -15,17 +15,22 @@ const HomeScreen = () => {
       />
 
       {/* Title */}
-      <Text
-        style={{
-          fontSize: 28,
-          fontWeight: '600',
-          marginVertical: 24,
-        }}>{`Main\nCategories`}</Text>
+      <Text style={styles.title}>{`Main\nCategories`}</Text>
 
       {/* Categories List */}
       <CategoriesList />
     </Screen>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 26,
+    marginTop: 24,
+    marginBottom: 16,
+    paddingLeft: 20,
+    fontFamily: 'Poppins-Medium',
+  },
+});
 
 export default HomeScreen;

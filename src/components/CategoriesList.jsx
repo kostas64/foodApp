@@ -15,7 +15,7 @@ const CategoriesList = () => {
   const [selectedItem, setSelectedItem] = useState(categories[0]);
 
   return (
-    <View>
+    <View style={styles.viewContainer}>
       <FlatList
         horizontal
         data={categories}
@@ -32,7 +32,7 @@ const CategoriesList = () => {
           return (
             <TouchableOpacity
               onPress={() => setSelectedItem(categories[index])}
-              style={[styles.container, {backgroundColor}]}>
+              style={[styles.listContainer, {backgroundColor}]}>
               <View
                 style={[
                   styles.imageContainer,
@@ -60,24 +60,38 @@ const CategoriesList = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  viewContainer: {
+    marginLeft: 16,
+  },
+  listContainer: {
     padding: 8,
     alignItems: 'center',
     borderRadius: 36,
-    marginRight: 8,
+    marginRight: 12,
+    marginLeft: 8,
+    marginVertical: 8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 4,
   },
   imageContainer: {
-    padding: 16,
+    padding: 14,
     borderRadius: 28,
   },
   image: {
-    height: 26,
-    width: 26,
+    height: 24,
+    width: 24,
   },
   label: {
     marginTop: 8,
     marginBottom: 16,
-    fontWeight: '500',
+    fontSize: 12,
+    fontFamily: 'Poppins-SemiBold',
   },
 });
 
