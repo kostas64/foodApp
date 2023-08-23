@@ -12,8 +12,14 @@ const hotDog = require('../assets/images/hot-dog.png');
 const drink = require('../assets/images/drink.png');
 const person = require('../assets/images/person.png');
 const basket = require('../assets/images/basket.png');
+const bbqShop = require('../assets/images/bbqShop.png');
+const fishShop = require('../assets/images/fishShop.png');
+const beefKingShop = require('../assets/images/beefKingShop.png');
+const burgerShop = require('../assets/images/burgerShop.png');
+const star = require('../assets/images/star.png');
 
 export default {
+  star,
   fish,
   beef,
   salmon,
@@ -28,4 +34,8 @@ export default {
   drink,
   person,
   basket,
+  bbqShop,
+  fishShop,
+  beefKingShop,
+  burgerShop,
 };

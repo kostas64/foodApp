@@ -4,7 +4,10 @@ import {StyleSheet, Text} from 'react-native';
 import {images} from '../constants';
 import Screen from '../components/Screen';
 import Header from '../components/Header';
+import ShopsList from '../components/ShopsList';
+import {DimensionsUtils} from '../utils/DimensionsUtils';
 import CategoriesList from '../components/CategoriesList';
+
 const HomeScreen = () => {
   return (
     <Screen>
@@ -19,16 +22,19 @@ const HomeScreen = () => {
 
       {/* Categories List */}
       <CategoriesList />
+
+      {/* Shops List */}
+      <ShopsList />
     </Screen>
   );
 };
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 26,
-    marginTop: 24,
-    marginBottom: 16,
-    paddingLeft: 20,
+    fontSize: DimensionsUtils.getFontSize(26),
+    marginTop: DimensionsUtils.getDP(24),
+    marginBottom: DimensionsUtils.getDP(16),
+    paddingLeft: DimensionsUtils.getDP(20),
     fontFamily: 'Poppins-Medium',
   },
 });

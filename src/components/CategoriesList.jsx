@@ -10,12 +10,13 @@ import React, {useState} from 'react';
 
 import {colors} from '../constants';
 import {categories} from '../assets/data/categories';
+import {DimensionsUtils} from '../utils/DimensionsUtils';
 
 const CategoriesList = () => {
   const [selectedItem, setSelectedItem] = useState(categories[0]);
 
   return (
-    <View style={styles.viewContainer}>
+    <View>
       <FlatList
         horizontal
         data={categories}
@@ -28,11 +29,16 @@ const CategoriesList = () => {
             selectedItem.id === index ? colors.white : colors.lightGrey;
           const labelColor =
             selectedItem.id === index ? colors.white : colors.black;
+          const hasLeftPadding = index === 0;
 
           return (
             <TouchableOpacity
               onPress={() => setSelectedItem(categories[index])}
-              style={[styles.listContainer, {backgroundColor}]}>
+              style={[
+                styles.listContainer,
+                {backgroundColor},
+                hasLeftPadding && styles.itemMargin,
+              ]}>
               <View
                 style={[
                   styles.imageContainer,
@@ -60,16 +66,13 @@ const CategoriesList = () => {
 };
 
 const styles = StyleSheet.create({
-  viewContainer: {
-    marginLeft: 16,
-  },
   listContainer: {
-    padding: 8,
+    padding: DimensionsUtils.getDP(8),
     alignItems: 'center',
-    borderRadius: 36,
-    marginRight: 12,
-    marginLeft: 8,
-    marginVertical: 8,
+    borderRadius: DimensionsUtils.getDP(36),
+    marginRight: DimensionsUtils.getDP(12),
+    marginLeft: DimensionsUtils.getDP(8),
+    marginVertical: DimensionsUtils.getDP(12),
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -79,18 +82,21 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 4,
   },
+  itemMargin: {
+    marginLeft: DimensionsUtils.getDP(16),
+  },
   imageContainer: {
-    padding: 14,
-    borderRadius: 28,
+    padding: DimensionsUtils.getDP(14),
+    borderRadius: DimensionsUtils.getDP(28),
   },
   image: {
-    height: 24,
-    width: 24,
+    height: DimensionsUtils.getDP(24),
+    width: DimensionsUtils.getDP(24),
   },
   label: {
-    marginTop: 8,
-    marginBottom: 16,
-    fontSize: 12,
+    marginTop: DimensionsUtils.getDP(8),
+    marginBottom: DimensionsUtils.getDP(16),
+    fontSize: DimensionsUtils.getFontSize(12),
     fontFamily: 'Poppins-SemiBold',
   },
 });

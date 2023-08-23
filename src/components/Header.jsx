@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
 import {colors} from '../constants';
+import {DimensionsUtils} from '../utils/DimensionsUtils';
 
 const Header = ({leftIcon, rightIcon, label}) => {
   return (
@@ -24,17 +25,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: DimensionsUtils.getDP(20),
   },
   image: {
-    height: 30,
+    height: DimensionsUtils.getDP(30),
     aspectRatio: 1 / 1,
   },
   midContainer: {
     backgroundColor: colors.lightGrey,
-    borderRadius: 16,
-    paddingHorizontal: 24,
-    paddingVertical: 12,
+    borderRadius: DimensionsUtils.getDP(16),
+    paddingHorizontal: DimensionsUtils.getDP(24),
+    paddingVertical: DimensionsUtils.getDP(12),
   },
   label: {
     fontFamily: 'Poppins-Medium',
