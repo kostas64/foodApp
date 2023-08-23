@@ -32,8 +32,8 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   title: {
     fontSize: DimensionsUtils.getFontSize(26),
-    marginTop: DimensionsUtils.getDP(24),
-    marginBottom: DimensionsUtils.getDP(16),
+    marginTop: DimensionsUtils.getDP(16),
+    marginBottom: DimensionsUtils.getDP(4),
     paddingLeft: DimensionsUtils.getDP(20),
     fontFamily: 'Poppins-Medium',
   },

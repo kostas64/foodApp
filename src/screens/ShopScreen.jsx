@@ -1,11 +1,18 @@
-import {View, Text} from 'react-native';
 import React from 'react';
-import Screen from '../components/Screen';
 
-const ShopScreen = () => {
+import {images} from '../constants';
+import Screen from '../components/Screen';
+import Header from '../components/Header';
+
+const ShopScreen = ({route}) => {
+  const {shop} = route?.params || {};
   return (
     <Screen>
-      <Text>ShopScreen</Text>
+      <Header
+        label={shop.name}
+        leftIcon={images.arrowLeft}
+        rightIcon={images.menu}
+      />
     </Screen>
   );
 };

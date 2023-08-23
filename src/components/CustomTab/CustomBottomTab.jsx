@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 2,
     },
   },
 });

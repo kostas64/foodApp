@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   contentStyle: {
     alignItems: 'center',
     marginTop: DimensionsUtils.getDP(16),
+    paddingBottom: DimensionsUtils.getDP(130),
   },
 });
 

@@ -20,8 +20,12 @@ const star = require('../assets/images/star.png');
 const user = require('../assets/images/user.png');
 const search = require('../assets/images/search.png');
 const knifeFork = require('../assets/images/knife-and-fork.png');
+const arrowLeft = require('../assets/images/arrowLeft.png');
+const menu = require('../assets/images/menu.png');
 
 export default {
+  menu,
+  arrowLeft,
   knifeFork,
   search,
   user,

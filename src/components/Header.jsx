@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: DimensionsUtils.getDP(20),
   },
   image: {
-    height: DimensionsUtils.getDP(30),
+    height: DimensionsUtils.getDP(26),
     aspectRatio: 1 / 1,
   },
   midContainer: {

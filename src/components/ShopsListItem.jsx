@@ -1,5 +1,13 @@
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
-import {View, Text, Image, StyleSheet, Dimensions} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import {colors, images} from '../constants';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
@@ -7,15 +15,21 @@ import {DimensionsUtils} from '../utils/DimensionsUtils';
 const {width} = Dimensions.get('screen');
 
 const ShopsListItem = ({item}) => {
+  const navigation = useNavigation();
+
+  const estimatedTime = `${item?.estimatedTime?.[0]} - ${item.estimatedTime?.[1]} min`;
+
+  const onItemPress = () =>
+    navigation.navigate('Shop', {
+      shop: item,
+    });
+
   return (
-    <View>
+    <TouchableOpacity onPress={onItemPress}>
       <View>
         <Image source={item.image} style={styles.image} />
         <View style={styles.timeContainer}>
-          <Text
-            style={
-              styles.time
-            }>{`${item?.estimatedTime?.[0]} - ${item.estimatedTime?.[1]} min`}</Text>
+          <Text style={styles.time}>{estimatedTime}</Text>
         </View>
       </View>
       <View style={styles.bottomContainer}>
@@ -40,7 +54,7 @@ const ShopsListItem = ({item}) => {
           ))}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

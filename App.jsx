@@ -1,21 +1,16 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
-import BottomTab from './src/components/BottomTab';
+import HomeStack from './src/routers/HomeStack';
+import StatusBarManager from './src/components/StatusBarManager';
 
 const App = () => {
   return (
-    <>
-      <StatusBar
-        translucent
-        backgroundColor={'transparent'}
-        barStyle={'dark-content'}
-      />
+    <StatusBarManager>
       <NavigationContainer>
-        <BottomTab />
+        <HomeStack />
       </NavigationContainer>
-    </>
+    </StatusBarManager>
   );
 };
 
