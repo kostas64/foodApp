@@ -17,8 +17,14 @@ const fishShop = require('../assets/images/fishShop.png');
 const beefKingShop = require('../assets/images/beefKingShop.png');
 const burgerShop = require('../assets/images/burgerShop.png');
 const star = require('../assets/images/star.png');
+const user = require('../assets/images/user.png');
+const search = require('../assets/images/search.png');
+const knifeFork = require('../assets/images/knife-and-fork.png');
 
 export default {
+  knifeFork,
+  search,
+  user,
   star,
   fish,
   beef,
