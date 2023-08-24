@@ -30,8 +30,24 @@ const gordonBlue = require('../assets/images/gordonBlue.png');
 const saladUpper = require('../assets/images/saladUpper.png');
 const marker = require('../assets/images/marker.png');
 const debit = require('../assets/images/debit.png');
+const wheatAllergie = require('../assets/images/wheatAllergie.png');
+const nutAllergie = require('../assets/images/nutAllergie.png');
+const cornAllergie = require('../assets/images/cornAllergie.png');
+const milkAllergie = require('../assets/images/milkAllergie.png');
+const shellfishAllergie = require('../assets/images/shellfishAllergie.png');
+const eggAllergie = require('../assets/images/eggAllergie.png');
+const fishAllergie = require('../assets/images/fishAllergie.png');
+const soyAllergie = require('../assets/images/soyAllergie.png');
 
 export default {
+  wheatAllergie,
+  nutAllergie,
+  cornAllergie,
+  milkAllergie,
+  shellfishAllergie,
+  eggAllergie,
+  fishAllergie,
+  soyAllergie,
   marker,
   debit,
   saladUpper,

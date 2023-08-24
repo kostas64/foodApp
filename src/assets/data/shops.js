@@ -12,11 +12,18 @@ export const shops = [
     plate: images.meat,
     products: [
       {
-        productName: 'Tomato Pasta',
+        productName: 'Salmon & Broccoli',
         productPrice: 12.35,
-        productDesc: 'Italian pasta with tomatoes, provencal, herbs and basil',
+        productDesc:
+          'Fresh salmon with broccoli, carrots, brown rice and almonds',
         productCalories: 380.13,
         productImage: images.meat,
+        productCategories: ['GMO', 'Gluten', 'Lactose'],
+        productAllergens: [
+          images.nutAllergie,
+          images.fishAllergie,
+          images.wheatAllergie,
+        ],
       },
       {
         productName: 'Cheese Burger',
@@ -25,6 +32,8 @@ export const shops = [
           'Classic american cheese burger with beef meat 100%, cheddar and mayo',
         productCalories: 525.19,
         productImage: images.cheeseBurger,
+        productCategories: ['GMO', 'Lactose'],
+        productAllergens: [images.milkAllergie, images.soyAllergie],
       },
       {
         productName: 'Tricolore salad',
@@ -33,6 +42,12 @@ export const shops = [
           'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
         productCalories: 180.4,
         productImage: images.saladUpper,
+        productCategories: ['GMO', 'Gluten', 'Vegeterian'],
+        productAllergens: [
+          images.wheatAllergie,
+          images.soyAllergie,
+          images.cornAllergie,
+        ],
       },
       {
         productName: 'Gordon blue',
@@ -40,6 +55,8 @@ export const shops = [
         productDesc: 'Hamon, cheese and mayo wrapped in pork meat',
         productCalories: 640.55,
         productImage: images.gordonBlue,
+        productCategories: ['Gluten', 'Lactose'],
+        productAllergens: [images.eggAllergie, images.shellfishAllergie],
       },
     ],
   },
@@ -54,11 +71,18 @@ export const shops = [
     plate: images.beef,
     products: [
       {
-        productName: 'Tomato Pasta',
+        productName: 'Salmon & Broccoli',
         productPrice: 12.35,
-        productDesc: 'Italian pasta with tomatoes, provencal, herbs and basil',
+        productDesc:
+          'Fresh salmon with broccoli, carrots, brown rice and almonds',
         productCalories: 380.13,
         productImage: images.meat,
+        productCategories: ['GMO', 'Gluten', 'Lactose'],
+        productAllergens: [
+          images.nutAllergie,
+          images.fishAllergie,
+          images.wheatAllergie,
+        ],
       },
       {
         productName: 'Cheese Burger',
@@ -67,6 +91,8 @@ export const shops = [
           'Classic american cheese burger with beef meat 100%, cheddar and mayo',
         productCalories: 525.19,
         productImage: images.cheeseBurger,
+        productCategories: ['GMO', 'Lactose'],
+        productAllergens: [images.milkAllergie, images.soyAllergie],
       },
       {
         productName: 'Tricolore salad',
@@ -75,6 +101,12 @@ export const shops = [
           'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
         productCalories: 180.4,
         productImage: images.saladUpper,
+        productCategories: ['GMO', 'Gluten', 'Vegeterian'],
+        productAllergens: [
+          images.wheatAllergie,
+          images.soyAllergie,
+          images.cornAllergie,
+        ],
       },
       {
         productName: 'Gordon blue',
@@ -82,6 +114,8 @@ export const shops = [
         productDesc: 'Hamon, cheese and mayo wrapped in pork meat',
         productCalories: 640.55,
         productImage: images.gordonBlue,
+        productCategories: ['Gluten', 'Lactose'],
+        productAllergens: [images.eggAllergie, images.shellfishAllergie],
       },
     ],
   },
@@ -96,11 +130,18 @@ export const shops = [
     plate: images.fish,
     products: [
       {
-        productName: 'Tomato Pasta',
+        productName: 'Salmon & Broccoli',
         productPrice: 12.35,
-        productDesc: 'Italian pasta with tomatoes, provencal, herbs and basil',
+        productDesc:
+          'Fresh salmon with broccoli, carrots, brown rice and almonds',
         productCalories: 380.13,
         productImage: images.meat,
+        productCategories: ['GMO', 'Gluten', 'Lactose'],
+        productAllergens: [
+          images.nutAllergie,
+          images.fishAllergie,
+          images.wheatAllergie,
+        ],
       },
       {
         productName: 'Cheese Burger',
@@ -109,6 +150,8 @@ export const shops = [
           'Classic american cheese burger with beef meat 100%, cheddar and mayo',
         productCalories: 525.19,
         productImage: images.cheeseBurger,
+        productCategories: ['GMO', 'Lactose'],
+        productAllergens: [images.milkAllergie, images.soyAllergie],
       },
       {
         productName: 'Tricolore salad',
@@ -117,6 +160,12 @@ export const shops = [
           'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
         productCalories: 180.4,
         productImage: images.saladUpper,
+        productCategories: ['GMO', 'Gluten', 'Vegeterian'],
+        productAllergens: [
+          images.wheatAllergie,
+          images.soyAllergie,
+          images.cornAllergie,
+        ],
       },
       {
         productName: 'Gordon blue',
@@ -124,6 +173,8 @@ export const shops = [
         productDesc: 'Hamon, cheese and mayo wrapped in pork meat',
         productCalories: 640.55,
         productImage: images.gordonBlue,
+        productCategories: ['Gluten', 'Lactose'],
+        productAllergens: [images.eggAllergie, images.shellfishAllergie],
       },
     ],
   },
@@ -138,11 +189,18 @@ export const shops = [
     plate: images.salmon,
     products: [
       {
-        productName: 'Tomato Pasta',
+        productName: 'Salmon & Broccoli',
         productPrice: 12.35,
-        productDesc: 'Italian pasta with tomatoes, provencal, herbs and basil',
+        productDesc:
+          'Fresh salmon with broccoli, carrots, brown rice and almonds',
         productCalories: 380.13,
         productImage: images.meat,
+        productCategories: ['GMO', 'Gluten', 'Lactose'],
+        productAllergens: [
+          images.nutAllergie,
+          images.fishAllergie,
+          images.wheatAllergie,
+        ],
       },
       {
         productName: 'Cheese Burger',
@@ -151,6 +209,8 @@ export const shops = [
           'Classic american cheese burger with beef meat 100%, cheddar and mayo',
         productCalories: 525.19,
         productImage: images.cheeseBurger,
+        productCategories: ['GMO', 'Lactose'],
+        productAllergens: [images.milkAllergie, images.soyAllergie],
       },
       {
         productName: 'Tricolore salad',
@@ -159,6 +219,12 @@ export const shops = [
           'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
         productCalories: 180.4,
         productImage: images.saladUpper,
+        productCategories: ['GMO', 'Gluten', 'Vegeterian'],
+        productAllergens: [
+          images.wheatAllergie,
+          images.soyAllergie,
+          images.cornAllergie,
+        ],
       },
       {
         productName: 'Gordon blue',
@@ -166,6 +232,8 @@ export const shops = [
         productDesc: 'Hamon, cheese and mayo wrapped in pork meat',
         productCalories: 640.55,
         productImage: images.gordonBlue,
+        productCategories: ['Gluten', 'Lactose'],
+        productAllergens: [images.eggAllergie, images.shellfishAllergie],
       },
     ],
   },
