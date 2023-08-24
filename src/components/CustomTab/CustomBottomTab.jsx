@@ -6,15 +6,15 @@ import Animated, {
 } from 'react-native-reanimated';
 import React from 'react';
 import Svg, {Path} from 'react-native-svg';
+import {StyleSheet, View} from 'react-native';
 import {interpolatePath} from 'react-native-redash';
-import {Dimensions, StyleSheet, View} from 'react-native';
 
 import TabItem from './TabItem';
+import {sizes} from '../../constants';
 import usePath from '../../hooks/usePath';
 import AnimatedCircle from './AnimatedCircle';
 import {getPathXCenter} from '../../utils/PathUtils';
 
-const {width: WIDTH} = Dimensions.get('screen');
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 
 const CustomBottomTab = ({state, descriptors, navigation}) => {
@@ -58,7 +58,7 @@ const CustomBottomTab = ({state, descriptors, navigation}) => {
 
   return (
     <View style={styles.tabBarContainer}>
-      <Svg width={WIDTH} height={tHeight} style={styles.shadowMd}>
+      <Svg width={sizes.WIDTH} height={tHeight} style={styles.shadowMd}>
         <AnimatedPath fill={'white'} animatedProps={animatedProps} />
       </Svg>
       <AnimatedCircle circleX={circleXCoordinate} />
