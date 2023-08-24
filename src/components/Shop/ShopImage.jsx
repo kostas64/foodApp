@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
     marginTop: DimensionsUtils.getDP(48),
-    width: sizes.WIDTH * 0.65,
-    borderRadius: sizes.WIDTH * 0.65,
+    width: sizes.HEIGHT * 0.25,
+    borderRadius: sizes.HEIGHT * 0.25,
     backgroundColor: colors.white,
     shadowColor: '#000',
     shadowOffset: {
@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   image: {
-    width: sizes.WIDTH * 0.65,
-    height: sizes.WIDTH * 0.65,
+    width: sizes.HEIGHT * 0.25,
+    height: sizes.HEIGHT * 0.25,
   },
 });
 

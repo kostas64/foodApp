@@ -1,8 +1,12 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 
-import {images} from '../../constants';
+import {images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
+
+const titleSize = sizes.HEIGHT / 40;
+const descSize = sizes.HEIGHT / 60;
+const descPadding = sizes.HEIGHT / 80;
 
 const ShopDescription = ({
   productName,
@@ -33,14 +37,14 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontFamily: 'Poppins-SemiBold',
-    fontSize: DimensionsUtils.getDP(24),
+    fontSize: DimensionsUtils.getDP(titleSize),
   },
   description: {
+    width: '80%',
     textAlign: 'center',
     fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getDP(16),
-    width: '80%',
-    paddingTop: DimensionsUtils.getDP(16),
+    fontSize: DimensionsUtils.getDP(descSize),
+    paddingTop: DimensionsUtils.getDP(descPadding),
   },
   calContainer: {
     flexDirection: 'row',
@@ -48,8 +52,8 @@ const styles = StyleSheet.create({
     marginTop: DimensionsUtils.getDP(16),
   },
   icon: {
-    width: DimensionsUtils.getDP(20),
-    height: DimensionsUtils.getDP(20),
+    width: DimensionsUtils.getDP(18),
+    height: DimensionsUtils.getDP(18),
   },
   calLabel: {
     opacity: 0.25,
