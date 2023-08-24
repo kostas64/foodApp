@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import Counter from '../Common/Counter';
 import ShopImage from './ShopImage';
@@ -8,7 +9,13 @@ import ShopDescription from './ShopDescription';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const ShopItem = ({item, setCart}) => {
+  const insets = useSafeAreaInsets();
   const [counter, setCounter] = useState(0);
+
+  const extraHeight =
+    insets.bottom > 0
+      ? DimensionsUtils.getDP(32) + insets.bottom
+      : DimensionsUtils.getDP(24);
 
   const removeItemFromCart = oldCart => {
     const indexToRemove = oldCart.indexOf(item.productPrice);
@@ -43,7 +50,12 @@ const ShopItem = ({item, setCart}) => {
         productDesc={item.productDesc}
         productName={item.productName}
         productPrice={item.productPrice}
+        productCategories={item.productCategories}
+        productAllergens={item.productAllergens}
       />
+
+      {/* Spacer for extra height */}
+      <View style={{height: extraHeight}} />
     </View>
   );
 };

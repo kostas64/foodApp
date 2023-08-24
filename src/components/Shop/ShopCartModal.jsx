@@ -13,18 +13,16 @@ const ShopCartModal = ({cart, scrollY}) => {
   const cartPrice = `$${cart.reduce((a, b) => a + b, 0)?.toFixed(2)}`;
 
   const marginBottom =
-    insets.bottom > 0
-      ? insets.bottom + DimensionsUtils.getDP(8)
-      : DimensionsUtils.getDP(24);
+    insets.bottom > 0 ? insets.bottom : DimensionsUtils.getDP(24);
 
   const translateY = scrollY.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 2],
+    outputRange: [0, 10],
   });
 
   const opacity = scrollY.interpolate({
-    inputRange: [0, 30, 60],
-    outputRange: [1, 0.3, 0],
+    inputRange: [0, 20, 60],
+    outputRange: [1, 0.25, 0],
   });
 
   return (

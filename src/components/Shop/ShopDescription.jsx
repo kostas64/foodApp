@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 
+import ShopTags from './ShopTags';
+import ShopAllergens from './ShopAllergens';
 import {images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
@@ -10,29 +12,59 @@ const descPadding = sizes.HEIGHT / 80;
 
 const ShopDescription = ({
   productName,
-  productPrice,
   productDesc,
+  productPrice,
   productCalories,
+  productAllergens,
+  productCategories,
 }) => {
   const title = `${productName} - $${productPrice?.toFixed(2)}`;
+  const calLabel = `${productCalories} cal`;
 
   return (
-    <View style={styles.centerItems}>
+    <View>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description} numberOfLines={2}>
+      <Text style={[styles.description, styles.center]} numberOfLines={2}>
         {productDesc}
       </Text>
-      <View style={styles.calContainer}>
+      <View style={[styles.calContainer, styles.center]}>
         <Image source={images.fire} style={styles.icon} />
-        <Text style={styles.calLabel}>{`${productCalories} cal`}</Text>
+        <Text style={styles.calLabel}>{calLabel}</Text>
       </View>
+      <View style={[styles.bigPadding, styles.center]}>
+        <Text style={[styles.title, styles.smallPaddingBottom]}>Free of</Text>
+        <View style={styles.row}>
+          <ShopTags productCategories={productCategories} />
+        </View>
+      </View>
+      <View style={[styles.smallPadding, styles.center]}>
+        <Text style={[styles.title, styles.smallPaddingBottom]}>Allergens</Text>
+        <View style={styles.row}>
+          <ShopAllergens productAllergens={productAllergens} />
+        </View>
+      </View>
+      <Text style={[styles.center, styles.description, styles.smallPadding]}>
+        All packaging is made from recycled materials
+      </Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  centerItems: {
-    alignItems: 'center',
+  center: {
+    alignSelf: 'center',
+  },
+  bigPadding: {
+    paddingTop: DimensionsUtils.getDP(64),
+  },
+  smallPadding: {
+    paddingTop: DimensionsUtils.getDP(32),
+  },
+  smallPaddingBottom: {
+    paddingBottom: DimensionsUtils.getDP(descPadding),
+  },
+  row: {
+    flexDirection: 'row',
   },
   title: {
     textAlign: 'center',
@@ -48,7 +80,6 @@ const styles = StyleSheet.create({
   },
   calContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     marginTop: DimensionsUtils.getDP(16),
   },
   icon: {

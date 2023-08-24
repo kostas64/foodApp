@@ -51,10 +51,10 @@ const ShopScreen = ({navigation, route}) => {
           <Animated.FlatList
             horizontal
             pagingEnabled
-            onScroll={onHorizontalScroll}
             data={shop.products}
-            showsHorizontalScrollIndicator={false}
             renderItem={renderItem}
+            onScroll={onHorizontalScroll}
+            showsHorizontalScrollIndicator={false}
           />
         </View>
 
