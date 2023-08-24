@@ -22,8 +22,14 @@ const ShopCartModal = ({cart, scrollY}) => {
     outputRange: [0, 2],
   });
 
+  const opacity = scrollY.interpolate({
+    inputRange: [0, 30, 60],
+    outputRange: [1, 0.3, 0],
+  });
+
   return (
-    <Animated.View style={[styles.container, {transform: [{translateY}]}]}>
+    <Animated.View
+      style={[styles.container, {opacity, transform: [{translateY}]}]}>
       {/* Cart Info */}
       <View style={[styles.rowBetween, styles.containerPadding]}>
         <Text style={styles.label1}>{cartLength}</Text>
