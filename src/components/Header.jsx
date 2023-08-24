@@ -1,21 +1,27 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 
 import {colors} from '../constants';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
 
-const Header = ({leftIcon, rightIcon, label}) => {
+const Header = ({
+  label,
+  leftIcon,
+  rightIcon,
+  onPressLeft = () => {},
+  onPressRight = () => {},
+}) => {
   return (
     <View style={styles.container}>
-      <View>
+      <Pressable onPress={onPressLeft}>
         <Image source={leftIcon} style={styles.image} />
-      </View>
+      </Pressable>
       <View style={styles.midContainer}>
         <Text style={styles.label}>{label}</Text>
       </View>
-      <View>
+      <Pressable onPress={onPressRight}>
         <Image source={rightIcon} style={styles.image} />
-      </View>
+      </Pressable>
     </View>
   );
 };
@@ -33,7 +39,7 @@ const styles = StyleSheet.create({
   },
   midContainer: {
     backgroundColor: colors.lightGrey,
-    borderRadius: DimensionsUtils.getDP(16),
+    borderRadius: DimensionsUtils.getDP(32),
     paddingHorizontal: DimensionsUtils.getDP(24),
     paddingVertical: DimensionsUtils.getDP(12),
   },
