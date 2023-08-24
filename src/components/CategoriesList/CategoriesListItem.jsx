@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 
-import {colors} from '../constants';
-import {categories} from '../assets/data/categories';
-import {DimensionsUtils} from '../utils/DimensionsUtils';
+import {colors} from '../../constants';
+import {categories} from '../../assets/data/categories';
+import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const CategoriesListItem = ({item, index, selectedItem, setSelectedItem}) => {
   const backgroundColor =

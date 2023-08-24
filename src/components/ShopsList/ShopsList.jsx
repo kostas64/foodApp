@@ -1,10 +1,10 @@
 import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 
-import {sizes} from '../constants';
-import {shops} from '../assets/data/shops';
+import {sizes} from '../../constants';
+import {shops} from '../../assets/data/shops';
 import ShopsListItem from './ShopsListItem';
-import {DimensionsUtils} from '../utils/DimensionsUtils';
+import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const ShopsList = () => {
   return (

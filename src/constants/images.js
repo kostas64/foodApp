@@ -25,8 +25,14 @@ const menu = require('../assets/images/menu.png');
 const minus = require('../assets/images/minus.png');
 const plus = require('../assets/images/plus.png');
 const fire = require('../assets/images/fire.png');
+const cheeseBurger = require('../assets/images/cheeseburger.png');
+const gordonBlue = require('../assets/images/gordonBlue.png');
+const saladUpper = require('../assets/images/saladUpper.png');
 
 export default {
+  saladUpper,
+  gordonBlue,
+  cheeseBurger,
   fire,
   minus,
   plus,

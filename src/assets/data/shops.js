@@ -10,6 +10,38 @@ export const shops = [
     estimatedTime: [25, 30],
     image: images.burgerShop,
     plate: images.meat,
+    products: [
+      {
+        productName: 'Tomato Pasta',
+        productPrice: 12.35,
+        productDesc: 'Italian pasta with tomatoes, provencal, herbs and basil',
+        productCalories: 380.13,
+        productImage: images.meat,
+      },
+      {
+        productName: 'Cheese Burger',
+        productPrice: 8.0,
+        productDesc:
+          'Classic american cheese burger with beef meat 100%, cheddar and mayo',
+        productCalories: 525.19,
+        productImage: images.cheeseBurger,
+      },
+      {
+        productName: 'Tricolore salad',
+        productPrice: 9.5,
+        productDesc:
+          'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
+        productCalories: 180.4,
+        productImage: images.saladUpper,
+      },
+      {
+        productName: 'Gordon blue',
+        productPrice: 15.25,
+        productDesc: 'Hamon, cheese and mayo wrapped in pork meat',
+        productCalories: 640.55,
+        productImage: images.gordonBlue,
+      },
+    ],
   },
   {
     id: 1,
@@ -20,6 +52,38 @@ export const shops = [
     estimatedTime: [35, 45],
     image: images.beefKingShop,
     plate: images.beef,
+    products: [
+      {
+        productName: 'Tomato Pasta',
+        productPrice: 12.35,
+        productDesc: 'Italian pasta with tomatoes, provencal, herbs and basil',
+        productCalories: 380.13,
+        productImage: images.meat,
+      },
+      {
+        productName: 'Cheese Burger',
+        productPrice: 8.0,
+        productDesc:
+          'Classic american cheese burger with beef meat 100%, cheddar and mayo',
+        productCalories: 525.19,
+        productImage: images.cheeseBurger,
+      },
+      {
+        productName: 'Tricolore salad',
+        productPrice: 9.5,
+        productDesc:
+          'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
+        productCalories: 180.4,
+        productImage: images.saladUpper,
+      },
+      {
+        productName: 'Gordon blue',
+        productPrice: 15.25,
+        productDesc: 'Hamon, cheese and mayo wrapped in pork meat',
+        productCalories: 640.55,
+        productImage: images.gordonBlue,
+      },
+    ],
   },
   {
     id: 2,
@@ -30,6 +94,38 @@ export const shops = [
     estimatedTime: [15, 25],
     image: images.fishShop,
     plate: images.fish,
+    products: [
+      {
+        productName: 'Tomato Pasta',
+        productPrice: 12.35,
+        productDesc: 'Italian pasta with tomatoes, provencal, herbs and basil',
+        productCalories: 380.13,
+        productImage: images.meat,
+      },
+      {
+        productName: 'Cheese Burger',
+        productPrice: 8.0,
+        productDesc:
+          'Classic american cheese burger with beef meat 100%, cheddar and mayo',
+        productCalories: 525.19,
+        productImage: images.cheeseBurger,
+      },
+      {
+        productName: 'Tricolore salad',
+        productPrice: 9.5,
+        productDesc:
+          'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
+        productCalories: 180.4,
+        productImage: images.saladUpper,
+      },
+      {
+        productName: 'Gordon blue',
+        productPrice: 15.25,
+        productDesc: 'Hamon, cheese and mayo wrapped in pork meat',
+        productCalories: 640.55,
+        productImage: images.gordonBlue,
+      },
+    ],
   },
   {
     id: 3,
@@ -40,5 +136,37 @@ export const shops = [
     estimatedTime: [35, 40],
     image: images.bbqShop,
     plate: images.salmon,
+    products: [
+      {
+        productName: 'Tomato Pasta',
+        productPrice: 12.35,
+        productDesc: 'Italian pasta with tomatoes, provencal, herbs and basil',
+        productCalories: 380.13,
+        productImage: images.meat,
+      },
+      {
+        productName: 'Cheese Burger',
+        productPrice: 8.0,
+        productDesc:
+          'Classic american cheese burger with beef meat 100%, cheddar and mayo',
+        productCalories: 525.19,
+        productImage: images.cheeseBurger,
+      },
+      {
+        productName: 'Tricolore salad',
+        productPrice: 9.5,
+        productDesc:
+          'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
+        productCalories: 180.4,
+        productImage: images.saladUpper,
+      },
+      {
+        productName: 'Gordon blue',
+        productPrice: 15.25,
+        productDesc: 'Hamon, cheese and mayo wrapped in pork meat',
+        productCalories: 640.55,
+        productImage: images.gordonBlue,
+      },
+    ],
   },
 ];

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 
-import {colors} from '../constants';
+import {colors} from '../../constants';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Screen = ({children}) => {

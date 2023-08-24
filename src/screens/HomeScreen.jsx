@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 
 import {images} from '../constants';
-import Screen from '../components/Screen';
-import Header from '../components/Header';
-import ShopsList from '../components/ShopsList';
+import Screen from '../components/Common/Screen';
+import Header from '../components/Common/Header';
+import ShopsList from '../components/ShopsList/ShopsList';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
-import CategoriesList from '../components/CategoriesList';
+import CategoriesList from '../components/CategoriesList/CategoriesList';
 
 const HomeScreen = () => {
   return (

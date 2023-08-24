@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 
-import {colors} from '../constants';
-import {DimensionsUtils} from '../utils/DimensionsUtils';
+import {colors} from '../../constants';
+import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const Header = ({
   label,

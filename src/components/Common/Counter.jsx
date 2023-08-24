@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
-import {colors, images} from '../constants';
-import {DimensionsUtils} from '../utils/DimensionsUtils';
+import {colors, images} from '../../constants';
+import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const Counter = ({onPressMinus, onPressPlus, counter}) => {
-  const disabled = counter <= 1;
-  const tintColor = disabled ? colors.grey : colors.black;
+  const disabled = counter <= 0;
 
   return (
     <View style={styles.container}>
@@ -14,7 +13,10 @@ const Counter = ({onPressMinus, onPressPlus, counter}) => {
         disabled={disabled}
         onPress={onPressMinus}
         style={styles.leftContainer}>
-        <Image source={images.minus} style={[styles.icon, {tintColor}]} />
+        <Image
+          source={images.minus}
+          style={[styles.icon, disabled && {opacity: 0.25}]}
+        />
       </TouchableOpacity>
       <View style={styles.numberContainer}>
         <Text style={styles.number}>{counter}</Text>
