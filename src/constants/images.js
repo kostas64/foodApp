@@ -28,8 +28,12 @@ const fire = require('../assets/images/fire.png');
 const cheeseBurger = require('../assets/images/cheeseburger.png');
 const gordonBlue = require('../assets/images/gordonBlue.png');
 const saladUpper = require('../assets/images/saladUpper.png');
+const marker = require('../assets/images/marker.png');
+const debit = require('../assets/images/debit.png');
 
 export default {
+  marker,
+  debit,
   saladUpper,
   gordonBlue,
   cheeseBurger,
