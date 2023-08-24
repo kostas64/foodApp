@@ -38,12 +38,13 @@ const styles = StyleSheet.create({
     aspectRatio: 1 / 1,
   },
   midContainer: {
-    backgroundColor: colors.lightGrey,
+    backgroundColor: colors.orange,
     borderRadius: DimensionsUtils.getDP(32),
     paddingHorizontal: DimensionsUtils.getDP(24),
     paddingVertical: DimensionsUtils.getDP(12),
   },
   label: {
+    color: colors.white,
     fontFamily: 'Poppins-Medium',
   },
 });
