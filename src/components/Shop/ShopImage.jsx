@@ -15,7 +15,7 @@ const ShopImage = ({image}) => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
-    marginTop: DimensionsUtils.getDP(48),
+    marginTop: DimensionsUtils.getDP(24),
     width: sizes.HEIGHT * 0.25,
     borderRadius: sizes.HEIGHT * 0.25,
     backgroundColor: colors.white,

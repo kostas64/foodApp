@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {View, Text, Image, StyleSheet, Animated} from 'react-native';
 
 import {colors, images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const ShopCartModal = ({cart}) => {
+const ShopCartModal = ({cart, scrollY}) => {
   const insets = useSafeAreaInsets();
 
   const itemPlural = cart.length === 1 ? 'item' : 'items';
@@ -17,8 +17,13 @@ const ShopCartModal = ({cart}) => {
       ? insets.bottom + DimensionsUtils.getDP(8)
       : DimensionsUtils.getDP(24);
 
+  const translateY = scrollY.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 2],
+  });
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, {transform: [{translateY}]}]}>
       {/* Cart Info */}
       <View style={[styles.rowBetween, styles.containerPadding]}>
         <Text style={styles.label1}>{cartLength}</Text>
@@ -50,7 +55,7 @@ const ShopCartModal = ({cart}) => {
         ]}>
         <Text style={styles.buttonLabel}>Order</Text>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
