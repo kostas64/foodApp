@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
     flexDirection: 'row',
-    marginTop: DimensionsUtils.getDP(24),
+    position: 'absolute',
+    top: DimensionsUtils.getDP(420),
   },
   dot: {
     width: DimensionsUtils.getDP(8),
