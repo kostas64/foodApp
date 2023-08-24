@@ -4,17 +4,15 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import React, {useEffect} from 'react';
-import {Pressable, StyleSheet, Text, Dimensions, Image} from 'react-native';
+import {Pressable, StyleSheet, Text, Image} from 'react-native';
 
 import usePath from '../../hooks/usePath';
-import {colors, images} from '../../constants';
+import {colors, images, sizes} from '../../constants';
 import {getPathXCenterByIndex} from '../../utils/PathUtils';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const {width: WIDTH} = Dimensions.get('screen');
-
 const ICON_SIZE = DimensionsUtils.getDP(24);
-const LABEL_WIDTH = WIDTH / 3;
+const LABEL_WIDTH = sizes.WIDTH / 3;
 
 const AnimatedIcon = Animated.createAnimatedComponent(Image);
 

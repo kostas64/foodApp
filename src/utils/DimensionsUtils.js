@@ -1,8 +1,8 @@
-import {Dimensions} from 'react-native';
+import {sizes} from '../constants';
 import {create, PREDEF_RES} from 'react-native-pixel-perfect';
 
+const screenWidth = Math.round(sizes.WIDTH);
 const perfectSize = create(PREDEF_RES.iphoneX.dp);
-const screenWidth = Math.round(Dimensions.get('window').width);
 
 // Method that returns true if Screen Width is less than 375.
 export const isToDownscale = () => {

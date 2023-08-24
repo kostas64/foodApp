@@ -1,5 +1,5 @@
 import {useMemo} from 'react';
-import {Dimensions} from 'react-native';
+import {sizes} from '../constants';
 import {curveBasis, line} from 'd3-shape';
 import {parse} from 'react-native-redash';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -7,10 +7,8 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 const NUM_TABS = 3;
 const SCALE = 0.7;
 
-const {width: WIDTH} = Dimensions.get('screen');
-
 const generateTabShapePath = (position, adjustedHeight) => {
-  const adjustedWidth = WIDTH / NUM_TABS;
+  const adjustedWidth = sizes.WIDTH / NUM_TABS;
   const tabX = adjustedWidth * position;
 
   const lineGenerator = line().curve(curveBasis);
@@ -35,7 +33,7 @@ const usePath = () => {
   const adjustedHeight = tHeight - insets.bottom;
 
   const containerPath = useMemo(() => {
-    return `M0,0L${WIDTH},0L${WIDTH},0L${WIDTH},${tHeight}L0,${tHeight}L0,0`;
+    return `M0,0L${sizes.WIDTH},0L${sizes.WIDTH},0L${sizes.WIDTH},${tHeight}L0,${tHeight}L0,0`;
   }, [tHeight]);
 
   const curvedPaths = useMemo(() => {

@@ -1,18 +1,9 @@
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
-import {colors, images} from '../constants';
+import {colors, images, sizes} from '../constants';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
-
-const {width} = Dimensions.get('screen');
 
 const ShopsListItem = ({item}) => {
   const navigation = useNavigation();
@@ -60,8 +51,8 @@ const ShopsListItem = ({item}) => {
 
 const styles = StyleSheet.create({
   image: {
-    width: width - DimensionsUtils.getDP(40),
-    height: DimensionsUtils.getDP((width - 40) / 2),
+    width: sizes.WIDTH - DimensionsUtils.getDP(40),
+    height: DimensionsUtils.getDP((sizes.WIDTH - 40) / 2),
     borderRadius: DimensionsUtils.getDP(30),
   },
   timeContainer: {

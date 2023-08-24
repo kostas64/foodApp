@@ -9,6 +9,7 @@ export const shops = [
     price: 2,
     estimatedTime: [25, 30],
     image: images.burgerShop,
+    plate: images.meat,
   },
   {
     id: 1,
@@ -18,6 +19,7 @@ export const shops = [
     price: 3,
     estimatedTime: [35, 45],
     image: images.beefKingShop,
+    plate: images.beef,
   },
   {
     id: 2,
@@ -27,6 +29,7 @@ export const shops = [
     price: 1,
     estimatedTime: [15, 25],
     image: images.fishShop,
+    plate: images.fish,
   },
   {
     id: 3,
@@ -36,5 +39,6 @@ export const shops = [
     price: 2,
     estimatedTime: [35, 40],
     image: images.bbqShop,
+    plate: images.salmon,
   },
 ];

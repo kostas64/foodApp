@@ -1,17 +1,16 @@
 import React from 'react';
-import {FlatList, Dimensions, StyleSheet} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 
+import {sizes} from '../constants';
 import {shops} from '../assets/data/shops';
 import ShopsListItem from './ShopsListItem';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
-
-const {width} = Dimensions.get('screen');
 
 const ShopsList = () => {
   return (
     <FlatList
       data={shops}
-      style={{width}}
+      style={{width: sizes.WIDTH}}
       contentContainerStyle={styles.contentStyle}
       renderItem={({item}) => <ShopsListItem item={item} />}
       keyExtractor={item => `${item.id}`}

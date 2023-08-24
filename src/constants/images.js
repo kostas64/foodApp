@@ -22,8 +22,14 @@ const search = require('../assets/images/search.png');
 const knifeFork = require('../assets/images/knife-and-fork.png');
 const arrowLeft = require('../assets/images/arrowLeft.png');
 const menu = require('../assets/images/menu.png');
+const minus = require('../assets/images/minus.png');
+const plus = require('../assets/images/plus.png');
+const fire = require('../assets/images/fire.png');
 
 export default {
+  fire,
+  minus,
+  plus,
   menu,
   arrowLeft,
   knifeFork,
