@@ -50,7 +50,7 @@ const ShopItem = ({item, setCart}) => {
 
 const styles = StyleSheet.create({
   counterContainer: {
-    top: -DimensionsUtils.getDP(36),
+    top: -DimensionsUtils.getDP(32),
     width: DimensionsUtils.getDP(118),
     borderRadius: DimensionsUtils.getDP(30),
     backgroundColor: colors.white,
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShopItem;
+export default React.memo(ShopItem);
