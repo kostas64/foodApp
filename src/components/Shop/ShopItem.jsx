@@ -8,7 +8,7 @@ import {colors, sizes} from '../../constants';
 import ShopDescription from './ShopDescription';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const ShopItem = ({item, setCart}) => {
+const ShopItem = ({item, setCart, setModalContent, modalRef}) => {
   const insets = useSafeAreaInsets();
   const [counter, setCounter] = useState(0);
 
@@ -16,6 +16,16 @@ const ShopItem = ({item, setCart}) => {
     insets.bottom > 0
       ? DimensionsUtils.getDP(32) + insets.bottom
       : DimensionsUtils.getDP(24);
+
+  const onPressPlus = () => {
+    setCart(oldCart => [...oldCart, item.productPrice]);
+    setCounter(old => old + 1);
+  };
+
+  const onPressMinus = () => {
+    setCart(removeItemFromCart);
+    setCounter(old => old - 1);
+  };
 
   const removeItemFromCart = oldCart => {
     const indexToRemove = oldCart.indexOf(item.productPrice);
@@ -33,19 +43,15 @@ const ShopItem = ({item, setCart}) => {
       <View style={styles.counterContainer}>
         <Counter
           counter={counter}
-          onPressPlus={() => {
-            setCart(oldCart => [...oldCart, item.productPrice]);
-            setCounter(old => old + 1);
-          }}
-          onPressMinus={() => {
-            setCart(removeItemFromCart);
-            setCounter(old => old - 1);
-          }}
+          onPressPlus={onPressPlus}
+          onPressMinus={onPressMinus}
         />
       </View>
 
       {/* Content about product */}
       <ShopDescription
+        modalRef={modalRef}
+        setModalContent={setModalContent}
         productCalories={item.productCalories}
         productDesc={item.productDesc}
         productName={item.productName}

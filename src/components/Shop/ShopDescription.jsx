@@ -11,12 +11,14 @@ const descSize = sizes.HEIGHT / 60;
 const descPadding = sizes.HEIGHT / 80;
 
 const ShopDescription = ({
+  modalRef,
   productName,
   productDesc,
   productPrice,
   productCalories,
   productAllergens,
   productCategories,
+  setModalContent,
 }) => {
   const title = `${productName} - $${productPrice?.toFixed(2)}`;
   const calLabel = `${productCalories} cal`;
@@ -34,7 +36,11 @@ const ShopDescription = ({
       <View style={[styles.bigPadding, styles.center]}>
         <Text style={[styles.title, styles.smallPaddingBottom]}>Free of</Text>
         <View style={styles.row}>
-          <ShopTags productCategories={productCategories} />
+          <ShopTags
+            modalRef={modalRef}
+            setModalContent={setModalContent}
+            productCategories={productCategories}
+          />
         </View>
       </View>
       <View style={[styles.smallPadding, styles.center]}>
