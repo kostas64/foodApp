@@ -17,7 +17,7 @@ const ShopCartModal = ({cart, scrollY}) => {
 
   const translateY = scrollY.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 10],
+    outputRange: [0, 8],
   });
 
   const opacity = scrollY.interpolate({

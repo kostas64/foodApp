@@ -44,7 +44,7 @@ const ShopDescription = ({
         </View>
       </View>
       <Text style={[styles.center, styles.description, styles.smallPadding]}>
-        All packaging is made from recycled materials
+        *All packaging is made from recycled materials
       </Text>
     </View>
   );
