@@ -8,18 +8,28 @@ import ShopItem from '../components/Shop/ShopItem';
 import Pagination from '../components/Common/Pagination';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
 import ShopCartModal from '../components/Shop/ShopCartModal';
+import AnimatedModal from '../components/Common/AnimatedModal';
 
 const ShopScreen = ({navigation, route}) => {
   const {shop} = route?.params || {};
 
   const [cart, setCart] = useState([]);
+  const [modalContent, setModalContent] = useState();
+
+  const modalRef = useRef();
   const scrollX = useRef(new Animated.Value(0)).current;
   const scrollY = useRef(new Animated.Value(0)).current;
 
   const onPressBack = () => navigation.pop();
 
   const renderItem = ({item, index}) => (
-    <ShopItem key={index} item={item} setCart={setCart} />
+    <ShopItem
+      key={index}
+      item={item}
+      setCart={setCart}
+      setModalContent={setModalContent}
+      modalRef={modalRef}
+    />
   );
 
   const onVerticalScroll = Animated.event(
@@ -64,6 +74,9 @@ const ShopScreen = ({navigation, route}) => {
 
       {/* Cart Modal */}
       <ShopCartModal cart={cart} scrollY={scrollY} />
+
+      {/* Animated Modal */}
+      <AnimatedModal ref={modalRef} content={modalContent} />
     </Screen>
   );
 };
