@@ -42,7 +42,7 @@ export const shops = [
           'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
         productCalories: 180.4,
         productImage: images.saladUpper,
-        productCategories: ['GMO', 'Gluten', 'Vegeterian'],
+        productCategories: ['GMO', 'Gluten'],
         productAllergens: [
           images.wheatAllergie,
           images.soyAllergie,
@@ -101,7 +101,7 @@ export const shops = [
           'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
         productCalories: 180.4,
         productImage: images.saladUpper,
-        productCategories: ['GMO', 'Gluten', 'Vegeterian'],
+        productCategories: ['GMO', 'Gluten'],
         productAllergens: [
           images.wheatAllergie,
           images.soyAllergie,
@@ -160,7 +160,7 @@ export const shops = [
           'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
         productCalories: 180.4,
         productImage: images.saladUpper,
-        productCategories: ['GMO', 'Gluten', 'Vegeterian'],
+        productCategories: ['GMO', 'Gluten'],
         productAllergens: [
           images.wheatAllergie,
           images.soyAllergie,
@@ -219,7 +219,7 @@ export const shops = [
           'A meditterenian salad with cucumber, small tomatos, onion and lettuce',
         productCalories: 180.4,
         productImage: images.saladUpper,
-        productCategories: ['GMO', 'Gluten', 'Vegeterian'],
+        productCategories: ['GMO', 'Gluten'],
         productAllergens: [
           images.wheatAllergie,
           images.soyAllergie,

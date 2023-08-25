@@ -38,8 +38,16 @@ const shellfishAllergie = require('../assets/images/shellfishAllergie.png');
 const eggAllergie = require('../assets/images/eggAllergie.png');
 const fishAllergie = require('../assets/images/fishAllergie.png');
 const soyAllergie = require('../assets/images/soyAllergie.png');
+const gmoFree = require('../assets/images/gmoFree.png');
+const glutenFree = require('../assets/images/glutenFree.png');
+const lactoseFree = require('../assets/images/lactoseFree.png');
+const close = require('../assets/images/close.png');
 
 export default {
+  close,
+  gmoFree,
+  lactoseFree,
+  glutenFree,
   wheatAllergie,
   nutAllergie,
   cornAllergie,
