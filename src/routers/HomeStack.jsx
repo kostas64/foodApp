@@ -3,8 +3,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import BottomStack from './BottomStack';
 import ShopScreen from '../screens/ShopScreen';
+import CardScreen from '../screens/CardScreen';
 
 const Stack = createNativeStackNavigator();
+
+const slideFromBottom = {
+  animation: 'slide_from_bottom',
+};
 
 const HomeStack = () => {
   return (
@@ -15,6 +20,11 @@ const HomeStack = () => {
       }}>
       <Stack.Screen name="HomeStack" component={BottomStack} />
       <Stack.Screen name="Shop" component={ShopScreen} />
+      <Stack.Screen
+        name="Card"
+        component={CardScreen}
+        options={slideFromBottom}
+      />
     </Stack.Navigator>
   );
 };
