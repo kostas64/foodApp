@@ -42,8 +42,14 @@ const gmoFree = require('../assets/images/gmoFree.png');
 const glutenFree = require('../assets/images/glutenFree.png');
 const lactoseFree = require('../assets/images/lactoseFree.png');
 const close = require('../assets/images/close.png');
+const pencil = require('../assets/images/pencil.png');
+const trash = require('../assets/images/delete.png');
+const add = require('../assets/images/add.png');
 
 export default {
+  add,
+  trash,
+  pencil,
   close,
   gmoFree,
   lactoseFree,
