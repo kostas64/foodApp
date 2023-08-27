@@ -11,11 +11,7 @@ import CategoriesList from '../components/CategoriesList/CategoriesList';
 const HomeScreen = () => {
   return (
     <Screen>
-      <Header
-        leftIcon={images.person}
-        rightIcon={images.basket}
-        label={'745 Lincoln 3605'}
-      />
+      <Header label={'745 Lincoln 3605'} />
 
       {/* Title */}
       <Text style={styles.title}>{`Main\nCategories`}</Text>

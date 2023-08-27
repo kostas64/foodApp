@@ -51,7 +51,6 @@ const ShopScreen = ({navigation, route}) => {
           label={shop.name}
           onPressLeft={onPressBack}
           leftIcon={images.arrowLeft}
-          rightIcon={images.menu}
         />
         <Animated.ScrollView
           bounces={false}

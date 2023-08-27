@@ -15,15 +15,25 @@ const Header = ({
 }) => {
   return (
     <View style={styles.container}>
-      <Pressable onPress={onPressLeft} hitSlop={styles.hitSlop}>
-        <Image source={leftIcon} style={[styles.image, leftIconStyle]} />
-      </Pressable>
+      {leftIcon ? (
+        <Pressable onPress={onPressLeft} hitSlop={styles.hitSlop}>
+          <Image source={leftIcon} style={[styles.image, leftIconStyle]} />
+        </Pressable>
+      ) : (
+        <View style={[styles.image, leftIconStyle]} />
+      )}
+
       <View style={styles.midContainer}>
         <Text style={styles.label}>{label}</Text>
       </View>
-      <Pressable onPress={onPressRight} hitSlop={styles.hitSlop}>
-        <Image source={rightIcon} style={[styles.image, rightIconStyle]} />
-      </Pressable>
+
+      {rightIcon ? (
+        <Pressable onPress={onPressRight} hitSlop={styles.hitSlop}>
+          <Image source={rightIcon} style={[styles.image, rightIconStyle]} />
+        </Pressable>
+      ) : (
+        <View style={[styles.image, rightIconStyle]} />
+      )}
     </View>
   );
 };
@@ -44,6 +54,14 @@ const styles = StyleSheet.create({
     borderRadius: DimensionsUtils.getDP(32),
     paddingHorizontal: DimensionsUtils.getDP(24),
     paddingVertical: DimensionsUtils.getDP(12),
+    elevation: 15,
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    shadowColor: colors.orange,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
   label: {
     color: colors.white,
