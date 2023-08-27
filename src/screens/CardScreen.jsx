@@ -22,7 +22,6 @@ const CardScreen = ({navigation, route}) => {
   const listStyle = {
     paddingBottom:
       insets.bottom > 0 ? insets.bottom : DimensionsUtils.getDP(16),
-    marginTop: DimensionsUtils.getDP(16),
   };
 
   const onPressBack = () => navigation.pop();
@@ -59,6 +58,7 @@ const CardScreen = ({navigation, route}) => {
         <FlatList
           data={bankCards}
           renderItem={renderItem}
+          style={{marginTop: DimensionsUtils.getDP(16)}}
           contentContainerStyle={listStyle}
           showsVerticalScrollIndicator={false}
         />
