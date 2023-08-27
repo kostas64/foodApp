@@ -1,19 +1,22 @@
 import Animated, {
   withTiming,
-  withSpring,
   useSharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import {
   PanGestureHandler,
+  TouchableOpacity,
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {InteractionManager, StyleSheet, View} from 'react-native';
+import {View, StyleSheet, InteractionManager} from 'react-native';
 
 import Card from './Card';
+import {sizes} from '../../constants';
+import Separator from '../Common/Separator';
+import {cards} from '../../assets/data/cards';
 import CardActionButtons from './CardActionButtons';
 import DeleteCardModal from '../Modals/DeleteCardModal';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
@@ -30,14 +33,10 @@ const CardListItem = ({
   setSelectedCard,
 }) => {
   const navigation = useNavigation();
+  const position = useSharedValue(0);
   const onLeft = useSharedValue(true);
   const isRightEnabled = useSharedValue(false);
-  const position = useSharedValue(0);
-  const scaleActions = useSharedValue(1);
 
-  const scaleStyle = useAnimatedStyle(() => ({
-    transform: [{translateX: scaleActions.value}],
-  }));
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{translateX: position.value}],
   }));
@@ -47,16 +46,11 @@ const CardListItem = ({
   const onEnd = e => {
     if (position.value < END_POSITION / 2) {
       isRightEnabled.value = true;
-      scaleActions.value = withSpring(-24, {
-        stiffness: 120,
-        damping: 20,
-        mass: 2,
-      });
+
       position.value = withTiming(END_POSITION, {duration: 100});
       onLeft.value = false;
       return;
     } else {
-      scaleActions.value = withTiming(1, {duration: 100});
       position.value = withTiming(0, {duration: 100});
       onLeft.value = true;
       isRightEnabled.value = false;
@@ -114,45 +108,43 @@ const CardListItem = ({
     modalRef.current?.animateModal();
   };
 
-  //TO-DO edit card
-  const onPressEdit = index => {};
-
   return (
-    <GestureHandlerRootView>
-      <PanGestureHandler
-        activeOffsetX={[0, 10]}
-        activeOffsetY={100000000}
-        onGestureEvent={onGesture}
-        onEnded={onEnd}>
-        <Animated.View style={animatedStyle}>
-          <View
-            style={[styles.container, !isCardSelected && styles.marginBottom]}>
-            <Card
-              item={item}
-              isSelected={isCardSelected}
-              onPressCard={onSelectCard}
-            />
-            <View style={styles.cardActions}>
-              <CardActionButtons
-                scaleStyle={scaleStyle}
-                onPressEdit={() => onPressEdit(index)}
-                onPressDelete={() => onPressDelete(index)}
+    <>
+      <Separator width={sizes.WIDTH - DimensionsUtils.getDP(70)} />
+      <GestureHandlerRootView>
+        <PanGestureHandler
+          activeOffsetX={[0, 10]}
+          activeOffsetY={100000000}
+          onGestureEvent={onGesture}
+          onEnded={onEnd}>
+          <Animated.View style={animatedStyle}>
+            <TouchableOpacity onPress={onSelectCard} style={styles.row}>
+              <Card
+                item={item}
+                isSelected={isCardSelected}
+                isLast={index === cards.length - 1}
               />
-            </View>
-          </View>
-        </Animated.View>
-      </PanGestureHandler>
-    </GestureHandlerRootView>
+              <View style={styles.cardActions}>
+                <CardActionButtons onPressDelete={() => onPressDelete(index)} />
+              </View>
+            </TouchableOpacity>
+          </Animated.View>
+        </PanGestureHandler>
+      </GestureHandlerRootView>
+      {index === cards.length - 1 && (
+        <Separator width={sizes.WIDTH - DimensionsUtils.getDP(70)} />
+      )}
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  row: {
     flexDirection: 'row',
-    marginVertical: DimensionsUtils.getDP(4),
+    alignItems: 'center',
   },
   cardActions: {
-    left: DimensionsUtils.getDP(74),
+    left: DimensionsUtils.getDP(54),
   },
   marginBottom: {
     marginBottom: DimensionsUtils.getDP(16),
