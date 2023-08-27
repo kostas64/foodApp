@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Animated, StyleSheet, View} from 'react-native';
 
 import {images} from '../constants';
+import {cards} from '../assets/data/cards';
 import Screen from '../components/Common/Screen';
 import Header from '../components/Common/Header';
 import ShopItem from '../components/Shop/ShopItem';
@@ -15,6 +16,7 @@ const ShopScreen = ({navigation, route}) => {
 
   const [cart, setCart] = useState([]);
   const [modalContent, setModalContent] = useState();
+  const [selectedCard, setSelectedCard] = useState(cards?.[0]);
 
   const modalRef = useRef();
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -43,41 +45,48 @@ const ShopScreen = ({navigation, route}) => {
   );
 
   return (
-    <Screen>
-      <Header
-        label={shop.name}
-        onPressLeft={onPressBack}
-        leftIcon={images.arrowLeft}
-        rightIcon={images.menu}
-      />
-      <Animated.ScrollView
-        bounces={false}
-        style={styles.scrollView}
-        scrollEventThrottle={16}
-        showsVerticalScrollIndicator={false}
-        onScroll={onVerticalScroll}>
-        {/* Products List */}
-        <View>
-          <Animated.FlatList
-            horizontal
-            pagingEnabled
-            data={shop.products}
-            renderItem={renderItem}
-            onScroll={onHorizontalScroll}
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
+    <>
+      <Screen>
+        <Header
+          label={shop.name}
+          onPressLeft={onPressBack}
+          leftIcon={images.arrowLeft}
+          rightIcon={images.menu}
+        />
+        <Animated.ScrollView
+          bounces={false}
+          style={styles.scrollView}
+          scrollEventThrottle={16}
+          showsVerticalScrollIndicator={false}
+          onScroll={onVerticalScroll}>
+          {/* Products List */}
+          <View>
+            <Animated.FlatList
+              horizontal
+              pagingEnabled
+              data={shop.products}
+              renderItem={renderItem}
+              onScroll={onHorizontalScroll}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
 
-        {/* Pagination */}
-        <Pagination scrollX={scrollX} dotsLength={shop?.products?.length} />
-      </Animated.ScrollView>
+          {/* Pagination */}
+          <Pagination scrollX={scrollX} dotsLength={shop?.products?.length} />
+        </Animated.ScrollView>
 
-      {/* Cart Modal */}
-      <ShopCartModal cart={cart} scrollY={scrollY} />
+        {/* Cart Modal */}
+        <ShopCartModal
+          cart={cart}
+          scrollY={scrollY}
+          selectedCard={selectedCard}
+          setSelectedCard={setSelectedCard}
+        />
+      </Screen>
 
       {/* Animated Modal */}
       <AnimatedModal ref={modalRef} content={modalContent} />
-    </Screen>
+    </>
   );
 };
 
