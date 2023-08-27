@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import Checkbox from '../Common/Checkbox';
 import {colors, images, sizes} from '../../constants';
