@@ -15,7 +15,6 @@ import {View, StyleSheet, InteractionManager} from 'react-native';
 import Card from './Card';
 import {sizes} from '../../constants';
 import Separator from '../Common/Separator';
-import {cards} from '../../assets/data/cards';
 import CardActionButtons from './CardActionButtons';
 import DeleteCardModal from '../Modals/DeleteCardModal';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
@@ -26,6 +25,7 @@ const CardListItem = ({
   item,
   index,
   modalRef,
+  bankCards,
   selectedCard,
   setBankCards,
   setModalContent,
@@ -122,7 +122,6 @@ const CardListItem = ({
                 item={item}
                 onSelectCard={onSelectCard}
                 isSelected={isCardSelected}
-                isLast={index === cards.length - 1}
               />
               <View style={styles.cardActions}>
                 <CardActionButtons onPressDelete={() => onPressDelete(index)} />
@@ -131,7 +130,7 @@ const CardListItem = ({
           </Animated.View>
         </PanGestureHandler>
       </GestureHandlerRootView>
-      {index === cards.length - 1 && (
+      {index === bankCards.length - 1 && (
         <Separator width={sizes.WIDTH - DimensionsUtils.getDP(70)} />
       )}
     </>

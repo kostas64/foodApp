@@ -32,6 +32,7 @@ const CardScreen = ({navigation, route}) => {
       item={item}
       index={index}
       modalRef={modalRef}
+      bankCards={bankCards}
       setBankCards={setBankCards}
       setModalContent={setModalContent}
       selectedCard={stateCardSelect}
