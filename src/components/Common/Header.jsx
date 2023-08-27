@@ -8,19 +8,21 @@ const Header = ({
   label,
   leftIcon,
   rightIcon,
+  leftIconStyle = {},
+  rightIconStyle = {},
   onPressLeft = () => {},
   onPressRight = () => {},
 }) => {
   return (
     <View style={styles.container}>
-      <Pressable onPress={onPressLeft}>
-        <Image source={leftIcon} style={styles.image} />
+      <Pressable onPress={onPressLeft} hitSlop={styles.hitSlop}>
+        <Image source={leftIcon} style={[styles.image, leftIconStyle]} />
       </Pressable>
       <View style={styles.midContainer}>
         <Text style={styles.label}>{label}</Text>
       </View>
-      <Pressable onPress={onPressRight}>
-        <Image source={rightIcon} style={styles.image} />
+      <Pressable onPress={onPressRight} hitSlop={styles.hitSlop}>
+        <Image source={rightIcon} style={[styles.image, rightIconStyle]} />
       </Pressable>
     </View>
   );
@@ -46,6 +48,12 @@ const styles = StyleSheet.create({
   label: {
     color: colors.white,
     fontFamily: 'Poppins-Medium',
+  },
+  hitSlop: {
+    top: DimensionsUtils.getDP(16),
+    bottom: DimensionsUtils.getDP(16),
+    left: DimensionsUtils.getDP(16),
+    right: DimensionsUtils.getDP(16),
   },
 });
 
