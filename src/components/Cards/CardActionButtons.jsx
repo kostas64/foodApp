@@ -7,21 +7,22 @@ import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const CardActionButtons = ({
   scaleStyle,
+  isSelected = false,
   onPressEdit = () => {},
   onPressDelete = () => {},
 }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <Pressable onPress={card => onPressEdit(card)}>
         <Animated.Image
           source={images.pencil}
-          style={[styles.pencil, scaleStyle]}
+          style={[styles.pencil, isSelected && styles.tintWhite, scaleStyle]}
         />
       </Pressable>
       <Pressable onPress={card => onPressDelete(card)}>
         <Animated.Image
           source={images.trash}
-          style={[styles.trash, scaleStyle]}
+          style={[styles.trash, isSelected && styles.tintWhite, scaleStyle]}
         />
       </Pressable>
     </View>
@@ -43,6 +44,9 @@ const styles = StyleSheet.create({
     tintColor: colors.black,
     width: DimensionsUtils.getDP(22),
     height: DimensionsUtils.getDP(22),
+  },
+  tintWhite: {
+    tintColor: colors.white,
   },
 });
 

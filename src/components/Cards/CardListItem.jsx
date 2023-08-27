@@ -1,0 +1,165 @@
+import Animated, {
+  withTiming,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
+import {
+  PanGestureHandler,
+  GestureHandlerRootView,
+} from 'react-native-gesture-handler';
+
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+
+import Card from './Card';
+import {colors} from '../../constants';
+import {cards} from '../../assets/data/cards';
+import CardActionButtons from './CardActionButtons';
+import DeleteCardModal from '../Modals/DeleteCardModal';
+import {DimensionsUtils} from '../../utils/DimensionsUtils';
+
+const END_POSITION = -DimensionsUtils.getDP(80);
+
+const CardListItem = ({
+  item,
+  index,
+  modalRef,
+  selectedCard,
+  setBankCards,
+  setModalContent,
+  setSelectedCard,
+}) => {
+  const navigation = useNavigation();
+  const onLeft = useSharedValue(true);
+  const isRightEnabled = useSharedValue(false);
+  const position = useSharedValue(0);
+  const scaleActions = useSharedValue(1);
+
+  const scaleStyle = useAnimatedStyle(() => ({
+    transform: [{translateX: scaleActions.value}],
+  }));
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{translateX: position.value}],
+  }));
+
+  const isCardSelected = selectedCard?.digits === cards?.[index]?.digits;
+
+  const onEnd = e => {
+    if (position.value < END_POSITION / 2) {
+      isRightEnabled.value = true;
+      scaleActions.value = withSpring(-24, {
+        stiffness: 120,
+        damping: 20,
+        mass: 2,
+      });
+      position.value = withTiming(END_POSITION, {duration: 100});
+      onLeft.value = false;
+      return;
+    } else {
+      scaleActions.value = withTiming(1, {duration: 100});
+      position.value = withTiming(0, {duration: 100});
+      onLeft.value = true;
+      isRightEnabled.value = false;
+      return;
+    }
+  };
+
+  const onGesture = e => {
+    //Enable right only when delete button is visible
+    if (
+      (isRightEnabled.value && e.nativeEvent.translationX > 0) ||
+      (!isRightEnabled.value && e.nativeEvent.translationX < 0)
+    ) {
+      if (onLeft.value) {
+        position.value = e.nativeEvent.translationX;
+      } else {
+        position.value = END_POSITION + e.nativeEvent.translationX;
+      }
+    }
+  };
+
+  const onSelectCard = () => {
+    setSelectedCard(item);
+    navigation.pop();
+  };
+
+  const onPressDelete = index => {
+    setModalContent(
+      <DeleteCardModal
+        item={item}
+        onCancel={modalRef.current.closeModal}
+        onDelete={() => {
+          //Animated card back to position
+          !!position.value && (position.value = withTiming(0, {duration: 100}));
+
+          //Remove card from state
+          setBankCards(oldCards =>
+            oldCards?.filter((_, nestedIndex) => nestedIndex !== index),
+          );
+          setSelectedCard(null);
+
+          //Animate modal close
+          modalRef.current.closeModal();
+        }}
+      />,
+    );
+    modalRef.current?.animateModal();
+  };
+
+  //TO-DO edit card
+  const onPressEdit = index => {};
+
+  return (
+    <GestureHandlerRootView>
+      <PanGestureHandler
+        activeOffsetX={[0, 10]}
+        activeOffsetY={100000000}
+        onGestureEvent={onGesture}
+        onEnded={onEnd}>
+        <View style={isCardSelected && [styles.orangeBg, styles.marginBottom]}>
+          <Animated.View style={animatedStyle}>
+            <View
+              style={[
+                styles.container,
+                !isCardSelected && styles.marginBottom,
+              ]}>
+              <Card
+                item={item}
+                isSelected={isCardSelected}
+                onPressCard={onSelectCard}
+              />
+              <View style={styles.cardActions}>
+                <CardActionButtons
+                  scaleStyle={scaleStyle}
+                  isSelected={isCardSelected}
+                  onPressEdit={() => onPressEdit(index)}
+                  onPressDelete={() => onPressDelete(index)}
+                />
+              </View>
+            </View>
+          </Animated.View>
+        </View>
+      </PanGestureHandler>
+    </GestureHandlerRootView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    marginVertical: DimensionsUtils.getDP(4),
+  },
+  cardActions: {
+    left: DimensionsUtils.getDP(74),
+  },
+  orangeBg: {
+    backgroundColor: colors.orange,
+  },
+  marginBottom: {
+    marginBottom: DimensionsUtils.getDP(16),
+  },
+});
+
+export default CardListItem;

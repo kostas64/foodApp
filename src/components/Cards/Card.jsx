@@ -1,31 +1,40 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {colors, images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const Card = ({item, onPressCard = () => {}}) => {
+const Card = ({item, isSelected, onPressCard = () => {}}) => {
   const cardNumber = `· · · ·    · · · ·    · · · ·    ${item.digits}`;
 
   return (
-    <TouchableOpacity onPress={onPressCard} style={styles.container}>
-      <View style={styles.orangeLine} />
+    <TouchableOpacity
+      onPress={onPressCard}
+      style={[styles.container, isSelected && styles.orangeBg]}>
+      <View style={[styles.orangeLine, isSelected && styles.whiteBg]} />
 
       {/* Card number & Exp Date */}
       <View style={styles.midContainer}>
         <View style={styles.innerMidContainer}>
           <View>
-            <Text style={styles.label}>{cardNumber}</Text>
+            <Text style={[styles.label, isSelected && styles.whiteLabel]}>
+              {cardNumber}
+            </Text>
           </View>
           <View>
-            <Text style={styles.label}>{item.expDate}</Text>
+            <Text style={[styles.label, isSelected && styles.whiteLabel]}>
+              {item.expDate}
+            </Text>
           </View>
         </View>
       </View>
 
       {/* Card name * Icon */}
       <View style={styles.bottomContainer}>
-        <Text style={styles.label}>{item.name}</Text>
+        <Text style={[styles.label, isSelected && styles.whiteLabel]}>
+          {item.name}
+        </Text>
         <Image source={images.debit} style={styles.image} />
       </View>
     </TouchableOpacity>
@@ -74,6 +83,17 @@ const styles = StyleSheet.create({
     tintColor: colors.orange,
     width: DimensionsUtils.getDP(34),
     height: DimensionsUtils.getDP(22),
+  },
+  orangeBg: {
+    marginVertical: DimensionsUtils.getDP(8),
+    backgroundColor: colors.orange,
+    borderColor: colors.white,
+  },
+  whiteBg: {
+    backgroundColor: colors.white,
+  },
+  whiteLabel: {
+    color: colors.white,
   },
 });
 
