@@ -1,16 +1,28 @@
+import {
+  View,
+  Text,
+  Image,
+  Animated,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {View, Text, Image, StyleSheet, Animated} from 'react-native';
 
 import {colors, images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const ShopCartModal = ({cart, scrollY}) => {
+const ShopCartModal = ({cart, scrollY, selectedCard, setSelectedCard}) => {
+  const navigation = useNavigation();
   const insets = useSafeAreaInsets();
 
   const itemPlural = cart.length === 1 ? 'item' : 'items';
   const cartLength = `${cart.length} ${itemPlural} in cart`;
   const cartPrice = `$${cart.reduce((a, b) => a + b, 0)?.toFixed(2)}`;
+  const cardNumber = !!selectedCard
+    ? ` ····  ${selectedCard?.digits}`
+    : `Select card`;
 
   const marginBottom =
     insets.bottom > 0 ? insets.bottom : DimensionsUtils.getDP(24);
@@ -25,6 +37,12 @@ const ShopCartModal = ({cart, scrollY}) => {
     outputRange: [1, 0.25, 0],
   });
 
+  const openCardScreen = () =>
+    navigation.navigate('Card', {
+      selectedCard,
+      setSelectedCard,
+    });
+
   return (
     <Animated.View
       style={[styles.container, {opacity, transform: [{translateY}]}]}>
@@ -38,15 +56,25 @@ const ShopCartModal = ({cart, scrollY}) => {
       <View style={styles.divider} />
 
       {/* Address & Cart */}
-      <View style={[styles.rowBetween, styles.containerPadding]}>
-        <View style={styles.rowCenter}>
+      <View
+        style={[
+          styles.rowBetween,
+          styles.containerPadding,
+          styles.paddingBottom,
+        ]}>
+        <TouchableOpacity
+          hitSlop={styles.addressHitSlop}
+          style={styles.rowCenter}>
           <Image source={images.marker} style={styles.marker} />
           <Text style={styles.label2}>745 Lincoln 3605</Text>
-        </View>
-        <View style={styles.rowCenter}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={openCardScreen}
+          hitSlop={styles.debitHitSlop}
+          style={styles.rowCenter}>
           <Image source={images.debit} style={styles.debit} />
-          <Text style={styles.label2}>···· 3605</Text>
-        </View>
+          <Text style={styles.label2}>{cardNumber}</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Order Button */}
@@ -84,6 +112,9 @@ const styles = StyleSheet.create({
     paddingVertical: DimensionsUtils.getDP(18),
     paddingHorizontal: DimensionsUtils.getDP(24),
   },
+  paddingBottom: {
+    paddingBottom: DimensionsUtils.getDP(36),
+  },
   divider: {
     width: sizes.WIDTH,
     height: 1,
@@ -109,6 +140,18 @@ const styles = StyleSheet.create({
     marginRight: DimensionsUtils.getDP(8),
     width: DimensionsUtils.getDP(16),
     height: DimensionsUtils.getDP(18),
+  },
+  addressHitSlop: {
+    top: DimensionsUtils.getDP(8),
+    bottom: DimensionsUtils.getDP(12),
+    right: DimensionsUtils.getDP(16),
+    left: DimensionsUtils.getDP(12),
+  },
+  debitHitSlop: {
+    top: DimensionsUtils.getDP(8),
+    bottom: DimensionsUtils.getDP(12),
+    right: DimensionsUtils.getDP(12),
+    left: DimensionsUtils.getDP(16),
   },
   debit: {
     marginRight: DimensionsUtils.getDP(8),
