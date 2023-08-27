@@ -1,22 +1,24 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import Checkbox from '../Common/Checkbox';
 import {colors, images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const Card = ({item, isSelected}) => {
+const Card = ({item, onSelectCard, isSelected}) => {
   const cardNumber = `····  ····  ····  ${item.digits}`;
 
   return (
-    <View style={{width: sizes.WIDTH - DimensionsUtils.getDP(40)}}>
+    <TouchableOpacity
+      onPress={onSelectCard}
+      style={{width: sizes.WIDTH - DimensionsUtils.getDP(40)}}>
       <View style={styles.row}>
         <Checkbox selected={isSelected} />
         <Image source={images.debit} style={styles.image} />
         <Text style={styles.number}>{cardNumber}</Text>
         <Text style={styles.expDate}>{item.expDate}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -25,6 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: DimensionsUtils.getDP(20),
+    paddingVertical: DimensionsUtils.getDP(20),
   },
   number: {
     fontFamily: 'Poppins-Medium',

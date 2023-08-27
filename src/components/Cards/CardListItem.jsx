@@ -5,7 +5,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import {
   PanGestureHandler,
-  TouchableOpacity,
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 
@@ -118,16 +117,17 @@ const CardListItem = ({
           onGestureEvent={onGesture}
           onEnded={onEnd}>
           <Animated.View style={animatedStyle}>
-            <TouchableOpacity onPress={onSelectCard} style={styles.row}>
+            <View style={styles.row}>
               <Card
                 item={item}
+                onSelectCard={onSelectCard}
                 isSelected={isCardSelected}
                 isLast={index === cards.length - 1}
               />
               <View style={styles.cardActions}>
                 <CardActionButtons onPressDelete={() => onPressDelete(index)} />
               </View>
-            </TouchableOpacity>
+            </View>
           </Animated.View>
         </PanGestureHandler>
       </GestureHandlerRootView>
@@ -145,9 +145,6 @@ const styles = StyleSheet.create({
   },
   cardActions: {
     left: DimensionsUtils.getDP(54),
-  },
-  marginBottom: {
-    marginBottom: DimensionsUtils.getDP(16),
   },
 });
 

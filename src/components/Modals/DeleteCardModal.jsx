@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Poppins-SemiBold',
-    fontSize: DimensionsUtils.getDP(20),
+    fontSize: DimensionsUtils.getDP(18),
     paddingBottom: DimensionsUtils.getDP(8),
   },
   subtitle: {
