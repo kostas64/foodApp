@@ -30,6 +30,7 @@ const AnimatedModal = React.forwardRef(({content}, ref) => {
   //Export animation trigger function
   useImperativeHandle(ref, () => ({
     animateModal,
+    closeModal,
   }));
 
   const Wrapper = isAnimating ? Pressable : React.Fragment;
@@ -65,6 +66,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: 'rgba(0,0,0,0.5)',
     justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    zIndex: 10000,
   },
   innerAnimated: {
     bottom: -100,
