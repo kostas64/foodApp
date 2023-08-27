@@ -10,12 +10,11 @@ import {
 } from 'react-native-gesture-handler';
 
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {InteractionManager, StyleSheet, View} from 'react-native';
 
 import Card from './Card';
 import {colors} from '../../constants';
-import {cards} from '../../assets/data/cards';
 import CardActionButtons from './CardActionButtons';
 import DeleteCardModal from '../Modals/DeleteCardModal';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
@@ -44,7 +43,7 @@ const CardListItem = ({
     transform: [{translateX: position.value}],
   }));
 
-  const isCardSelected = selectedCard?.digits === cards?.[index]?.digits;
+  const isCardSelected = selectedCard?.digits === item?.digits;
 
   const onEnd = e => {
     if (position.value < END_POSITION / 2) {
@@ -81,8 +80,16 @@ const CardListItem = ({
   };
 
   const onSelectCard = () => {
+    //Avoid same card selection
+    if (isCardSelected) return;
+
     setSelectedCard(item);
-    navigation.pop();
+
+    InteractionManager.runAfterInteractions(() => {
+      setTimeout(() => {
+        navigation.pop();
+      }, 300);
+    });
   };
 
   const onPressDelete = index => {
@@ -98,7 +105,7 @@ const CardListItem = ({
           setBankCards(oldCards =>
             oldCards?.filter((_, nestedIndex) => nestedIndex !== index),
           );
-          setSelectedCard(null);
+          isCardSelected && setSelectedCard(null);
 
           //Animate modal close
           modalRef.current.closeModal();

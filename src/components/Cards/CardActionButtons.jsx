@@ -13,13 +13,13 @@ const CardActionButtons = ({
 }) => {
   return (
     <View style={[styles.container]}>
-      <Pressable onPress={card => onPressEdit(card)}>
+      <Pressable hitSlop={styles.hitSlop} onPress={card => onPressEdit(card)}>
         <Animated.Image
           source={images.pencil}
           style={[styles.pencil, isSelected && styles.tintWhite, scaleStyle]}
         />
       </Pressable>
-      <Pressable onPress={card => onPressDelete(card)}>
+      <Pressable hitSlop={styles.hitSlop} onPress={card => onPressDelete(card)}>
         <Animated.Image
           source={images.trash}
           style={[styles.trash, isSelected && styles.tintWhite, scaleStyle]}
@@ -47,6 +47,12 @@ const styles = StyleSheet.create({
   },
   tintWhite: {
     tintColor: colors.white,
+  },
+  hitSlop: {
+    top: DimensionsUtils.getDP(12),
+    left: DimensionsUtils.getDP(32),
+    right: DimensionsUtils.getDP(0),
+    bottom: DimensionsUtils.getDP(12),
   },
 });
 

@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flexDirection: 'row',
+    alignItems: 'center',
     paddingTop: DimensionsUtils.getDP(24),
   },
   buttonContainer: {
