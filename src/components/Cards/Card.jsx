@@ -35,7 +35,10 @@ const Card = ({item, isSelected, onPressCard = () => {}}) => {
         <Text style={[styles.label, isSelected && styles.whiteLabel]}>
           {item.name}
         </Text>
-        <Image source={images.debit} style={styles.image} />
+        <Image
+          source={images.debit}
+          style={[styles.image, isSelected && styles.whiteTing]}
+        />
       </View>
     </TouchableOpacity>
   );
@@ -94,6 +97,9 @@ const styles = StyleSheet.create({
   },
   whiteLabel: {
     color: colors.white,
+  },
+  whiteTing: {
+    tintColor: colors.white,
   },
 });
 
