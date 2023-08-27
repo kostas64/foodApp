@@ -7,7 +7,6 @@ import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const CardActionButtons = ({
   scaleStyle,
-  isSelected = false,
   onPressEdit = () => {},
   onPressDelete = () => {},
 }) => {
@@ -16,13 +15,13 @@ const CardActionButtons = ({
       <Pressable hitSlop={styles.hitSlop} onPress={card => onPressEdit(card)}>
         <Animated.Image
           source={images.pencil}
-          style={[styles.pencil, isSelected && styles.tintWhite, scaleStyle]}
+          style={[styles.icon, scaleStyle]}
         />
       </Pressable>
       <Pressable hitSlop={styles.hitSlop} onPress={card => onPressDelete(card)}>
         <Animated.Image
           source={images.trash}
-          style={[styles.trash, isSelected && styles.tintWhite, scaleStyle]}
+          style={[styles.icon, scaleStyle]}
         />
       </Pressable>
     </View>
@@ -35,18 +34,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     paddingVertical: DimensionsUtils.getDP(12),
   },
-  pencil: {
+  icon: {
     tintColor: colors.orange,
     width: DimensionsUtils.getDP(22),
     height: DimensionsUtils.getDP(22),
-  },
-  trash: {
-    tintColor: colors.black,
-    width: DimensionsUtils.getDP(22),
-    height: DimensionsUtils.getDP(22),
-  },
-  tintWhite: {
-    tintColor: colors.white,
   },
   hitSlop: {
     top: DimensionsUtils.getDP(12),

@@ -9,38 +9,39 @@ const Card = ({item, isSelected, onPressCard = () => {}}) => {
   const cardNumber = `· · · ·    · · · ·    · · · ·    ${item.digits}`;
 
   return (
-    <TouchableOpacity
-      onPress={onPressCard}
-      style={[styles.container, isSelected && styles.orangeBg]}>
-      <View style={[styles.orangeLine, isSelected && styles.whiteBg]} />
-
-      {/* Card number & Exp Date */}
-      <View style={styles.midContainer}>
-        <View style={styles.innerMidContainer}>
-          <View>
-            <Text style={[styles.label, isSelected && styles.whiteLabel]}>
-              {cardNumber}
-            </Text>
-          </View>
-          <View>
-            <Text style={[styles.label, isSelected && styles.whiteLabel]}>
-              {item.expDate}
-            </Text>
+    <>
+      <TouchableOpacity
+        onPress={onPressCard}
+        style={[styles.container, isSelected && styles.orangeBg]}>
+        {/* Card number & Exp Date */}
+        <View style={styles.midContainer}>
+          <View style={styles.innerMidContainer}>
+            <View>
+              <Text style={[styles.label, isSelected && styles.whiteLabel]}>
+                {cardNumber}
+              </Text>
+            </View>
+            <View>
+              <Text style={[styles.label, isSelected && styles.whiteLabel]}>
+                {item.expDate}
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
 
-      {/* Card name * Icon */}
-      <View style={styles.bottomContainer}>
-        <Text style={[styles.label, isSelected && styles.whiteLabel]}>
-          {item.name}
-        </Text>
-        <Image
-          source={images.debit}
-          style={[styles.image, isSelected && styles.whiteTing]}
-        />
-      </View>
-    </TouchableOpacity>
+        {/* Card name * Icon */}
+        <View style={styles.bottomContainer}>
+          <Text style={[styles.label, isSelected && styles.whiteLabel]}>
+            {item.name}
+          </Text>
+          <Image
+            source={images.debit}
+            style={[styles.image, isSelected && styles.whiteTing]}
+          />
+        </View>
+      </TouchableOpacity>
+      <View style={[styles.greyLine, isSelected && styles.whiteBg]} />
+    </>
   );
 };
 
@@ -50,14 +51,15 @@ const styles = StyleSheet.create({
     borderRadius: DimensionsUtils.getDP(24),
     width: sizes.WIDTH - DimensionsUtils.getDP(40),
     aspectRatio: 2 / 1,
-    borderColor: colors.orange,
+    borderColor: colors.grey,
     borderWidth: DimensionsUtils.getDP(4),
   },
-  orangeLine: {
+  greyLine: {
     position: 'absolute',
-    width: '100%',
+    left: DimensionsUtils.getDP(20),
+    width: sizes.WIDTH - DimensionsUtils.getDP(40),
     height: DimensionsUtils.getDP(20),
-    backgroundColor: colors.orange,
+    backgroundColor: colors.grey,
     top: DimensionsUtils.getDP(40),
   },
   midContainer: {
@@ -83,17 +85,17 @@ const styles = StyleSheet.create({
     fontSize: DimensionsUtils.getDP(18),
   },
   image: {
-    tintColor: colors.orange,
+    tintColor: colors.grey,
     width: DimensionsUtils.getDP(34),
     height: DimensionsUtils.getDP(22),
   },
   orangeBg: {
     marginVertical: DimensionsUtils.getDP(8),
     backgroundColor: colors.orange,
-    borderColor: colors.white,
+    borderColor: colors.orange,
   },
   whiteBg: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.veryLightGrey,
   },
   whiteLabel: {
     color: colors.white,

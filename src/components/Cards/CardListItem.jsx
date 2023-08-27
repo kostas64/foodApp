@@ -1,8 +1,8 @@
 import Animated, {
   withTiming,
-  useAnimatedStyle,
-  useSharedValue,
   withSpring,
+  useSharedValue,
+  useAnimatedStyle,
 } from 'react-native-reanimated';
 import {
   PanGestureHandler,
@@ -14,7 +14,6 @@ import {useNavigation} from '@react-navigation/native';
 import {InteractionManager, StyleSheet, View} from 'react-native';
 
 import Card from './Card';
-import {colors} from '../../constants';
 import CardActionButtons from './CardActionButtons';
 import DeleteCardModal from '../Modals/DeleteCardModal';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
@@ -125,29 +124,23 @@ const CardListItem = ({
         activeOffsetY={100000000}
         onGestureEvent={onGesture}
         onEnded={onEnd}>
-        <View style={isCardSelected && [styles.orangeBg, styles.marginBottom]}>
-          <Animated.View style={animatedStyle}>
-            <View
-              style={[
-                styles.container,
-                !isCardSelected && styles.marginBottom,
-              ]}>
-              <Card
-                item={item}
-                isSelected={isCardSelected}
-                onPressCard={onSelectCard}
+        <Animated.View style={animatedStyle}>
+          <View
+            style={[styles.container, !isCardSelected && styles.marginBottom]}>
+            <Card
+              item={item}
+              isSelected={isCardSelected}
+              onPressCard={onSelectCard}
+            />
+            <View style={styles.cardActions}>
+              <CardActionButtons
+                scaleStyle={scaleStyle}
+                onPressEdit={() => onPressEdit(index)}
+                onPressDelete={() => onPressDelete(index)}
               />
-              <View style={styles.cardActions}>
-                <CardActionButtons
-                  scaleStyle={scaleStyle}
-                  isSelected={isCardSelected}
-                  onPressEdit={() => onPressEdit(index)}
-                  onPressDelete={() => onPressDelete(index)}
-                />
-              </View>
             </View>
-          </Animated.View>
-        </View>
+          </View>
+        </Animated.View>
       </PanGestureHandler>
     </GestureHandlerRootView>
   );
@@ -160,9 +153,6 @@ const styles = StyleSheet.create({
   },
   cardActions: {
     left: DimensionsUtils.getDP(74),
-  },
-  orangeBg: {
-    backgroundColor: colors.orange,
   },
   marginBottom: {
     marginBottom: DimensionsUtils.getDP(16),
