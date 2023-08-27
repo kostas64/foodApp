@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: DimensionsUtils.getDP(20),
     width: sizes.WIDTH - DimensionsUtils.getDP(40),
-    height: DimensionsUtils.getDP(20),
+    height: DimensionsUtils.getDP(24),
     backgroundColor: colors.grey,
     top: DimensionsUtils.getDP(40),
   },
