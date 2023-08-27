@@ -1,25 +1,29 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
 import Animated from 'react-native-reanimated';
+import {StyleSheet, View, Pressable} from 'react-native';
 
 import {colors, images} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const CardActionButtons = ({scaleStyle}) => {
+const CardActionButtons = ({
+  scaleStyle,
+  onPressEdit = () => {},
+  onPressDelete = () => {},
+}) => {
   return (
     <View style={styles.container}>
-      <View>
+      <Pressable onPress={card => onPressEdit(card)}>
         <Animated.Image
           source={images.pencil}
           style={[styles.pencil, scaleStyle]}
         />
-      </View>
-      <View>
+      </Pressable>
+      <Pressable onPress={card => onPressDelete(card)}>
         <Animated.Image
           source={images.trash}
           style={[styles.trash, scaleStyle]}
         />
-      </View>
+      </Pressable>
     </View>
   );
 };
