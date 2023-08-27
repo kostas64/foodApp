@@ -14,7 +14,7 @@ const DeleteCardModal = ({item, onDelete = () => {}, onCancel = () => {}}) => {
       {/* Buttons */}
       <View style={styles.buttons}>
         <TouchableOpacity onPress={onDelete} style={styles.buttonContainer}>
-          <Text style={styles.buttonLabel}>Delete card</Text>
+          <Text style={styles.buttonLabel}>Delete</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={onCancel} style={styles.buttonContainer2}>
           <Text style={styles.buttonLabel2}>Cancel</Text>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     paddingTop: DimensionsUtils.getDP(16),
   },
   title: {
-    fontFamily: 'Poppins-Medium',
+    fontFamily: 'Poppins-SemiBold',
     fontSize: DimensionsUtils.getDP(20),
     paddingBottom: DimensionsUtils.getDP(8),
   },
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.orange,
     alignItems: 'center',
     borderRadius: DimensionsUtils.getDP(16),
-    marginRight: DimensionsUtils.getDP(24),
+    marginRight: DimensionsUtils.getDP(16),
   },
   buttonLabel: {
     paddingVertical: DimensionsUtils.getDP(12),
@@ -57,17 +57,17 @@ const styles = StyleSheet.create({
   },
   buttonContainer2: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightGrey,
     alignItems: 'center',
     borderRadius: DimensionsUtils.getDP(16),
-    borderColor: colors.orange,
+    borderColor: colors.lightGrey,
     borderWidth: 1,
   },
   buttonLabel2: {
     paddingVertical: DimensionsUtils.getDP(12),
     fontFamily: 'Poppins-Regular',
     fontSize: DimensionsUtils.getFontSize(18),
-    color: colors.orange,
+    color: colors.black,
   },
 });
 
