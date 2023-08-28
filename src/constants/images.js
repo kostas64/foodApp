@@ -45,8 +45,12 @@ const close = require('../assets/images/close.png');
 const pencil = require('../assets/images/pencil.png');
 const trash = require('../assets/images/delete.png');
 const add = require('../assets/images/add.png');
+const visa = require('../assets/images/visa.png');
+const mastercard = require('../assets/images/mastercard.png');
 
 export default {
+  mastercard,
+  visa,
   add,
   trash,
   pencil,
