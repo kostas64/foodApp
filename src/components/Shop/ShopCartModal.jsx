@@ -72,7 +72,7 @@ const ShopCartModal = ({cart, scrollY, selectedCard, setSelectedCard}) => {
           onPress={openCardScreen}
           hitSlop={styles.debitHitSlop}
           style={styles.rowCenter}>
-          <Image source={images?.[selectedCard.type]} style={styles.debit} />
+          <Image source={images?.[selectedCard?.type]} style={styles.debit} />
           <Text style={styles.label2}>{cardNumber}</Text>
         </TouchableOpacity>
       </View>
