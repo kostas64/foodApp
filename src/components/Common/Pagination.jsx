@@ -20,6 +20,16 @@ const Pagination = ({scrollX, dotsLength}) => {
           extrapolate: 'clamp',
         });
 
+        const scale = scrollX.interpolate({
+          inputRange: [
+            (index - 1) * sizes.WIDTH,
+            index * sizes.WIDTH,
+            (index + 1) * sizes.WIDTH,
+          ],
+          outputRange: [1, 1.4, 1],
+          extrapolate: 'clamp',
+        });
+
         return (
           <View key={`pagination-${index}`}>
             <Animated.View
@@ -39,6 +49,7 @@ const Pagination = ({scrollX, dotsLength}) => {
                 styles.moveDot,
                 {
                   opacity,
+                  transform: [{scale}],
                   marginRight:
                     index !== dotsLength ? DimensionsUtils.getDP(8) : 0,
                 },
@@ -59,9 +70,9 @@ const styles = StyleSheet.create({
     top: DimensionsUtils.getDP(420),
   },
   dot: {
-    width: DimensionsUtils.getDP(8),
-    height: DimensionsUtils.getDP(8),
-    borderRadius: DimensionsUtils.getDP(4),
+    width: DimensionsUtils.getDP(6),
+    height: DimensionsUtils.getDP(6),
+    borderRadius: DimensionsUtils.getDP(3),
   },
   moveDot: {
     position: 'absolute',
