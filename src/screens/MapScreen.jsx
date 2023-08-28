@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import Screen from '../components/Screen';
+import {Text} from 'react-native';
+import Screen from '../components/Common/Screen';
 
 const MapScreen = () => {
   return (
