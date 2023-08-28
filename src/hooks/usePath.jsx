@@ -15,10 +15,10 @@ const generateTabShapePath = (position, adjustedHeight) => {
   const tab = lineGenerator([
     [tabX - 100 * SCALE, 0],
     [tabX - 110 * SCALE, 0],
-    [tabX - (50 - 5) * SCALE, SCALE],
-    [tabX - (50 - 5) * SCALE, (adjustedHeight - 8) * SCALE],
-    [tabX + (50 - 5) * SCALE, (adjustedHeight - 8) * SCALE],
-    [tabX + (50 - 5) * SCALE, SCALE],
+    [tabX - (55 - 5) * SCALE, SCALE],
+    [tabX - (50 - 5) * SCALE, (adjustedHeight - 2) * SCALE],
+    [tabX + (50 - 5) * SCALE, (adjustedHeight - 2) * SCALE],
+    [tabX + (55 - 5) * SCALE, SCALE],
     [tabX + 110 * SCALE, 0],
     [tabX + 100 * SCALE, 0],
   ]);
