@@ -59,7 +59,7 @@ const CardScreen = ({navigation, route}) => {
         <FlatList
           data={bankCards}
           renderItem={renderItem}
-          style={{marginTop: DimensionsUtils.getDP(16)}}
+          style={styles.listContainer}
           contentContainerStyle={listStyle}
           showsVerticalScrollIndicator={false}
         />
@@ -72,6 +72,9 @@ const CardScreen = ({navigation, route}) => {
 };
 
 const styles = StyleSheet.create({
+  listContainer: {
+    marginTop: DimensionsUtils.getDP(24),
+  },
   leftIconStyle: {
     transform: [{rotate: '270deg'}],
   },

@@ -72,7 +72,7 @@ const ShopCartModal = ({cart, scrollY, selectedCard, setSelectedCard}) => {
           onPress={openCardScreen}
           hitSlop={styles.debitHitSlop}
           style={styles.rowCenter}>
-          <Image source={images.debit} style={styles.debit} />
+          <Image source={images?.[selectedCard.type]} style={styles.debit} />
           <Text style={styles.label2}>{cardNumber}</Text>
         </TouchableOpacity>
       </View>
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   },
   debit: {
     marginRight: DimensionsUtils.getDP(8),
-    width: DimensionsUtils.getDP(22),
+    width: DimensionsUtils.getDP(26),
     height: DimensionsUtils.getDP(16),
   },
   buttonLabel: {

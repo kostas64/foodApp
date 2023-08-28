@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import Checkbox from '../Common/Checkbox';
-import {colors, images, sizes} from '../../constants';
+import {images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const Card = ({item, onSelectCard, isSelected}) => {
@@ -15,7 +15,7 @@ const Card = ({item, onSelectCard, isSelected}) => {
       style={{width: sizes.WIDTH - DimensionsUtils.getDP(40)}}>
       <View style={styles.row}>
         <Checkbox selected={isSelected} />
-        <Image source={images.debit} style={styles.image} />
+        <Image source={images?.[item.type]} style={styles.image} />
         <Text style={styles.number}>{cardNumber}</Text>
         <Text style={styles.expDate}>{item.expDate}</Text>
       </View>
@@ -40,8 +40,7 @@ const styles = StyleSheet.create({
     fontSize: DimensionsUtils.getDP(14),
   },
   image: {
-    tintColor: colors.grey,
-    width: DimensionsUtils.getDP(34),
+    width: DimensionsUtils.getDP(36),
     height: DimensionsUtils.getDP(22),
     marginLeft: DimensionsUtils.getDP(24),
     marginRight: DimensionsUtils.getDP(20),
