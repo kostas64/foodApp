@@ -47,8 +47,10 @@ const trash = require('../assets/images/delete.png');
 const add = require('../assets/images/add.png');
 const visa = require('../assets/images/visa.png');
 const mastercard = require('../assets/images/mastercard.png');
+const gps = require('../assets/images/gps-navigation.png');
 
 export default {
+  gps,
   mastercard,
   visa,
   add,

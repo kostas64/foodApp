@@ -10,6 +10,10 @@ export const shops = [
     estimatedTime: [25, 30],
     image: images.burgerShop,
     plate: images.meat,
+    coords: {
+      latitude: 40.678528,
+      longitude: -73.9730881,
+    },
     products: [
       {
         productName: 'Salmon & Broccoli',
@@ -69,6 +73,10 @@ export const shops = [
     estimatedTime: [35, 45],
     image: images.beefKingShop,
     plate: images.beef,
+    coords: {
+      latitude: 40.678528,
+      longitude: -73.9730881,
+    },
     products: [
       {
         productName: 'Salmon & Broccoli',
@@ -128,6 +136,10 @@ export const shops = [
     estimatedTime: [15, 25],
     image: images.fishShop,
     plate: images.fish,
+    coords: {
+      latitude: 40.678528,
+      longitude: -73.9730881,
+    },
     products: [
       {
         productName: 'Salmon & Broccoli',
@@ -187,6 +199,10 @@ export const shops = [
     estimatedTime: [35, 40],
     image: images.bbqShop,
     plate: images.salmon,
+    coords: {
+      latitude: 40.678528,
+      longitude: -73.9730881,
+    },
     products: [
       {
         productName: 'Salmon & Broccoli',
