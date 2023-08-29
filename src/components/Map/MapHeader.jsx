@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     height: DimensionsUtils.getDP(20),
   },
   addressLabel: {
-    width: sizes.WIDTH - DimensionsUtils.getDP(202),
+    width: sizes.WIDTH - DimensionsUtils.getDP(212),
     fontFamily: 'Poppins-Regular',
   },
   minutes: {

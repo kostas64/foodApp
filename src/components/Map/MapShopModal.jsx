@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     borderRadius: DimensionsUtils.getDP(16),
-    marginHorizontal: DimensionsUtils.getDP(20),
     paddingHorizontal: DimensionsUtils.getDP(16),
     paddingVertical: DimensionsUtils.getDP(20),
   },

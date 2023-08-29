@@ -3,6 +3,7 @@ import React, {useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
+import {colors, sizes} from '../constants';
 import Screen from '../components/Common/Screen';
 import {mapStyle} from '../assets/data/mapStyle';
 import MapHeader from '../components/Map/MapHeader';
@@ -124,8 +125,11 @@ const styles = StyleSheet.create({
     height: '111%',
   },
   modal: {
+    borderRadius: DimensionsUtils.getDP(16),
+    backgroundColor: colors.white,
     position: 'absolute',
-    width: '100%',
+    alignSelf: 'center',
+    width: sizes.WIDTH - DimensionsUtils.getDP(40),
   },
   shadow: {
     shadowColor: '#000',
