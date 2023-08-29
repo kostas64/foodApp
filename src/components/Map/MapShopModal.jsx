@@ -21,14 +21,12 @@ const MapShopModal = ({shop}) => {
           </View>
           <View style={[styles.row, styles.alignCenter]}>
             {shop?.category?.map((cat, index) => (
-              <>
-                <Text key={`map-cat-${index}`} style={styles.categories}>
-                  {cat}
-                </Text>
+              <React.Fragment key={`map-cat-${index}`}>
+                <Text style={styles.categories}>{cat}</Text>
                 {index !== shop?.category?.length - 1 && (
                   <Text style={{color: colors.orange}}> · </Text>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </View>
         </View>
