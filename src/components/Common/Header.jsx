@@ -8,6 +8,8 @@ const Header = ({
   label,
   leftIcon,
   rightIcon,
+  isLeftPressDisabled = false,
+  isRightPressDisabled = false,
   leftIconStyle = {},
   rightIconStyle = {},
   onPressLeft = () => {},
@@ -16,7 +18,10 @@ const Header = ({
   return (
     <View style={styles.container}>
       {leftIcon ? (
-        <Pressable onPress={onPressLeft} hitSlop={styles.hitSlop}>
+        <Pressable
+          disabled={isLeftPressDisabled}
+          onPress={onPressLeft}
+          hitSlop={styles.hitSlop}>
           <Image source={leftIcon} style={[styles.image, leftIconStyle]} />
         </Pressable>
       ) : (
@@ -28,7 +33,10 @@ const Header = ({
       </View>
 
       {rightIcon ? (
-        <Pressable onPress={onPressRight} hitSlop={styles.hitSlop}>
+        <Pressable
+          onPress={onPressRight}
+          hitSlop={styles.hitSlop}
+          disabled={isRightPressDisabled}>
           <Image source={rightIcon} style={[styles.image, rightIconStyle]} />
         </Pressable>
       ) : (

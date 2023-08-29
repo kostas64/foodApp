@@ -17,6 +17,7 @@ const ShopScreen = ({navigation, route}) => {
   const [cart, setCart] = useState([]);
   const [modalContent, setModalContent] = useState();
   const [selectedCard, setSelectedCard] = useState(cards?.[0]);
+  const [loadingOrder, setLoadingOrder] = useState(false);
 
   const modalRef = useRef();
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -51,6 +52,7 @@ const ShopScreen = ({navigation, route}) => {
           label={shop.name}
           onPressLeft={onPressBack}
           leftIcon={images.arrowLeft}
+          isLeftPressDisabled={loadingOrder}
         />
         <Animated.ScrollView
           bounces={false}
@@ -77,8 +79,11 @@ const ShopScreen = ({navigation, route}) => {
         {/* Cart Modal */}
         <ShopCartModal
           cart={cart}
+          shop={shop}
           scrollY={scrollY}
+          loadingOrder={loadingOrder}
           selectedCard={selectedCard}
+          setLoadingOrder={setLoadingOrder}
           setSelectedCard={setSelectedCard}
         />
       </Screen>

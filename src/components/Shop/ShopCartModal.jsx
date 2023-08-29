@@ -10,10 +10,21 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
+import Button from '../Common/Button';
 import {colors, images, sizes} from '../../constants';
+import useBackAction from '../../hooks/useBackAction';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const ShopCartModal = ({cart, scrollY, selectedCard, setSelectedCard}) => {
+const ShopCartModal = ({
+  cart,
+  shop,
+  scrollY,
+  selectedCard,
+  loadingOrder,
+  setLoadingOrder,
+  setSelectedCard,
+}) => {
+  useBackAction();
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
 
@@ -43,6 +54,31 @@ const ShopCartModal = ({cart, scrollY, selectedCard, setSelectedCard}) => {
       setSelectedCard,
     });
 
+  const openMapScreen = () =>
+    navigation.navigate('Map', {
+      shop,
+    });
+
+  const onPressOrder = () => {
+    setLoadingOrder(true);
+  };
+
+  const handleGesture = value =>
+    navigation.setOptions({
+      gestureEnabled: value,
+    });
+
+  React.useEffect(() => {
+    if (loadingOrder) {
+      handleGesture(false);
+
+      setTimeout(() => {
+        handleGesture(true);
+        navigation.pop();
+      }, 2500);
+    }
+  }, [loadingOrder]);
+
   return (
     <Animated.View
       style={[styles.container, {opacity, transform: [{translateY}]}]}>
@@ -63,6 +99,7 @@ const ShopCartModal = ({cart, scrollY, selectedCard, setSelectedCard}) => {
           styles.paddingBottom,
         ]}>
         <TouchableOpacity
+          onPress={openMapScreen}
           hitSlop={styles.addressHitSlop}
           style={styles.rowCenter}>
           <Image source={images.marker} style={styles.marker} />
@@ -78,15 +115,12 @@ const ShopCartModal = ({cart, scrollY, selectedCard, setSelectedCard}) => {
       </View>
 
       {/* Order Button */}
-      <View
-        style={[
-          styles.buttonContainer,
-          {
-            marginBottom,
-          },
-        ]}>
-        <Text style={styles.buttonLabel}>Order</Text>
-      </View>
+      <Button
+        label={'Order'}
+        onPress={onPressOrder}
+        buttonPressed={loadingOrder}
+        containerStyle={{marginBottom}}
+      />
     </Animated.View>
   );
 };
@@ -137,8 +171,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
   },
   marker: {
+    tintColor: colors.orange,
     marginRight: DimensionsUtils.getDP(8),
-    width: DimensionsUtils.getDP(16),
+    width: DimensionsUtils.getDP(18),
     height: DimensionsUtils.getDP(18),
   },
   addressHitSlop: {
@@ -159,15 +194,16 @@ const styles = StyleSheet.create({
     height: DimensionsUtils.getDP(16),
   },
   buttonLabel: {
-    paddingVertical: DimensionsUtils.getDP(12),
     fontFamily: 'Poppins-Regular',
     fontSize: DimensionsUtils.getFontSize(18),
     color: colors.white,
   },
   buttonContainer: {
+    height: DimensionsUtils.getDP(50),
     marginHorizontal: DimensionsUtils.getDP(20),
     backgroundColor: colors.orange,
     alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: DimensionsUtils.getDP(16),
   },
 });
