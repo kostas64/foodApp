@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomStack from './BottomStack';
 import ShopScreen from '../screens/ShopScreen';
 import CardScreen from '../screens/CardScreen';
+import MapScreen from '../screens/MapScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,11 @@ const HomeStack = () => {
       <Stack.Screen
         name="Card"
         component={CardScreen}
+        options={slideFromBottom}
+      />
+      <Stack.Screen
+        name="Map"
+        component={MapScreen}
         options={slideFromBottom}
       />
     </Stack.Navigator>
