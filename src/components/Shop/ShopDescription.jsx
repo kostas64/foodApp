@@ -33,7 +33,7 @@ const ShopDescription = ({
         <Image source={images.fire} style={styles.icon} />
         <Text style={styles.calLabel}>{calLabel}</Text>
       </View>
-      <View style={[styles.bigPadding, styles.center]}>
+      <View style={[styles.smallPadding, styles.center]}>
         <Text style={[styles.title, styles.smallPaddingBottom]}>Free of</Text>
         <View style={styles.row}>
           <ShopTags
@@ -76,13 +76,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Poppins-SemiBold',
     fontSize: DimensionsUtils.getDP(titleSize),
+    paddingTop: DimensionsUtils.getDP(descPadding),
   },
   description: {
     width: '80%',
     textAlign: 'center',
     fontFamily: 'Poppins-Regular',
     fontSize: DimensionsUtils.getDP(descSize),
-    paddingTop: DimensionsUtils.getDP(descPadding),
+    paddingTop: DimensionsUtils.getDP(2 * descPadding),
   },
   calContainer: {
     flexDirection: 'row',

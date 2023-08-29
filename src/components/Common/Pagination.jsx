@@ -67,7 +67,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flexDirection: 'row',
     position: 'absolute',
-    top: DimensionsUtils.getDP(420),
+    top:
+      sizes.HEIGHT * 0.25 +
+      DimensionsUtils.getDP(24) +
+      DimensionsUtils.getDP(24) +
+      DimensionsUtils.getDP(sizes.HEIGHT / 80),
   },
   dot: {
     width: DimensionsUtils.getDP(6),
