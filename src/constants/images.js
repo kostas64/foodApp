@@ -52,8 +52,12 @@ const logo = require('../assets/images/logo.png');
 const correct = require('../assets/images/correct.png');
 const passShow = require('../assets/images/passShow.png');
 const passHide = require('../assets/images/passHide.png');
+const google = require('../assets/images/google.png');
+const facebook = require('../assets/images/facebook.png');
 
 export default {
+  google,
+  facebook,
   passShow,
   passHide,
   correct,
