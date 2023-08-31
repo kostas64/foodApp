@@ -1,5 +1,7 @@
 import {
   Text,
+  View,
+  Image,
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
@@ -9,7 +11,7 @@ import React from 'react';
 import {colors} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const Button = ({buttonPressed, label, onPress, containerStyle}) => {
+const Button = ({iconLeft, buttonPressed, label, onPress, containerStyle}) => {
   return (
     <TouchableOpacity
       disabled={buttonPressed}
@@ -22,7 +24,10 @@ const Button = ({buttonPressed, label, onPress, containerStyle}) => {
       {buttonPressed ? (
         <ActivityIndicator size={'small'} color={colors.white} />
       ) : (
-        <Text style={styles.buttonLabel}>{label}</Text>
+        <View style={styles.iconLabelContainer}>
+          {iconLeft && <Image source={iconLeft} style={styles.iconLeft} />}
+          <Text style={styles.buttonLabel}>{label}</Text>
+        </View>
       )}
     </TouchableOpacity>
   );
@@ -41,6 +46,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     fontSize: DimensionsUtils.getFontSize(18),
     color: colors.white,
+  },
+  iconLabelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconLeft: {
+    tintColor: colors.white,
+    width: DimensionsUtils.getDP(18),
+    height: DimensionsUtils.getDP(18),
+    marginRight: DimensionsUtils.getDP(16),
   },
 });
 
