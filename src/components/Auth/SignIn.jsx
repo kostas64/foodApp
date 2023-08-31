@@ -1,5 +1,6 @@
 import Animated, {
   withSpring,
+  withTiming,
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
@@ -13,7 +14,12 @@ import {colors, images} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const SignIn = ({rotateValue, isLoginVisible, setIsLoginVisible}) => {
+const SignIn = ({
+  widthValue,
+  rotateValue,
+  isLoginVisible,
+  setIsLoginVisible,
+}) => {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
@@ -60,10 +66,14 @@ const SignIn = ({rotateValue, isLoginVisible, setIsLoginVisible}) => {
     rotateValue.value = withSpring(180, {
       mass: 1,
       damping: 8,
-      stiffness: 125,
+      stiffness: 100,
       overshootClamping: false,
       restDisplacementThreshold: 0.01,
       restSpeedThreshold: 2,
+    });
+
+    widthValue.value = withTiming(0, {
+      duration: 250,
     });
   };
 
@@ -108,8 +118,7 @@ const SignIn = ({rotateValue, isLoginVisible, setIsLoginVisible}) => {
           animatedStyle,
         ]}>
         {/* Title & Subtitle */}
-        <View
-          style={[styles.center, {marginBottom: DimensionsUtils.getDP(16)}]}>
+        <View style={[styles.center, {marginBottom: DimensionsUtils.getDP(8)}]}>
           <Text style={styles.title}>Let's Sign in</Text>
           <Text style={styles.subtitle}>Feel the FooDmE experience</Text>
         </View>
@@ -186,8 +195,6 @@ const SignIn = ({rotateValue, isLoginVisible, setIsLoginVisible}) => {
             <Text style={styles.signUpLabel}>Sign up</Text>
           </TouchableOpacity>
         </View>
-
-        {/* Footer */}
       </Animated.View>
     </>
   );
@@ -227,7 +234,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     width: '100%',
-    height: DimensionsUtils.getDP(24),
+    height: DimensionsUtils.getDP(16),
   },
   forgotLabel: {
     alignSelf: 'flex-end',
@@ -249,7 +256,6 @@ const styles = StyleSheet.create({
   },
   dontHaveLabel: {
     fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getDP(12),
   },
   hitSlop: {
     top: DimensionsUtils.getDP(8),

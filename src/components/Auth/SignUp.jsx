@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Animated, {
   withSpring,
+  withTiming,
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
@@ -22,7 +23,12 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const {width: WIDTH} = Dimensions.get('screen');
 
-const SignUp = ({rotateValue, isLoginVisible, setIsLoginVisible}) => {
+const SignUp = ({
+  widthValue,
+  rotateValue,
+  isLoginVisible,
+  setIsLoginVisible,
+}) => {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
@@ -74,7 +80,6 @@ const SignUp = ({rotateValue, isLoginVisible, setIsLoginVisible}) => {
 
   const onPressSignIn = () => {
     setEmail('');
-    setUsername('');
     setPassword('');
     setErrorEmail('');
     setErrorPass('');
@@ -84,10 +89,14 @@ const SignUp = ({rotateValue, isLoginVisible, setIsLoginVisible}) => {
     rotateValue.value = withSpring(0, {
       mass: 1,
       damping: 8,
-      stiffness: 125,
+      stiffness: 100,
       overshootClamping: false,
       restDisplacementThreshold: 0.01,
       restSpeedThreshold: 2,
+    });
+
+    widthValue.value = withTiming(1, {
+      duration: 250,
     });
   };
 
@@ -112,15 +121,9 @@ const SignUp = ({rotateValue, isLoginVisible, setIsLoginVisible}) => {
       isValid = false;
     }
 
-    if (username.length < 8) {
-      setErrorUser('Username must be at least 8 characters');
-      isValid = false;
-    }
-
     if (errorEmail || errorPass || errorUser || !isValid) return;
 
     setEmail('');
-    setUsername('');
     setPassword('');
 
     navigation.navigate('HomeStack');
@@ -144,36 +147,10 @@ const SignUp = ({rotateValue, isLoginVisible, setIsLoginVisible}) => {
         {/* Title & Subtitle */}
         <View style={[styles.center, {marginBottom: DimensionsUtils.getDP(8)}]}>
           <Text style={styles.title}>Create account</Text>
+          <Text style={styles.subtitle}>Feel the FooDmE experience</Text>
         </View>
 
         {/* Inputs */}
-        <FormInput
-          value={username}
-          label={'Username'}
-          labelColor={colors.black}
-          onChange={value => {
-            setUsername(value);
-            validateUser(value);
-          }}
-          inputStyle={styles.inputStyle}
-          errorMsg={errorUser}
-          errorColor={colors.tomato}
-          appendComponent={
-            <View style={styles.justifyCenter}>
-              <Image
-                source={images.correct}
-                style={[
-                  styles.image,
-                  !errorUser && username.length > 0 && {tintColor: 'green'},
-                ]}
-              />
-            </View>
-          }
-        />
-
-        {/* Divider */}
-        <View style={styles.divider} />
-
         <FormInput
           value={email}
           label={'Email'}
@@ -213,9 +190,7 @@ const SignUp = ({rotateValue, isLoginVisible, setIsLoginVisible}) => {
             setPassword(value);
             validatePass(value);
           }}
-          inputStyle={{
-            fontFamily: 'Poppins-Regular',
-          }}
+          inputStyle={styles.inputStyle}
           errorMsg={errorPass}
           errorColor={colors.tomato}
           appendComponent={
@@ -295,7 +270,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginHorizontal: 0,
     borderRadius: DimensionsUtils.getDP(12),
-    marginTop: DimensionsUtils.getDP(16),
+    marginTop: DimensionsUtils.getDP(32),
   },
   backToContainer: {
     flexDirection: 'row',
@@ -316,7 +291,6 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   backToLabel: {
-    fontSize: DimensionsUtils.getDP(12),
     fontFamily: 'Poppins-Regular',
   },
 });
