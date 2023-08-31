@@ -48,8 +48,16 @@ const add = require('../assets/images/add.png');
 const visa = require('../assets/images/visa.png');
 const mastercard = require('../assets/images/mastercard.png');
 const gps = require('../assets/images/gps-navigation.png');
+const logo = require('../assets/images/logo.png');
+const correct = require('../assets/images/correct.png');
+const passShow = require('../assets/images/passShow.png');
+const passHide = require('../assets/images/passHide.png');
 
 export default {
+  passShow,
+  passHide,
+  correct,
+  logo,
   gps,
   mastercard,
   visa,
