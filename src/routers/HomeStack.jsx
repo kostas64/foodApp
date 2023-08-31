@@ -5,6 +5,7 @@ import BottomStack from './BottomStack';
 import ShopScreen from '../screens/ShopScreen';
 import CardScreen from '../screens/CardScreen';
 import MapScreen from '../screens/MapScreen';
+import AuthScreen from '../screens/AuthScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ const HomeStack = () => {
         headerShown: false,
         animation: 'slide_from_right',
       }}>
+      <Stack.Screen name="Auth" component={AuthScreen} />
       <Stack.Screen name="HomeStack" component={BottomStack} />
       <Stack.Screen name="Shop" component={ShopScreen} />
       <Stack.Screen
