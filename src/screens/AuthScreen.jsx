@@ -6,45 +6,53 @@ import Logo from '../components/Common/Logo';
 import SignUp from '../components/Auth/SignUp';
 import SignIn from '../components/Auth/SignIn';
 import Screen from '../components/Common/Screen';
+import Backdrop from '../components/Common/Backdrop';
 import LoginMethods from '../components/Auth/LoginMethods';
 
 const AuthScreen = () => {
   const widthValue = useSharedValue(1);
   const rotateValue = useSharedValue(0);
+
+  const [backdrop, showBackdrop] = useState(false);
   const [isLoginVisible, setIsLoginVisible] = useState(true);
 
   return (
-    <Screen>
-      <View style={styles.flexBetween}>
-        <View>
-          {/* Logo */}
-          <Logo />
-
-          {/* Sign In & Sign Up form */}
+    <>
+      <Screen>
+        <View style={styles.flexBetween}>
           <View>
-            <SignIn
-              widthValue={widthValue}
-              rotateValue={rotateValue}
-              isLoginVisible={isLoginVisible}
-              setIsLoginVisible={setIsLoginVisible}
-            />
-            <SignUp
-              widthValue={widthValue}
-              rotateValue={rotateValue}
-              isLoginVisible={isLoginVisible}
-              setIsLoginVisible={setIsLoginVisible}
-            />
-          </View>
-        </View>
+            {/* Logo */}
+            <Logo />
 
-        {/* Footer */}
-        <LoginMethods
-          widthValue={widthValue}
-          rotateValue={rotateValue}
-          isLoginVisible={isLoginVisible}
-        />
-      </View>
-    </Screen>
+            {/* Sign In & Sign Up form */}
+            <View>
+              <SignIn
+                widthValue={widthValue}
+                rotateValue={rotateValue}
+                isLoginVisible={isLoginVisible}
+                setIsLoginVisible={setIsLoginVisible}
+                showBackdrop={showBackdrop}
+              />
+              <SignUp
+                widthValue={widthValue}
+                rotateValue={rotateValue}
+                isLoginVisible={isLoginVisible}
+                setIsLoginVisible={setIsLoginVisible}
+                showBackdrop={showBackdrop}
+              />
+            </View>
+          </View>
+
+          {/* Footer */}
+          <LoginMethods
+            widthValue={widthValue}
+            rotateValue={rotateValue}
+            isLoginVisible={isLoginVisible}
+          />
+        </View>
+      </Screen>
+      {backdrop && <Backdrop />}
+    </>
   );
 };
 

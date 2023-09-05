@@ -1,3 +1,12 @@
+import {
+  View,
+  Text,
+  Image,
+  Platform,
+  Keyboard,
+  Pressable,
+  StyleSheet,
+} from 'react-native';
 import Animated, {
   withSpring,
   withTiming,
@@ -6,7 +15,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {View, Text, StyleSheet, Pressable, Image, Platform} from 'react-native';
 
 import Button from '../Common/Button';
 import FormInput from '../Common/FormInput';
@@ -19,6 +27,7 @@ const SignIn = ({
   rotateValue,
   isLoginVisible,
   setIsLoginVisible,
+  showBackdrop,
 }) => {
   const navigation = useNavigation();
 
@@ -102,8 +111,13 @@ const SignIn = ({
 
     setEmail('');
     setPassword('');
+    Keyboard.dismiss();
+    showBackdrop(true);
 
-    navigation.navigate('HomeStack');
+    setTimeout(() => {
+      showBackdrop(false);
+      navigation.navigate('HomeStack');
+    }, 1500);
   };
 
   return (
@@ -181,7 +195,9 @@ const SignIn = ({
         />
 
         {/* Forgot Password */}
-        <TouchableOpacity onPress={() => navigation.navigate('AskEmail')}>
+        <TouchableOpacity
+          style={styles.selfEnd}
+          onPress={() => navigation.navigate('AskEmail')}>
           <Text style={styles.forgotLabel}>Forgot password</Text>
         </TouchableOpacity>
 
@@ -208,13 +224,17 @@ const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
   },
+  selfEnd: {
+    alignSelf: 'flex-end',
+  },
   justifyCenter: {
     justifyContent: 'center',
   },
   cardContainer: {
     borderRadius: DimensionsUtils.getDP(16),
     marginTop: DimensionsUtils.getDP(16),
-    paddingVertical: DimensionsUtils.getDP(16),
+    paddingTop: DimensionsUtils.getDP(16),
+    paddingBottom: DimensionsUtils.getDP(10),
     paddingHorizontal: DimensionsUtils.getDP(16),
     marginHorizontal: DimensionsUtils.getDP(16),
     backgroundColor: colors.white,
@@ -223,13 +243,12 @@ const styles = StyleSheet.create({
   title: {
     color: colors.black,
     fontFamily: 'Poppins-SemiBold',
-    fontSize: DimensionsUtils.getFontSize(24),
+    fontSize: DimensionsUtils.getFontSize(20),
   },
   subtitle: {
     color: colors.black,
     fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getFontSize(16),
-    marginVertical: DimensionsUtils.getDP(8),
+    marginVertical: DimensionsUtils.getDP(2),
   },
   image: {
     tintColor: colors.grey,
@@ -242,7 +261,7 @@ const styles = StyleSheet.create({
   },
   forgotLabel: {
     alignSelf: 'flex-end',
-    marginVertical: DimensionsUtils.getDP(12),
+    marginVertical: DimensionsUtils.getDP(8),
     textDecorationLine: 'underline',
     fontFamily: 'Poppins-Regular',
     fontSize: DimensionsUtils.getDP(12),
@@ -250,13 +269,13 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginHorizontal: 0,
     borderRadius: DimensionsUtils.getDP(12),
-    marginTop: DimensionsUtils.getDP(16),
+    marginTop: DimensionsUtils.getDP(8),
   },
   signUpContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: DimensionsUtils.getDP(24),
+    marginTop: DimensionsUtils.getDP(12),
   },
   dontHaveLabel: {
     fontFamily: 'Poppins-Regular',

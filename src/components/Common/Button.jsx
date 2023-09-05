@@ -11,7 +11,14 @@ import React from 'react';
 import {colors} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const Button = ({iconLeft, buttonPressed, label, onPress, containerStyle}) => {
+const Button = ({
+  label,
+  onPress,
+  iconLeft,
+  inputStyle,
+  buttonPressed,
+  containerStyle,
+}) => {
   return (
     <TouchableOpacity
       disabled={buttonPressed}
@@ -26,7 +33,7 @@ const Button = ({iconLeft, buttonPressed, label, onPress, containerStyle}) => {
       ) : (
         <View style={styles.iconLabelContainer}>
           {iconLeft && <Image source={iconLeft} style={styles.iconLeft} />}
-          <Text style={styles.buttonLabel}>{label}</Text>
+          <Text style={[styles.buttonLabel, inputStyle]}>{label}</Text>
         </View>
       )}
     </TouchableOpacity>
@@ -35,7 +42,7 @@ const Button = ({iconLeft, buttonPressed, label, onPress, containerStyle}) => {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    height: DimensionsUtils.getDP(50),
+    height: DimensionsUtils.getDP(46),
     marginHorizontal: DimensionsUtils.getDP(20),
     backgroundColor: colors.orange,
     alignItems: 'center',
@@ -44,7 +51,7 @@ const styles = StyleSheet.create({
   },
   buttonLabel: {
     fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getFontSize(18),
+    fontSize: DimensionsUtils.getFontSize(16),
     color: colors.white,
   },
   iconLabelContainer: {
@@ -53,8 +60,8 @@ const styles = StyleSheet.create({
   },
   iconLeft: {
     tintColor: colors.white,
-    width: DimensionsUtils.getDP(18),
-    height: DimensionsUtils.getDP(18),
+    width: DimensionsUtils.getDP(16),
+    height: DimensionsUtils.getDP(16),
     marginRight: DimensionsUtils.getDP(16),
   },
 });

@@ -4,7 +4,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Animated, {useAnimatedStyle} from 'react-native-reanimated';
 
 import Button from '../Common/Button';
-import {colors, images, sizes} from '../../constants';
+import {colors, images} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const LoginMethods = ({widthValue}) => {
@@ -17,26 +17,27 @@ const LoginMethods = ({widthValue}) => {
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: widthValue.value,
-    width: widthValue.value * sizes.WIDTH,
-    transform: [{translateX: ((1 - widthValue.value) * sizes.WIDTH) / 2}],
+    transform: [{translateY: widthValue.value * -4}],
   }));
 
   return (
     <>
       {/* Footer */}
-      <Animated.View style={[paddingBottom, animatedStyle]}>
+      <Animated.View style={[styles.container, paddingBottom, animatedStyle]}>
         <Button
           iconLeft={images.facebook}
-          label={'Continue with Facebook'}
+          label={'Facebook login'}
           containerStyle={styles.button1}
+          inputStyle={{fontSize: DimensionsUtils.getFontSize(14)}}
         />
 
-        <View style={styles.devider} />
+        <View style={{width: DimensionsUtils.getDP(16)}} />
 
         <Button
           iconLeft={images.google}
-          label={'Continue with Google'}
+          label={'Google login'}
           containerStyle={styles.button2}
+          inputStyle={{fontSize: DimensionsUtils.getFontSize(14)}}
         />
       </Animated.View>
     </>
@@ -44,18 +45,21 @@ const LoginMethods = ({widthValue}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: DimensionsUtils.getDP(16),
+  },
   button1: {
-    bottom: 0,
     backgroundColor: '#0d59ad',
-    marginHorizontal: DimensionsUtils.getDP(16),
+    flex: 1,
+    marginHorizontal: 0,
   },
-  devider: {
-    width: '100%',
-    height: DimensionsUtils.getDP(16),
-  },
+
   button2: {
+    flex: 1,
     backgroundColor: colors.grey,
-    marginHorizontal: DimensionsUtils.getDP(16),
+    marginHorizontal: 0,
   },
 });
 

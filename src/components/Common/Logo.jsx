@@ -1,8 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
-import {colors, images} from '../../constants';
+import {colors, images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
+
+const LOGO_HEIGHT = sizes.HEIGHT / 15;
+const LOGO_WIDTH = LOGO_HEIGHT * 0.8;
+const LOGO_FONT_SIZE = LOGO_HEIGHT / 2;
 
 const Logo = () => {
   return (
@@ -21,13 +25,13 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginRight: DimensionsUtils.getDP(16),
-    width: DimensionsUtils.getDP(58),
-    height: DimensionsUtils.getDP(64),
+    width: LOGO_WIDTH,
+    height: LOGO_HEIGHT,
   },
   appName: {
     color: colors.orange,
     fontFamily: 'Poppins-Bold',
-    fontSize: DimensionsUtils.getFontSize(28),
+    fontSize: LOGO_FONT_SIZE,
   },
 });
 
