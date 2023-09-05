@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
+import Button from '../Common/Button';
 import {colors} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
@@ -13,12 +14,17 @@ const DeleteCardModal = ({item, onDelete = () => {}, onCancel = () => {}}) => {
 
       {/* Buttons */}
       <View style={styles.buttons}>
-        <TouchableOpacity onPress={onDelete} style={styles.buttonContainer}>
-          <Text style={styles.buttonLabel}>Delete</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onCancel} style={styles.buttonContainer2}>
-          <Text style={styles.buttonLabel2}>Cancel</Text>
-        </TouchableOpacity>
+        <Button
+          label="Delete"
+          onPress={onDelete}
+          containerStyle={styles.buttonContainer}
+        />
+        <Button
+          label="Cancel"
+          onPress={onCancel}
+          inputStyle={{color: colors.black}}
+          containerStyle={styles.buttonContainer2}
+        />
       </View>
     </View>
   );
@@ -48,6 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: DimensionsUtils.getDP(16),
     marginRight: DimensionsUtils.getDP(16),
+    marginHorizontal: 0,
   },
   buttonLabel: {
     paddingVertical: DimensionsUtils.getDP(12),
@@ -62,6 +69,7 @@ const styles = StyleSheet.create({
     borderRadius: DimensionsUtils.getDP(16),
     borderColor: colors.lightGrey,
     borderWidth: 1,
+    marginHorizontal: 0,
   },
   buttonLabel2: {
     paddingVertical: DimensionsUtils.getDP(12),
