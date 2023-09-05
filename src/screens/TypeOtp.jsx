@@ -1,6 +1,13 @@
+import {
+  View,
+  Text,
+  Keyboard,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {View, Text, Keyboard, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {colors} from '../constants';
 import Logo from '../components/Common/Logo';
@@ -59,7 +66,9 @@ const TypeOtp = () => {
         {/* Logo */}
         <Logo />
 
-        <View style={styles.container}>
+        <Pressable
+          onPress={() => otpRef.current.focus()}
+          style={styles.container}>
           {/* Hidden input */}
           <FormInput
             ref={otpRef}
@@ -85,7 +94,7 @@ const TypeOtp = () => {
             <Text
               style={styles.resendCodeLabel}>{`Resend Code ${seconds}`}</Text>
           </TouchableOpacity>
-        </View>
+        </Pressable>
       </Screen>
       {backdrop && <Backdrop />}
     </>
