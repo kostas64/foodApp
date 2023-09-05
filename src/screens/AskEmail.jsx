@@ -54,8 +54,7 @@ const AskEmail = () => {
 
         <View style={styles.cardContainer}>
           {/* Title & Subtitle */}
-          <View
-            style={[styles.center, {marginBottom: DimensionsUtils.getDP(8)}]}>
+          <View style={{marginBottom: DimensionsUtils.getDP(8)}}>
             <Text style={[styles.title, styles.textCenter]}>
               Type your email
             </Text>

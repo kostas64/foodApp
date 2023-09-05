@@ -134,6 +134,7 @@ const SignIn = ({
             setEmail(value);
             validateEmail(value);
           }}
+          textContentType="oneTimeCode"
           inputStyle={styles.inputStyle}
           errorMsg={errorEmail}
           errorColor={colors.tomato}
@@ -163,6 +164,7 @@ const SignIn = ({
             setPassword(value);
             validatePass(value);
           }}
+          textContentType="oneTimeCode"
           inputStyle={styles.inputStyle}
           errorMsg={errorPass}
           errorColor={colors.tomato}

@@ -30,24 +30,21 @@ const FormInput = React.forwardRef(
       onKeyPress,
       blurOnSubmit,
       autoFocus,
+      textContentType,
     },
     ref,
   ) => {
     return (
       <View style={{...containerStyle}}>
-        {/* Label * Error */}
-        <View style={styles.labelAndErrorContainer}>
-          <Text style={[styles.label, {color: labelColor}]}>{label}</Text>
-          <Text style={[styles.errorLabel, {color: errorColor}]}>
-            {errorMsg}
-          </Text>
-        </View>
+        {/* Label  */}
+        <Text style={[styles.label, {color: labelColor}]}>{label}</Text>
 
         {/* Input */}
         <View style={styles.inputContainer}>
           {prependComponent}
           <TextInput
             ref={ref}
+            textContentType={textContentType}
             autoFocus={autoFocus}
             blurOnSubmit={blurOnSubmit}
             onKeyPress={onKeyPress}
@@ -65,8 +62,14 @@ const FormInput = React.forwardRef(
             autoCapitalize={autoCapitalize}
             onChangeText={onChange}
           />
+
           {appendComponent}
         </View>
+        {errorMsg && (
+          <Text style={[styles.errorLabel, {color: errorColor}]}>
+            {errorMsg}
+          </Text>
+        )}
       </View>
     );
   },
@@ -84,6 +87,8 @@ const styles = StyleSheet.create({
   errorLabel: {
     fontFamily: 'Poppins-Regular',
     fontSize: DimensionsUtils.getFontSize(12),
+    paddingTop: DimensionsUtils.getDP(4),
+    left: DimensionsUtils.getDP(4),
   },
   inputContainer: {
     flexDirection: 'row',

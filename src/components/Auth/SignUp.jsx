@@ -153,6 +153,7 @@ const SignUp = ({
             setUsername(value);
             validateUser(value);
           }}
+          textContentType="oneTimeCode"
           inputStyle={styles.inputStyle}
           errorMsg={errorUser}
           errorColor={colors.tomato}
@@ -182,6 +183,7 @@ const SignUp = ({
             setEmail(value);
             validateEmail(value);
           }}
+          textContentType="oneTimeCode"
           inputStyle={styles.inputStyle}
           errorMsg={errorEmail}
           errorColor={colors.tomato}
