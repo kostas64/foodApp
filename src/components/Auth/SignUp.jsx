@@ -1,11 +1,3 @@
-import {
-  View,
-  Text,
-  Image,
-  Pressable,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
 import Animated, {
   withSpring,
   withTiming,
@@ -14,14 +6,13 @@ import Animated, {
 } from 'react-native-reanimated';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {View, Text, Image, Pressable, StyleSheet} from 'react-native';
 
 import Button from '../Common/Button';
 import FormInput from '../Common/FormInput';
-import {colors, images} from '../../constants';
+import {colors, images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-
-const {width: WIDTH} = Dimensions.get('screen');
 
 const SignUp = ({
   widthValue,
@@ -124,6 +115,7 @@ const SignUp = ({
     if (errorEmail || errorPass || errorUser || !isValid) return;
 
     setEmail('');
+    setUsername('');
     setPassword('');
 
     navigation.navigate('HomeStack');
@@ -151,6 +143,35 @@ const SignUp = ({
         </View>
 
         {/* Inputs */}
+        <FormInput
+          value={username}
+          label={'Username'}
+          labelColor={colors.black}
+          keyboardType="default"
+          autoCompleteType="none"
+          onChange={value => {
+            setUsername(value);
+            validateUser(value);
+          }}
+          inputStyle={styles.inputStyle}
+          errorMsg={errorUser}
+          errorColor={colors.tomato}
+          appendComponent={
+            <View style={styles.justifyCenter}>
+              <Image
+                source={images.correct}
+                style={[
+                  styles.image,
+                  !errorUser && username.length > 0 && {tintColor: 'green'},
+                ]}
+              />
+            </View>
+          }
+        />
+
+        {/* Divider */}
+        <View style={styles.divider} />
+
         <FormInput
           value={email}
           label={'Email'}
@@ -242,7 +263,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     backfaceVisibility: 'hidden',
     position: 'absolute',
-    width: WIDTH - DimensionsUtils.getDP(32),
+    width: sizes.WIDTH - DimensionsUtils.getDP(32),
   },
   title: {
     color: colors.black,
@@ -262,7 +283,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     width: '100%',
-    height: DimensionsUtils.getDP(16),
+    height: DimensionsUtils.getDP(20),
   },
   inputStyle: {
     fontFamily: 'Poppins-Regular',

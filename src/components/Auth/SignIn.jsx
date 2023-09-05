@@ -179,7 +179,9 @@ const SignIn = ({
         />
 
         {/* Forgot Password */}
-        <Text style={styles.forgotLabel}>Forgot password</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('AskEmail')}>
+          <Text style={styles.forgotLabel}>Forgot password</Text>
+        </TouchableOpacity>
 
         {/* Sign In Button + Register */}
         <Button

@@ -6,6 +6,9 @@ import ShopScreen from '../screens/ShopScreen';
 import CardScreen from '../screens/CardScreen';
 import MapScreen from '../screens/MapScreen';
 import AuthScreen from '../screens/AuthScreen';
+import AskEmail from '../screens/AskEmail';
+import TypeOtp from '../screens/TypeOtp';
+import ChangePassword from '../screens/ChangePassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +24,9 @@ const HomeStack = () => {
         animation: 'slide_from_right',
       }}>
       <Stack.Screen name="Auth" component={AuthScreen} />
+      <Stack.Screen name="AskEmail" component={AskEmail} />
+      <Stack.Screen name="TypeOtp" component={TypeOtp} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
       <Stack.Screen name="HomeStack" component={BottomStack} />
       <Stack.Screen name="Shop" component={ShopScreen} />
       <Stack.Screen
