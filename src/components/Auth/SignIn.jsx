@@ -6,7 +6,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
+import {View, Text, StyleSheet, Pressable, Image, Platform} from 'react-native';
 
 import Button from '../Common/Button';
 import FormInput from '../Common/FormInput';
@@ -272,6 +272,7 @@ const styles = StyleSheet.create({
     color: colors.orange,
     fontWeight: '700',
     textDecorationLine: 'underline',
+    top: Platform.OS === 'android' ? -DimensionsUtils.getDP(2) : 0,
   },
   inputStyle: {
     fontFamily: 'Poppins-Regular',
