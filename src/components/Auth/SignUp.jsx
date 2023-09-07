@@ -22,6 +22,8 @@ import {colors, images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
+const isIOS = Platform.OS === 'ios';
+
 const SignUp = ({
   widthValue,
   rotateValue,
@@ -167,7 +169,7 @@ const SignUp = ({
             validateUser(value);
           }}
           textContentType="oneTimeCode"
-          inputStyle={styles.inputStyle}
+          inputStyle={isIOS ? styles.inputStyle : {}}
           errorMsg={errorUser}
           errorColor={colors.tomato}
           appendComponent={
@@ -197,7 +199,7 @@ const SignUp = ({
             validateEmail(value);
           }}
           textContentType="oneTimeCode"
-          inputStyle={styles.inputStyle}
+          inputStyle={isIOS ? styles.inputStyle : {}}
           errorMsg={errorEmail}
           errorColor={colors.tomato}
           appendComponent={
@@ -226,7 +228,7 @@ const SignUp = ({
             setPassword(value);
             validatePass(value);
           }}
-          inputStyle={styles.inputStyle}
+          inputStyle={isIOS ? styles.inputStyle : {}}
           errorMsg={errorPass}
           errorColor={colors.tomato}
           appendComponent={
@@ -323,7 +325,7 @@ const styles = StyleSheet.create({
     color: colors.orange,
     fontWeight: '700',
     textDecorationLine: 'underline',
-    top: Platform.OS === 'android' ? -DimensionsUtils.getDP(3) : 0,
+    top: !isIOS ? -DimensionsUtils.getDP(3) : 0,
   },
   backToLabel: {
     fontFamily: 'Poppins-Regular',

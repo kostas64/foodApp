@@ -1,5 +1,13 @@
+import {
+  View,
+  Text,
+  Image,
+  Keyboard,
+  Platform,
+  Pressable,
+  StyleSheet,
+} from 'react-native';
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image, Pressable, Keyboard} from 'react-native';
 
 import {colors, images} from '../constants';
 import Logo from '../components/Common/Logo';
@@ -9,6 +17,8 @@ import Backdrop from '../components/Common/Backdrop';
 import FormInput from '../components/Common/FormInput';
 import {useNavigation} from '@react-navigation/native';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
+
+const isIOS = Platform.OS === 'ios';
 
 const ChangePassword = () => {
   const navigation = useNavigation();
@@ -89,8 +99,8 @@ const ChangePassword = () => {
               setPassword(value);
               validatePass(value, setErrorPass);
             }}
+            inputStyle={isIOS ? styles.inputStyle : {}}
             textContentType="oneTimeCode"
-            inputStyle={styles.inputStyle}
             errorMsg={errorPass}
             errorColor={colors.tomato}
             appendComponent={
@@ -119,8 +129,8 @@ const ChangePassword = () => {
               setRepeatPassword(value);
               validatePass(value, setErrorRepeatPass);
             }}
+            inputStyle={isIOS ? styles.inputStyle : {}}
             textContentType="oneTimeCode"
-            inputStyle={styles.inputStyle}
             errorMsg={errorRepeatPass}
             errorColor={colors.tomato}
             appendComponent={
@@ -192,6 +202,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
     borderRadius: DimensionsUtils.getDP(12),
     marginTop: DimensionsUtils.getDP(16),
+  },
+  inputStyle: {
+    fontFamily: 'Poppins-Regular',
   },
 });
 

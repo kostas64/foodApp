@@ -5,16 +5,27 @@ import {
   Pressable,
   StyleSheet,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
+import Animated, {
+  withTiming,
+  useSharedValue,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 import React, {useEffect, useRef, useState} from 'react';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 
 import {colors} from '../constants';
 import Logo from '../components/Common/Logo';
+import {useKeyboard} from '../hooks/useKeyboard';
 import Screen from '../components/Common/Screen';
 import Backdrop from '../components/Common/Backdrop';
 import FormInput from '../components/Common/FormInput';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
+
+const isAndroid = Platform.OS === 'android';
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 const Box = ({value}) => (
   <View style={styles.boxContainer}>
@@ -23,18 +34,43 @@ const Box = ({value}) => (
 );
 
 const TypeOtp = () => {
+  const keyboard = useKeyboard();
   const isFocused = useIsFocused();
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation();
+  const translate = useSharedValue(0);
   const [backdrop, showBackdrop] = useState(false);
   const [secodsToResend, setSecondsToResend] = useState(59);
 
   const otpRef = useRef();
   const [otp, setOtp] = useState('');
 
+  const paddingBottom = {
+    paddingBottom:
+      insets.bottom > 0
+        ? insets.bottom + DimensionsUtils.getDP(8)
+        : DimensionsUtils.getDP(24),
+  };
+
   const seconds =
     secodsToResend > 0
       ? `(00:${secodsToResend >= 10 ? secodsToResend : `0${secodsToResend}`})`
       : '';
+
+  translate.value = withTiming(-keyboard, {
+    duration: 100,
+  });
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{translateY: translate.value}],
+    };
+  });
+
+  const openKeyboard = () => {
+    isAndroid && otpRef.current.blur();
+    otpRef.current.focus();
+  };
 
   useEffect(() => {
     const secsInterval = setInterval(() => {
@@ -66,9 +102,7 @@ const TypeOtp = () => {
         {/* Logo */}
         <Logo />
 
-        <Pressable
-          onPress={() => otpRef.current.focus()}
-          style={styles.container}>
+        <Pressable onPress={openKeyboard} style={styles.container}>
           {/* Hidden input */}
           <FormInput
             ref={otpRef}
@@ -87,13 +121,17 @@ const TypeOtp = () => {
           </View>
 
           {/* Resend Code button */}
-          <TouchableOpacity
-            style={styles.resendCodeContainer}
+          <AnimatedTouchable
+            style={[
+              styles.resendCodeContainer,
+              paddingBottom,
+              !isAndroid && animatedStyle,
+            ]}
             disabled={secodsToResend > 0}
             onPress={() => setSecondsToResend(59)}>
             <Text
               style={styles.resendCodeLabel}>{`Resend Code ${seconds}`}</Text>
-          </TouchableOpacity>
+          </AnimatedTouchable>
         </Pressable>
       </Screen>
       {backdrop && <Backdrop />}
@@ -105,6 +143,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: DimensionsUtils.getDP(32),
+    justifyContent: 'space-between',
   },
   hiddenInput: {
     position: 'absolute',
@@ -123,6 +162,8 @@ const styles = StyleSheet.create({
     borderRadius: DimensionsUtils.getDP(12),
     paddingHorizontal: DimensionsUtils.getDP(20),
     backgroundColor: colors.lightGrey,
+    borderColor: colors.grey,
+    borderWidth: 1,
   },
   boxLabel: {
     fontFamily: 'Poppins-Regular',

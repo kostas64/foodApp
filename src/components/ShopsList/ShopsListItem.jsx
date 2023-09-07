@@ -52,7 +52,7 @@ const ShopsListItem = ({item}) => {
 const styles = StyleSheet.create({
   image: {
     width: sizes.WIDTH - DimensionsUtils.getDP(40),
-    height: DimensionsUtils.getDP((sizes.WIDTH - 40) / 2),
+    height: (sizes.WIDTH - 40) / 2,
     borderRadius: DimensionsUtils.getDP(30),
   },
   timeContainer: {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     bottom: -1,
     borderTopRightRadius: DimensionsUtils.getDP(30),
     borderBottomLeftRadius: DimensionsUtils.getDP(30),
-    width: DimensionsUtils.getDP(120),
+    width: 120,
     alignItems: 'center',
     backgroundColor: colors.white,
     elevation: 5,

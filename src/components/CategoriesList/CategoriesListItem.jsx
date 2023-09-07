@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   listContainer: {
     padding: DimensionsUtils.getDP(8),
     alignItems: 'center',
+    width: 62,
     borderRadius: DimensionsUtils.getDP(36),
     marginRight: DimensionsUtils.getDP(12),
     marginLeft: DimensionsUtils.getDP(8),
@@ -68,13 +69,13 @@ const styles = StyleSheet.create({
     borderRadius: DimensionsUtils.getDP(28),
   },
   image: {
-    height: DimensionsUtils.getDP(24),
-    width: DimensionsUtils.getDP(24),
+    height: 24,
+    width: 24,
   },
   label: {
     marginTop: DimensionsUtils.getDP(8),
     marginBottom: DimensionsUtils.getDP(16),
-    fontSize: DimensionsUtils.getFontSize(12),
+    fontSize: DimensionsUtils.getFontSize(11),
     fontFamily: 'Poppins-SemiBold',
   },
 });

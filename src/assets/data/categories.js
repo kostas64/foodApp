@@ -3,7 +3,7 @@ import {images} from '../../constants';
 export const categories = [
   {
     id: 0,
-    name: 'Burgers',
+    name: 'Burger',
     image: images.burger,
   },
   {
@@ -23,17 +23,17 @@ export const categories = [
   },
   {
     id: 4,
-    name: 'Donuts',
+    name: 'Donut',
     image: images.donut,
   },
   {
     id: 5,
-    name: 'Salads',
+    name: 'Salad',
     image: images.salad,
   },
   {
     id: 6,
-    name: 'Hot Dogs',
+    name: 'Hot Dog',
     image: images.hotDog,
   },
   {
