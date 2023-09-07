@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     height: DimensionsUtils.getDP(50),
-    marginTop: DimensionsUtils.getDP(8),
+    marginTop: DimensionsUtils.getDP(2),
     borderRadius: DimensionsUtils.getDP(10),
     paddingHorizontal: DimensionsUtils.getDP(20),
     backgroundColor: colors.lightGrey,

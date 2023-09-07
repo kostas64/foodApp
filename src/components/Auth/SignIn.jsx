@@ -250,7 +250,6 @@ const styles = StyleSheet.create({
   subtitle: {
     color: colors.black,
     fontFamily: 'Poppins-Regular',
-    marginVertical: DimensionsUtils.getDP(2),
   },
   image: {
     tintColor: colors.grey,
