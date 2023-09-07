@@ -42,7 +42,7 @@ const Button = ({
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    height: DimensionsUtils.getDP(46),
+    height: DimensionsUtils.getDP(50),
     marginHorizontal: DimensionsUtils.getDP(20),
     backgroundColor: colors.orange,
     alignItems: 'center',

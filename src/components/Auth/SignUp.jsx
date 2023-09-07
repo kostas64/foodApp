@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
     color: colors.orange,
     fontWeight: '700',
     textDecorationLine: 'underline',
-    top: Platform.OS === 'android' ? -DimensionsUtils.getDP(2) : 0,
+    top: Platform.OS === 'android' ? -DimensionsUtils.getDP(3) : 0,
   },
   backToLabel: {
     fontFamily: 'Poppins-Regular',
