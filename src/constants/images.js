@@ -46,6 +46,7 @@ const pencil = require('../assets/images/pencil.png');
 const trash = require('../assets/images/delete.png');
 const add = require('../assets/images/add.png');
 const visa = require('../assets/images/visa.png');
+const visaDark = require('../assets/images/visa-dark.png');
 const mastercard = require('../assets/images/mastercard.png');
 const gps = require('../assets/images/gps-navigation.png');
 const logo = require('../assets/images/logo.png');
@@ -54,8 +55,11 @@ const passShow = require('../assets/images/passShow.png');
 const passHide = require('../assets/images/passHide.png');
 const google = require('../assets/images/google.png');
 const facebook = require('../assets/images/facebook.png');
+const colorMode = require('../assets/images/color-mode.png');
 
 export default {
+  visaDark,
+  colorMode,
   google,
   facebook,
   passShow,
