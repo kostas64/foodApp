@@ -1,10 +1,14 @@
 import React from 'react';
+import {useTheme} from '@react-navigation/native';
 import {View, Animated, StyleSheet} from 'react-native';
 
-import {colors, sizes} from '../../constants';
+import {sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const Pagination = ({scrollX, dotsLength}) => {
+  const {colors} = useTheme();
+  const styles = customStyle(colors);
+
   const arr = new Array(dotsLength).fill(0);
 
   return (
@@ -62,26 +66,27 @@ const Pagination = ({scrollX, dotsLength}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'center',
-    flexDirection: 'row',
-    position: 'absolute',
-    top:
-      sizes.HEIGHT * 0.25 +
-      DimensionsUtils.getDP(24) +
-      DimensionsUtils.getDP(24) +
-      DimensionsUtils.getDP(sizes.HEIGHT / 80),
-  },
-  dot: {
-    width: DimensionsUtils.getDP(6),
-    height: DimensionsUtils.getDP(6),
-    borderRadius: DimensionsUtils.getDP(3),
-  },
-  moveDot: {
-    position: 'absolute',
-    backgroundColor: colors.orange,
-  },
-});
+const customStyle = colors =>
+  StyleSheet.create({
+    container: {
+      alignSelf: 'center',
+      flexDirection: 'row',
+      position: 'absolute',
+      top:
+        sizes.HEIGHT * 0.25 +
+        DimensionsUtils.getDP(24) +
+        DimensionsUtils.getDP(24) +
+        DimensionsUtils.getDP(sizes.HEIGHT / 80),
+    },
+    dot: {
+      width: DimensionsUtils.getDP(6),
+      height: DimensionsUtils.getDP(6),
+      borderRadius: DimensionsUtils.getDP(3),
+    },
+    moveDot: {
+      position: 'absolute',
+      backgroundColor: colors.orange,
+    },
+  });
 
 export default Pagination;

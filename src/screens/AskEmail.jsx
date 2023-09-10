@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
 import {View, Text, StyleSheet, Image} from 'react-native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 
+import {images, sizes} from '../constants';
 import Logo from '../components/Common/Logo';
 import Screen from '../components/Common/Screen';
 import Button from '../components/Common/Button';
-import {colors, images, sizes} from '../constants';
 import FormInput from '../components/Common/FormInput';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
 
 const AskEmail = () => {
+  const {colors} = useTheme();
+  const styles = customStyle(colors);
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
@@ -86,7 +88,8 @@ const AskEmail = () => {
                   source={images.correct}
                   style={[
                     styles.image,
-                    !errorEmail && email.length > 0 && {tintColor: 'green'},
+                    !errorEmail &&
+                      email.length > 0 && {tintColor: colors.green},
                   ]}
                 />
               </View>
@@ -108,48 +111,49 @@ const AskEmail = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  textCenter: {
-    textAlign: 'center',
-  },
-  justifyCenter: {
-    justifyContent: 'center',
-  },
-  divider: {
-    width: '100%',
-    height: DimensionsUtils.getDP(16),
-  },
-  innerCardWidth: {
-    width: sizes.WIDTH - DimensionsUtils.getDP(72),
-  },
-  cardContainer: {
-    borderRadius: DimensionsUtils.getDP(16),
-    marginTop: DimensionsUtils.getDP(16),
-    paddingVertical: DimensionsUtils.getDP(16),
-    paddingHorizontal: DimensionsUtils.getDP(16),
-    marginHorizontal: DimensionsUtils.getDP(16),
-    backgroundColor: colors.white,
-    alignItems: 'center',
-  },
-  title: {
-    color: colors.black,
-    fontFamily: 'Poppins-SemiBold',
-    fontSize: DimensionsUtils.getFontSize(24),
-  },
-  subtitle: {
-    color: colors.black,
-    fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getFontSize(16),
-    marginVertical: DimensionsUtils.getDP(8),
-  },
-  image: {
-    tintColor: colors.grey,
-    width: DimensionsUtils.getDP(20),
-    height: DimensionsUtils.getDP(20),
-  },
-  inputStyle: {
-    fontFamily: 'Poppins-Regular',
-  },
-});
+const customStyle = colors =>
+  StyleSheet.create({
+    textCenter: {
+      textAlign: 'center',
+    },
+    justifyCenter: {
+      justifyContent: 'center',
+    },
+    divider: {
+      width: '100%',
+      height: DimensionsUtils.getDP(16),
+    },
+    innerCardWidth: {
+      width: sizes.WIDTH - DimensionsUtils.getDP(72),
+    },
+    cardContainer: {
+      borderRadius: DimensionsUtils.getDP(16),
+      marginTop: DimensionsUtils.getDP(16),
+      paddingVertical: DimensionsUtils.getDP(16),
+      paddingHorizontal: DimensionsUtils.getDP(16),
+      marginHorizontal: DimensionsUtils.getDP(16),
+      backgroundColor: colors.white,
+      alignItems: 'center',
+    },
+    title: {
+      color: colors.black,
+      fontFamily: 'Poppins-SemiBold',
+      fontSize: DimensionsUtils.getFontSize(24),
+    },
+    subtitle: {
+      color: colors.black,
+      fontFamily: 'Poppins-Regular',
+      fontSize: DimensionsUtils.getFontSize(16),
+      marginVertical: DimensionsUtils.getDP(8),
+    },
+    image: {
+      tintColor: colors.grey,
+      width: DimensionsUtils.getDP(20),
+      height: DimensionsUtils.getDP(20),
+    },
+    inputStyle: {
+      fontFamily: 'Poppins-Regular',
+    },
+  });
 
 export default AskEmail;

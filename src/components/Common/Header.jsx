@@ -1,7 +1,14 @@
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  StyleSheet,
+  useColorScheme,
+} from 'react-native';
 import React from 'react';
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 
-import {colors} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const Header = ({
@@ -15,6 +22,24 @@ const Header = ({
   onPressLeft = () => {},
   onPressRight = () => {},
 }) => {
+  const {colors} = useTheme();
+  const scheme = useColorScheme();
+
+  const iconColor = {
+    tintColor: scheme === 'dark' ? colors.orange : colors.black,
+  };
+
+  const color =
+    scheme === 'light'
+      ? {
+          shadowColor: colors.orange,
+          backgroundColor: colors.orange,
+        }
+      : {
+          shadowColor: colors.lightGrey,
+          backgroundColor: colors.lightGrey,
+        };
+
   return (
     <View style={styles.container}>
       {leftIcon ? (
@@ -22,13 +47,16 @@ const Header = ({
           disabled={isLeftPressDisabled}
           onPress={onPressLeft}
           hitSlop={styles.hitSlop}>
-          <Image source={leftIcon} style={[styles.image, leftIconStyle]} />
+          <Image
+            source={leftIcon}
+            style={[styles.image, iconColor, leftIconStyle]}
+          />
         </Pressable>
       ) : (
         <View style={[styles.image, leftIconStyle]} />
       )}
 
-      <View style={styles.midContainer}>
+      <View style={[styles.midContainer, color]}>
         <Text style={styles.label}>{label}</Text>
       </View>
 
@@ -37,7 +65,10 @@ const Header = ({
           onPress={onPressRight}
           hitSlop={styles.hitSlop}
           disabled={isRightPressDisabled}>
-          <Image source={rightIcon} style={[styles.image, rightIconStyle]} />
+          <Image
+            source={rightIcon}
+            style={[styles.image, iconColor, rightIconStyle]}
+          />
         </Pressable>
       ) : (
         <View style={[styles.image, rightIconStyle]} />
@@ -58,21 +89,19 @@ const styles = StyleSheet.create({
     aspectRatio: 1 / 1,
   },
   midContainer: {
-    backgroundColor: colors.orange,
     borderRadius: DimensionsUtils.getDP(32),
     paddingHorizontal: DimensionsUtils.getDP(24),
     paddingVertical: DimensionsUtils.getDP(12),
     elevation: 15,
     shadowOpacity: 0.5,
     shadowRadius: 10,
-    shadowColor: colors.orange,
     shadowOffset: {
       width: 0,
       height: 0,
     },
   },
   label: {
-    color: colors.white,
+    color: 'white',
     fontFamily: 'Poppins-Medium',
   },
   hitSlop: {

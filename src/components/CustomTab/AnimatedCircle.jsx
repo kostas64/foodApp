@@ -1,19 +1,27 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {useTheme} from '@react-navigation/native';
+import {StyleSheet, useColorScheme} from 'react-native';
 import Animated, {useAnimatedStyle} from 'react-native-reanimated';
-
-import {colors} from '../../constants';
 
 const circleContainerSize = 54;
 
 const AnimatedCircle = ({circleX}) => {
+  const {colors} = useTheme();
+
+  const scheme = useColorScheme();
+  const backgroundColor = scheme === 'dark' ? colors.orange : 'white';
+
   const circleContainerStyle = useAnimatedStyle(() => {
     return {
       transform: [{translateX: circleX.value - circleContainerSize / 2}],
     };
   }, []);
 
-  return <Animated.View style={[circleContainerStyle, styles.container]} />;
+  return (
+    <Animated.View
+      style={[circleContainerStyle, {backgroundColor}, styles.container]}
+    />
+  );
 };
 
 export default AnimatedCircle;
@@ -25,7 +33,6 @@ const styles = StyleSheet.create({
     width: circleContainerSize,
     borderRadius: circleContainerSize,
     height: circleContainerSize,
-    backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',

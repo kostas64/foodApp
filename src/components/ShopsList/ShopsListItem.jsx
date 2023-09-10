@@ -1,14 +1,26 @@
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  useColorScheme,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 
-import {colors, images, sizes} from '../../constants';
+import {images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const ShopsListItem = ({item}) => {
+  const {colors} = useTheme();
+  const scheme = useColorScheme();
+  const styles = customStyle(colors);
   const navigation = useNavigation();
 
   const estimatedTime = `${item?.estimatedTime?.[0]} - ${item.estimatedTime?.[1]} min`;
+
+  const backgroundColor = scheme === 'dark' ? 'grey' : 'white';
 
   const onItemPress = () =>
     navigation.navigate('Shop', {
@@ -19,7 +31,7 @@ const ShopsListItem = ({item}) => {
     <TouchableOpacity onPress={onItemPress}>
       <View>
         <Image source={item.image} style={styles.image} />
-        <View style={styles.timeContainer}>
+        <View style={[styles.timeContainer, {backgroundColor}]}>
           <Text style={styles.time}>{estimatedTime}</Text>
         </View>
       </View>
@@ -49,63 +61,67 @@ const ShopsListItem = ({item}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  image: {
-    width: sizes.WIDTH - DimensionsUtils.getDP(40),
-    height: (sizes.WIDTH - 40) / 2,
-    borderRadius: DimensionsUtils.getDP(30),
-  },
-  timeContainer: {
-    position: 'absolute',
-    bottom: -1,
-    borderTopRightRadius: DimensionsUtils.getDP(30),
-    borderBottomLeftRadius: DimensionsUtils.getDP(30),
-    width: 120,
-    alignItems: 'center',
-    backgroundColor: colors.white,
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
+const customStyle = colors =>
+  StyleSheet.create({
+    image: {
+      width: sizes.WIDTH - DimensionsUtils.getDP(40),
+      height: (sizes.WIDTH - 40) / 2,
+      borderRadius: DimensionsUtils.getDP(30),
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-  },
-  time: {
-    padding: DimensionsUtils.getDP(10),
-    fontFamily: 'Poppins-Medium',
-  },
-  bottomContainer: {
-    paddingLeft: DimensionsUtils.getDP(8),
-    paddingBottom: DimensionsUtils.getDP(20),
-  },
-  shopName: {
-    paddingTop: DimensionsUtils.getDP(16),
-    paddingBottom: DimensionsUtils.getDP(8),
-    fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getFontSize(20),
-  },
-  starRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  star: {
-    tintColor: colors.orange,
-    width: DimensionsUtils.getDP(16),
-    height: DimensionsUtils.getDP(16),
-    marginRight: DimensionsUtils.getDP(8),
-  },
-  rate: {
-    fontFamily: 'Poppins-Regular',
-    marginRight: DimensionsUtils.getDP(8),
-  },
-  category: {
-    fontFamily: 'Poppins-Regular',
-  },
-  dot: {
-    color: colors.orange,
-  },
-});
+    timeContainer: {
+      position: 'absolute',
+      bottom: -1,
+      borderTopRightRadius: DimensionsUtils.getDP(30),
+      borderBottomLeftRadius: DimensionsUtils.getDP(30),
+      width: 120,
+      alignItems: 'center',
+      elevation: 5,
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 6,
+    },
+    time: {
+      color: colors.black,
+      padding: DimensionsUtils.getDP(10),
+      fontFamily: 'Poppins-Medium',
+    },
+    bottomContainer: {
+      paddingLeft: DimensionsUtils.getDP(8),
+      paddingBottom: DimensionsUtils.getDP(20),
+    },
+    shopName: {
+      color: colors.black,
+      paddingTop: DimensionsUtils.getDP(16),
+      paddingBottom: DimensionsUtils.getDP(8),
+      fontFamily: 'Poppins-Regular',
+      fontSize: DimensionsUtils.getFontSize(20),
+    },
+    starRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    star: {
+      tintColor: colors.orange,
+      width: DimensionsUtils.getDP(16),
+      height: DimensionsUtils.getDP(16),
+      marginRight: DimensionsUtils.getDP(8),
+    },
+    rate: {
+      color: colors.black,
+      fontFamily: 'Poppins-Regular',
+      marginRight: DimensionsUtils.getDP(8),
+    },
+    category: {
+      color: colors.black,
+      fontFamily: 'Poppins-Regular',
+    },
+    dot: {
+      color: colors.orange,
+    },
+  });
 
 export default ShopsListItem;

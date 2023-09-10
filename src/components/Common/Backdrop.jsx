@@ -1,9 +1,10 @@
 import React from 'react';
+import {useTheme} from '@react-navigation/native';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 
-import {colors} from '../../constants';
-
 const Backdrop = () => {
+  const {colors} = useTheme();
+
   return (
     <View style={styles.container}>
       <ActivityIndicator size={'large'} color={colors.orange} />

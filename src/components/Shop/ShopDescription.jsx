@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {useTheme} from '@react-navigation/native';
+import {View, Text, Image, StyleSheet, useColorScheme} from 'react-native';
 
 import ShopTags from './ShopTags';
 import ShopAllergens from './ShopAllergens';
@@ -20,21 +21,31 @@ const ShopDescription = ({
   productCategories,
   setModalContent,
 }) => {
+  const {colors} = useTheme();
+  const scheme = useColorScheme();
+
   const title = `${productName} - $${productPrice?.toFixed(2)}`;
   const calLabel = `${productCalories} cal`;
+  const labelColor = {
+    color: scheme === 'dark' ? 'white' : colors.black,
+  };
 
   return (
     <View>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={[styles.description, styles.center]} numberOfLines={2}>
+      <Text style={[styles.title, labelColor]}>{title}</Text>
+      <Text
+        style={[styles.description, styles.center, labelColor]}
+        numberOfLines={2}>
         {productDesc}
       </Text>
       <View style={[styles.calContainer, styles.center]}>
         <Image source={images.fire} style={styles.icon} />
-        <Text style={styles.calLabel}>{calLabel}</Text>
+        <Text style={[styles.calLabel, labelColor]}>{calLabel}</Text>
       </View>
       <View style={[styles.smallPadding, styles.center]}>
-        <Text style={[styles.title, styles.smallPaddingBottom]}>Free of</Text>
+        <Text style={[styles.title, styles.smallPaddingBottom, labelColor]}>
+          Free of
+        </Text>
         <View style={styles.row}>
           <ShopTags
             modalRef={modalRef}
@@ -44,12 +55,20 @@ const ShopDescription = ({
         </View>
       </View>
       <View style={[styles.smallPadding, styles.center]}>
-        <Text style={[styles.title, styles.smallPaddingBottom]}>Allergens</Text>
+        <Text style={[styles.title, styles.smallPaddingBottom, labelColor]}>
+          Allergens
+        </Text>
         <View style={styles.row}>
           <ShopAllergens productAllergens={productAllergens} />
         </View>
       </View>
-      <Text style={[styles.center, styles.description, styles.smallPadding]}>
+      <Text
+        style={[
+          styles.center,
+          styles.description,
+          styles.smallPadding,
+          labelColor,
+        ]}>
         *All packaging is made from recycled materials
       </Text>
     </View>

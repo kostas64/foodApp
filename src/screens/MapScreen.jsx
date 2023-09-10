@@ -1,14 +1,15 @@
 import MapView from 'react-native-maps';
 import React, {useRef, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, useColorScheme} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import {colors, sizes} from '../constants';
+import {sizes} from '../constants';
 import Screen from '../components/Common/Screen';
 import {mapStyle} from '../assets/data/mapStyle';
 import MapHeader from '../components/Map/MapHeader';
 import MapMarker from '../components/Map/MapMarker';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
+import {mapStyleDark} from '../assets/data/mapStyleDark';
 import MapShopModal from '../components/Map/MapShopModal';
 import MapZoomButton from '../components/Map/MapZoomButton';
 
@@ -16,6 +17,7 @@ const MapScreen = ({navigation, route}) => {
   const {shop} = route?.params || {};
 
   const mapRef = useRef();
+  const isDark = useColorScheme() === 'dark';
   const insets = useSafeAreaInsets();
   const [coords, setCoords] = useState({
     latitude: shop?.coords?.latitude,
@@ -85,7 +87,7 @@ const MapScreen = ({navigation, route}) => {
         ref={mapRef}
         provider="google"
         initialRegion={coords}
-        customMapStyle={mapStyle}
+        customMapStyle={isDark ? mapStyleDark : mapStyle}
         style={styles.mapContainer}>
         <MapMarker coords={shop.coords} />
         <MapMarker isUser coords={userCoords} />
@@ -126,7 +128,6 @@ const styles = StyleSheet.create({
   },
   modal: {
     borderRadius: DimensionsUtils.getDP(16),
-    backgroundColor: colors.white,
     position: 'absolute',
     alignSelf: 'center',
     width: sizes.WIDTH - DimensionsUtils.getDP(40),

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, FlatList} from 'react-native';
 
-import {categories} from '../../assets/data/categories';
 import CategoriesListItem from './CategoriesListItem';
+import {categories} from '../../assets/data/categories';
 
 const CategoriesList = () => {
   const [selectedItem, setSelectedItem] = useState(categories[0]);

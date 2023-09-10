@@ -8,19 +8,21 @@ import {
   StyleSheet,
 } from 'react-native';
 import React, {useState} from 'react';
+import {useNavigation, useTheme} from '@react-navigation/native';
 
-import {colors, images} from '../constants';
+import {images} from '../constants';
 import Logo from '../components/Common/Logo';
 import Screen from '../components/Common/Screen';
 import Button from '../components/Common/Button';
 import Backdrop from '../components/Common/Backdrop';
 import FormInput from '../components/Common/FormInput';
-import {useNavigation} from '@react-navigation/native';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
 
 const isIOS = Platform.OS === 'ios';
 
 const ChangePassword = () => {
+  const {colors} = useTheme();
+  const styles = customStyle(colors);
   const navigation = useNavigation();
 
   const [backdrop, showBackdrop] = useState(false);
@@ -161,51 +163,52 @@ const ChangePassword = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  center: {
-    alignSelf: 'center',
-  },
-  justifyCenter: {
-    justifyContent: 'center',
-  },
-  cardContainer: {
-    borderRadius: DimensionsUtils.getDP(16),
-    marginTop: DimensionsUtils.getDP(16),
-    paddingVertical: DimensionsUtils.getDP(16),
-    paddingHorizontal: DimensionsUtils.getDP(16),
-    marginHorizontal: DimensionsUtils.getDP(16),
-    backgroundColor: colors.white,
-  },
-  title: {
-    textAlign: 'center',
-    color: colors.black,
-    fontFamily: 'Poppins-SemiBold',
-    fontSize: DimensionsUtils.getFontSize(24),
-  },
-  subtitle: {
-    textAlign: 'center',
-    color: colors.black,
-    fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getFontSize(16),
-    marginVertical: DimensionsUtils.getDP(4),
-  },
-  divider: {
-    width: '100%',
-    height: DimensionsUtils.getDP(16),
-  },
-  image: {
-    tintColor: colors.grey,
-    width: DimensionsUtils.getDP(20),
-    height: DimensionsUtils.getDP(20),
-  },
-  buttonContainer: {
-    marginHorizontal: 0,
-    borderRadius: DimensionsUtils.getDP(12),
-    marginTop: DimensionsUtils.getDP(16),
-  },
-  inputStyle: {
-    fontFamily: 'Poppins-Regular',
-  },
-});
+const customStyle = colors =>
+  StyleSheet.create({
+    center: {
+      alignSelf: 'center',
+    },
+    justifyCenter: {
+      justifyContent: 'center',
+    },
+    cardContainer: {
+      borderRadius: DimensionsUtils.getDP(16),
+      marginTop: DimensionsUtils.getDP(16),
+      paddingVertical: DimensionsUtils.getDP(16),
+      paddingHorizontal: DimensionsUtils.getDP(16),
+      marginHorizontal: DimensionsUtils.getDP(16),
+      backgroundColor: colors.white,
+    },
+    title: {
+      textAlign: 'center',
+      color: colors.black,
+      fontFamily: 'Poppins-SemiBold',
+      fontSize: DimensionsUtils.getFontSize(24),
+    },
+    subtitle: {
+      textAlign: 'center',
+      color: colors.black,
+      fontFamily: 'Poppins-Regular',
+      fontSize: DimensionsUtils.getFontSize(16),
+      marginVertical: DimensionsUtils.getDP(4),
+    },
+    divider: {
+      width: '100%',
+      height: DimensionsUtils.getDP(16),
+    },
+    image: {
+      tintColor: colors.grey,
+      width: DimensionsUtils.getDP(20),
+      height: DimensionsUtils.getDP(20),
+    },
+    buttonContainer: {
+      marginHorizontal: 0,
+      borderRadius: DimensionsUtils.getDP(12),
+      marginTop: DimensionsUtils.getDP(16),
+    },
+    inputStyle: {
+      fontFamily: 'Poppins-Regular',
+    },
+  });
 
 export default ChangePassword;

@@ -1,5 +1,4 @@
 import sizes from './sizes';
 import images from './images';
-import colors from './colors';
 
-export {images, colors, sizes};
+export {images, sizes};

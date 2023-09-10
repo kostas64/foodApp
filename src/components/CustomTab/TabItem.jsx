@@ -4,10 +4,11 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import React, {useEffect} from 'react';
-import {Pressable, StyleSheet, Text, Image} from 'react-native';
+import {useTheme} from '@react-navigation/native';
+import {Pressable, StyleSheet, Text, Image, useColorScheme} from 'react-native';
 
 import usePath from '../../hooks/usePath';
-import {colors, images, sizes} from '../../constants';
+import {images, sizes} from '../../constants';
 import {getPathXCenterByIndex} from '../../utils/PathUtils';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
@@ -17,10 +18,14 @@ const LABEL_WIDTH = sizes.WIDTH / 3;
 const AnimatedIcon = Animated.createAnimatedComponent(Image);
 
 const TabItem = ({label, icon, index, activeIndex, onTabPress}) => {
+  const {colors} = useTheme();
   const {curvedPaths} = usePath();
+  const scheme = useColorScheme();
   const animatedActiveIndex = useSharedValue(activeIndex);
   const iconPosition = getPathXCenterByIndex(curvedPaths, index);
   const labelPosition = getPathXCenterByIndex(curvedPaths, index);
+
+  const labelColor = scheme === 'dark' ? 'white' : colors.orange;
 
   const tabStyle = useAnimatedStyle(() => {
     const translateY = animatedActiveIndex.value - 1 === index ? -6 : 20;
@@ -57,6 +62,8 @@ const TabItem = ({label, icon, index, activeIndex, onTabPress}) => {
     }
   }, [activeIndex]);
 
+  const colorIsSelected = scheme === 'dark' ? 'white' : colors.orange;
+
   return (
     <>
       <Animated.View style={[tabStyle]}>
@@ -67,14 +74,14 @@ const TabItem = ({label, icon, index, activeIndex, onTabPress}) => {
               styles.image,
               {
                 tintColor:
-                  index === activeIndex - 1 ? colors.orange : colors.grey,
+                  index === activeIndex - 1 ? colorIsSelected : colors.grey,
               },
             ]}
           />
         </Pressable>
       </Animated.View>
       <Animated.View style={[labelContainerStyle, styles.labelContainer]}>
-        <Text style={styles.label}>{label}</Text>
+        <Text style={[styles.label, {color: labelColor}]}>{label}</Text>
       </Animated.View>
     </>
   );
@@ -89,7 +96,6 @@ const styles = StyleSheet.create({
     width: LABEL_WIDTH,
   },
   label: {
-    color: colors.orange,
     fontSize: DimensionsUtils.getFontSize(16),
     fontFamily: 'Poppins-Medium',
   },

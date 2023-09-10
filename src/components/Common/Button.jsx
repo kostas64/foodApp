@@ -7,8 +7,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import React from 'react';
+import {useTheme} from '@react-navigation/native';
 
-import {colors} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const Button = ({
@@ -19,6 +19,9 @@ const Button = ({
   buttonPressed,
   containerStyle,
 }) => {
+  const {colors} = useTheme();
+  const styles = customStyle(colors);
+
   return (
     <TouchableOpacity
       disabled={buttonPressed}
@@ -40,30 +43,31 @@ const Button = ({
   );
 };
 
-const styles = StyleSheet.create({
-  buttonContainer: {
-    height: DimensionsUtils.getDP(50),
-    marginHorizontal: DimensionsUtils.getDP(20),
-    backgroundColor: colors.orange,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: DimensionsUtils.getDP(16),
-  },
-  buttonLabel: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getFontSize(16),
-    color: colors.white,
-  },
-  iconLabelContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  iconLeft: {
-    tintColor: colors.white,
-    width: DimensionsUtils.getDP(16),
-    height: DimensionsUtils.getDP(16),
-    marginRight: DimensionsUtils.getDP(16),
-  },
-});
+const customStyle = colors =>
+  StyleSheet.create({
+    buttonContainer: {
+      height: DimensionsUtils.getDP(50),
+      marginHorizontal: DimensionsUtils.getDP(20),
+      backgroundColor: colors.orange,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: DimensionsUtils.getDP(16),
+    },
+    buttonLabel: {
+      color: 'white',
+      fontFamily: 'Poppins-Regular',
+      fontSize: DimensionsUtils.getFontSize(16),
+    },
+    iconLabelContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    iconLeft: {
+      tintColor: colors.white,
+      width: DimensionsUtils.getDP(16),
+      height: DimensionsUtils.getDP(16),
+      marginRight: DimensionsUtils.getDP(16),
+    },
+  });
 
 export default Button;

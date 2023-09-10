@@ -6,8 +6,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import React from 'react';
 import Svg, {Path} from 'react-native-svg';
-import {StyleSheet, View} from 'react-native';
 import {interpolatePath} from 'react-native-redash';
+import {StyleSheet, View, useColorScheme} from 'react-native';
 
 import TabItem from './TabItem';
 import {sizes} from '../../constants';
@@ -18,9 +18,10 @@ import {getPathXCenter} from '../../utils/PathUtils';
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 
 const CustomBottomTab = ({state, descriptors, navigation}) => {
-  const {containerPath, curvedPaths, tHeight} = usePath();
-  const circleXCoordinate = useSharedValue(0);
+  const scheme = useColorScheme();
   const progress = useSharedValue(1);
+  const circleXCoordinate = useSharedValue(0);
+  const {containerPath, curvedPaths, tHeight} = usePath();
 
   const handleMoveCircle = currentPath => {
     circleXCoordinate.value = getPathXCenter(currentPath);
@@ -56,10 +57,12 @@ const CustomBottomTab = ({state, descriptors, navigation}) => {
     progress.value = withTiming(index);
   };
 
+  const color = scheme === 'dark' ? 'black' : 'white';
+
   return (
     <View style={styles.tabBarContainer}>
       <Svg width={sizes.WIDTH} height={tHeight} style={styles.shadowMd}>
-        <AnimatedPath fill={'white'} animatedProps={animatedProps} />
+        <AnimatedPath fill={color} animatedProps={animatedProps} />
       </Svg>
       <AnimatedCircle circleX={circleXCoordinate} />
       <View

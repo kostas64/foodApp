@@ -1,11 +1,11 @@
 import {
   View,
   Text,
+  Platform,
   Keyboard,
   Pressable,
   StyleSheet,
   TouchableOpacity,
-  Platform,
 } from 'react-native';
 import Animated, {
   withTiming,
@@ -14,9 +14,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import React, {useEffect, useRef, useState} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {useIsFocused, useNavigation, useTheme} from '@react-navigation/native';
 
-import {colors} from '../constants';
 import Logo from '../components/Common/Logo';
 import {useKeyboard} from '../hooks/useKeyboard';
 import Screen from '../components/Common/Screen';
@@ -27,13 +26,20 @@ import {DimensionsUtils} from '../utils/DimensionsUtils';
 const isAndroid = Platform.OS === 'android';
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
-const Box = ({value}) => (
-  <View style={styles.boxContainer}>
-    <Text style={styles.boxLabel}>{value}</Text>
-  </View>
-);
+const Box = ({value}) => {
+  const {colors} = useTheme();
+  const styles = customStyle(colors);
+
+  return (
+    <View style={styles.boxContainer}>
+      <Text style={styles.boxLabel}>{value}</Text>
+    </View>
+  );
+};
 
 const TypeOtp = () => {
+  const {colors} = useTheme();
+  const styles = customStyle(colors);
   const keyboard = useKeyboard();
   const isFocused = useIsFocused();
   const insets = useSafeAreaInsets();
@@ -139,44 +145,46 @@ const TypeOtp = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: DimensionsUtils.getDP(32),
-    justifyContent: 'space-between',
-  },
-  hiddenInput: {
-    position: 'absolute',
-    top: -10000,
-  },
-  boxesContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  boxContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: DimensionsUtils.getDP(55),
-    height: DimensionsUtils.getDP(55),
-    marginTop: DimensionsUtils.getDP(8),
-    borderRadius: DimensionsUtils.getDP(12),
-    paddingHorizontal: DimensionsUtils.getDP(20),
-    backgroundColor: colors.lightGrey,
-    borderColor: colors.grey,
-    borderWidth: 1,
-  },
-  boxLabel: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getFontSize(16),
-  },
-  resendCodeContainer: {
-    alignSelf: 'center',
-    paddingTop: DimensionsUtils.getDP(32),
-  },
-  resendCodeLabel: {
-    fontFamily: 'Poppins-Medium',
-    color: colors.orange,
-  },
-});
+const customStyle = colors =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingTop: DimensionsUtils.getDP(32),
+      justifyContent: 'space-between',
+    },
+    hiddenInput: {
+      position: 'absolute',
+      top: -10000,
+    },
+    boxesContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+    },
+    boxContainer: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: DimensionsUtils.getDP(55),
+      height: DimensionsUtils.getDP(55),
+      marginTop: DimensionsUtils.getDP(8),
+      borderRadius: DimensionsUtils.getDP(12),
+      paddingHorizontal: DimensionsUtils.getDP(20),
+      backgroundColor: colors.lightGrey,
+      borderColor: colors.grey,
+      borderWidth: 1,
+    },
+    boxLabel: {
+      color: colors.black,
+      fontFamily: 'Poppins-Regular',
+      fontSize: DimensionsUtils.getFontSize(16),
+    },
+    resendCodeContainer: {
+      alignSelf: 'center',
+      paddingTop: DimensionsUtils.getDP(32),
+    },
+    resendCodeLabel: {
+      fontFamily: 'Poppins-Medium',
+      color: colors.orange,
+    },
+  });
 
 export default TypeOtp;

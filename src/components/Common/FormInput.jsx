@@ -1,7 +1,7 @@
 import React from 'react';
+import {useTheme} from '@react-navigation/native';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 
-import {colors} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const FormInput = React.forwardRef(
@@ -12,7 +12,7 @@ const FormInput = React.forwardRef(
       labelColor = 'rgba(0,0,0,0.5)',
       onChange,
       placeholder,
-      placeholderTextColor = colors.grey,
+      placeholderTextColor,
       inputStyle,
       containerStyle,
       prependComponent,
@@ -34,6 +34,9 @@ const FormInput = React.forwardRef(
     },
     ref,
   ) => {
+    const {colors} = useTheme();
+    const styles = customStyle(colors);
+
     return (
       <View style={{...containerStyle}}>
         {/* Label  */}
@@ -53,7 +56,7 @@ const FormInput = React.forwardRef(
             value={value}
             maxLength={maxLength}
             textAlign={textAlign}
-            style={{...inputStyle, flex: 1}}
+            style={{...inputStyle, color: colors.black, flex: 1}}
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}
             secureTextEntry={secureTextEntry}
@@ -75,29 +78,31 @@ const FormInput = React.forwardRef(
   },
 );
 
-const styles = StyleSheet.create({
-  labelAndErrorContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  label: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getFontSize(12),
-  },
-  errorLabel: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getFontSize(12),
-    paddingTop: DimensionsUtils.getDP(4),
-    left: DimensionsUtils.getDP(4),
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    height: DimensionsUtils.getDP(50),
-    marginTop: DimensionsUtils.getDP(2),
-    borderRadius: DimensionsUtils.getDP(10),
-    paddingHorizontal: DimensionsUtils.getDP(20),
-    backgroundColor: colors.lightGrey,
-  },
-});
+const customStyle = colors =>
+  StyleSheet.create({
+    labelAndErrorContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+    label: {
+      color: colors.white,
+      fontFamily: 'Poppins-Regular',
+      fontSize: DimensionsUtils.getFontSize(12),
+    },
+    errorLabel: {
+      fontFamily: 'Poppins-Regular',
+      fontSize: DimensionsUtils.getFontSize(12),
+      paddingTop: DimensionsUtils.getDP(4),
+      left: DimensionsUtils.getDP(4),
+    },
+    inputContainer: {
+      flexDirection: 'row',
+      height: DimensionsUtils.getDP(50),
+      marginTop: DimensionsUtils.getDP(2),
+      borderRadius: DimensionsUtils.getDP(10),
+      paddingHorizontal: DimensionsUtils.getDP(20),
+      backgroundColor: colors.lightGrey,
+    },
+  });
 
 export default FormInput;

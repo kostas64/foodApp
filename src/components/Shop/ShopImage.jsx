@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 
-import {colors, sizes} from '../../constants';
+import {sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const ShopImage = ({image}) => {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     marginTop: DimensionsUtils.getDP(24),
     width: sizes.HEIGHT * 0.25,
     borderRadius: sizes.HEIGHT * 0.25,
-    backgroundColor: colors.white,
+    backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

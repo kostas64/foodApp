@@ -1,13 +1,15 @@
 import React from 'react';
+import {useTheme} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 
-import {colors} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const Screen = ({children}) => {
+  const {colors} = useTheme();
   const insets = useSafeAreaInsets();
   const isIOS = Platform.OS === 'ios';
+  const styles = customStyle(colors);
 
   let paddingTop;
 
@@ -38,11 +40,12 @@ const Screen = ({children}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    backgroundColor: colors.veryLightGrey,
-  },
-});
+const customStyle = colors =>
+  StyleSheet.create({
+    wrapper: {
+      flex: 1,
+      backgroundColor: colors.veryLightGrey,
+    },
+  });
 
 export default Screen;

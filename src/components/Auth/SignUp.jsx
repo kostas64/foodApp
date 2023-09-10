@@ -14,11 +14,11 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 
 import Button from '../Common/Button';
 import FormInput from '../Common/FormInput';
-import {colors, images, sizes} from '../../constants';
+import {images, sizes} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -31,7 +31,9 @@ const SignUp = ({
   setIsLoginVisible,
   showBackdrop,
 }) => {
+  const {colors} = useTheme();
   const navigation = useNavigation();
+  const styles = customStyle(colors);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -178,7 +180,8 @@ const SignUp = ({
                 source={images.correct}
                 style={[
                   styles.image,
-                  !errorUser && username.length > 0 && {tintColor: 'green'},
+                  !errorUser &&
+                    username.length > 0 && {tintColor: colors.green},
                 ]}
               />
             </View>
@@ -208,7 +211,7 @@ const SignUp = ({
                 source={images.correct}
                 style={[
                   styles.image,
-                  !errorEmail && email.length > 0 && {tintColor: 'green'},
+                  !errorEmail && email.length > 0 && {tintColor: colors.green},
                 ]}
               />
             </View>
@@ -262,73 +265,75 @@ const SignUp = ({
   );
 };
 
-const styles = StyleSheet.create({
-  center: {
-    alignItems: 'center',
-  },
-  justifyCenter: {
-    justifyContent: 'center',
-  },
-  cardContainer: {
-    borderRadius: DimensionsUtils.getDP(16),
-    marginTop: DimensionsUtils.getDP(16),
-    paddingTop: DimensionsUtils.getDP(16),
-    paddingBottom: DimensionsUtils.getDP(10),
-    paddingHorizontal: DimensionsUtils.getDP(16),
-    marginHorizontal: DimensionsUtils.getDP(16),
-    backgroundColor: colors.white,
-    backfaceVisibility: 'hidden',
-    position: 'absolute',
-    width: sizes.WIDTH - DimensionsUtils.getDP(32),
-  },
-  title: {
-    color: colors.black,
-    fontFamily: 'Poppins-SemiBold',
-    fontSize: DimensionsUtils.getFontSize(20),
-  },
-  subtitle: {
-    color: colors.black,
-    fontFamily: 'Poppins-Regular',
-  },
-  image: {
-    tintColor: colors.grey,
-    width: DimensionsUtils.getDP(20),
-    height: DimensionsUtils.getDP(20),
-  },
-  divider: {
-    width: '100%',
-    height: DimensionsUtils.getDP(12),
-  },
-  inputStyle: {
-    fontFamily: 'Poppins-Regular',
-  },
-  buttonContainer: {
-    marginHorizontal: 0,
-    borderRadius: DimensionsUtils.getDP(12),
-    marginTop: DimensionsUtils.getDP(24),
-  },
-  backToContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'center',
-    marginTop: DimensionsUtils.getDP(12),
-  },
-  hitSlop: {
-    top: DimensionsUtils.getDP(8),
-    right: DimensionsUtils.getDP(16),
-    bottom: DimensionsUtils.getDP(16),
-    left: DimensionsUtils.getDP(16),
-  },
-  loginLabel: {
-    fontFamily: 'Poppins-Regular',
-    color: colors.orange,
-    fontWeight: '700',
-    textDecorationLine: 'underline',
-    top: !isIOS ? -DimensionsUtils.getDP(3) : 0,
-  },
-  backToLabel: {
-    fontFamily: 'Poppins-Regular',
-  },
-});
+const customStyle = colors =>
+  StyleSheet.create({
+    center: {
+      alignItems: 'center',
+    },
+    justifyCenter: {
+      justifyContent: 'center',
+    },
+    cardContainer: {
+      borderRadius: DimensionsUtils.getDP(16),
+      marginTop: DimensionsUtils.getDP(16),
+      paddingTop: DimensionsUtils.getDP(16),
+      paddingBottom: DimensionsUtils.getDP(10),
+      paddingHorizontal: DimensionsUtils.getDP(16),
+      marginHorizontal: DimensionsUtils.getDP(16),
+      backgroundColor: colors.white,
+      backfaceVisibility: 'hidden',
+      position: 'absolute',
+      width: sizes.WIDTH - DimensionsUtils.getDP(32),
+    },
+    title: {
+      color: colors.black,
+      fontFamily: 'Poppins-SemiBold',
+      fontSize: DimensionsUtils.getFontSize(20),
+    },
+    subtitle: {
+      color: colors.black,
+      fontFamily: 'Poppins-Regular',
+    },
+    image: {
+      tintColor: colors.grey,
+      width: DimensionsUtils.getDP(20),
+      height: DimensionsUtils.getDP(20),
+    },
+    divider: {
+      width: '100%',
+      height: DimensionsUtils.getDP(12),
+    },
+    inputStyle: {
+      fontFamily: 'Poppins-Regular',
+    },
+    buttonContainer: {
+      marginHorizontal: 0,
+      borderRadius: DimensionsUtils.getDP(12),
+      marginTop: DimensionsUtils.getDP(24),
+    },
+    backToContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      alignSelf: 'center',
+      marginTop: DimensionsUtils.getDP(12),
+    },
+    hitSlop: {
+      top: DimensionsUtils.getDP(8),
+      right: DimensionsUtils.getDP(16),
+      bottom: DimensionsUtils.getDP(16),
+      left: DimensionsUtils.getDP(16),
+    },
+    loginLabel: {
+      fontFamily: 'Poppins-Regular',
+      color: colors.orange,
+      fontWeight: '700',
+      textDecorationLine: 'underline',
+      top: !isIOS ? -DimensionsUtils.getDP(3) : 0,
+    },
+    backToLabel: {
+      color: colors.black,
+      fontFamily: 'Poppins-Regular',
+    },
+  });
 
 export default SignUp;

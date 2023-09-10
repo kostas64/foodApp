@@ -14,11 +14,11 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 
 import Button from '../Common/Button';
+import {images} from '../../constants';
 import FormInput from '../Common/FormInput';
-import {colors, images} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -31,7 +31,9 @@ const SignIn = ({
   setIsLoginVisible,
   showBackdrop,
 }) => {
+  const {colors} = useTheme();
   const navigation = useNavigation();
+  const styles = customStyle(colors);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -67,11 +69,15 @@ const SignIn = ({
     }
   };
 
-  const onPressSignUp = () => {
+  const clear = () => {
     setEmail('');
     setPassword('');
     setErrorEmail('');
     setErrorPass('');
+  };
+
+  const onPressSignUp = () => {
+    clear();
     setIsLoginVisible(false);
 
     rotateValue.value = withSpring(180, {
@@ -96,6 +102,11 @@ const SignIn = ({
     };
   });
 
+  const onPressForgot = () => {
+    clear();
+    navigation.navigate('AskEmail');
+  };
+
   const onPressSignIn = () => {
     let isValid = true;
 
@@ -111,8 +122,7 @@ const SignIn = ({
 
     if (errorEmail || errorPass || !isValid) return;
 
-    setEmail('');
-    setPassword('');
+    clear();
     Keyboard.dismiss();
     showBackdrop(true);
 
@@ -160,7 +170,7 @@ const SignIn = ({
                 source={images.correct}
                 style={[
                   styles.image,
-                  !errorEmail && email.length > 0 && {tintColor: 'green'},
+                  !errorEmail && email.length > 0 && {tintColor: colors.green},
                 ]}
               />
             </View>
@@ -197,9 +207,7 @@ const SignIn = ({
         />
 
         {/* Forgot Password */}
-        <TouchableOpacity
-          style={styles.selfEnd}
-          onPress={() => navigation.navigate('AskEmail')}>
+        <TouchableOpacity style={styles.selfEnd} onPress={onPressForgot}>
           <Text style={styles.forgotLabel}>Forgot password</Text>
         </TouchableOpacity>
 
@@ -222,81 +230,84 @@ const SignIn = ({
   );
 };
 
-const styles = StyleSheet.create({
-  center: {
-    alignItems: 'center',
-  },
-  selfEnd: {
-    alignSelf: 'flex-end',
-  },
-  justifyCenter: {
-    justifyContent: 'center',
-  },
-  cardContainer: {
-    borderRadius: DimensionsUtils.getDP(16),
-    marginTop: DimensionsUtils.getDP(16),
-    paddingTop: DimensionsUtils.getDP(16),
-    paddingBottom: DimensionsUtils.getDP(10),
-    paddingHorizontal: DimensionsUtils.getDP(16),
-    marginHorizontal: DimensionsUtils.getDP(16),
-    backgroundColor: colors.white,
-    backfaceVisibility: 'hidden',
-  },
-  title: {
-    color: colors.black,
-    fontFamily: 'Poppins-SemiBold',
-    fontSize: DimensionsUtils.getFontSize(20),
-  },
-  subtitle: {
-    color: colors.black,
-    fontFamily: 'Poppins-Regular',
-  },
-  image: {
-    tintColor: colors.grey,
-    width: DimensionsUtils.getDP(20),
-    height: DimensionsUtils.getDP(20),
-  },
-  divider: {
-    width: '100%',
-    height: DimensionsUtils.getDP(16),
-  },
-  forgotLabel: {
-    alignSelf: 'flex-end',
-    marginVertical: DimensionsUtils.getDP(8),
-    textDecorationLine: 'underline',
-    fontFamily: 'Poppins-Regular',
-    fontSize: DimensionsUtils.getDP(12),
-  },
-  buttonContainer: {
-    marginHorizontal: 0,
-    borderRadius: DimensionsUtils.getDP(12),
-    marginTop: DimensionsUtils.getDP(8),
-  },
-  signUpContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'center',
-    marginTop: DimensionsUtils.getDP(12),
-  },
-  dontHaveLabel: {
-    fontFamily: 'Poppins-Regular',
-  },
-  hitSlop: {
-    top: DimensionsUtils.getDP(8),
-    right: DimensionsUtils.getDP(16),
-    bottom: DimensionsUtils.getDP(16),
-    left: DimensionsUtils.getDP(16),
-  },
-  signUpLabel: {
-    fontFamily: 'Poppins-Regular',
-    color: colors.orange,
-    fontWeight: '700',
-    textDecorationLine: 'underline',
-    top: !isIOS ? -DimensionsUtils.getDP(3) : 0,
-  },
-  inputStyle: {
-    fontFamily: 'Poppins-Regular',
-  },
-});
+const customStyle = colors =>
+  StyleSheet.create({
+    center: {
+      alignItems: 'center',
+    },
+    selfEnd: {
+      alignSelf: 'flex-end',
+    },
+    justifyCenter: {
+      justifyContent: 'center',
+    },
+    cardContainer: {
+      borderRadius: DimensionsUtils.getDP(16),
+      marginTop: DimensionsUtils.getDP(16),
+      paddingTop: DimensionsUtils.getDP(16),
+      paddingBottom: DimensionsUtils.getDP(10),
+      paddingHorizontal: DimensionsUtils.getDP(16),
+      marginHorizontal: DimensionsUtils.getDP(16),
+      backgroundColor: colors.white,
+      backfaceVisibility: 'hidden',
+    },
+    title: {
+      color: colors.black,
+      fontFamily: 'Poppins-SemiBold',
+      fontSize: DimensionsUtils.getFontSize(20),
+    },
+    subtitle: {
+      color: colors.black,
+      fontFamily: 'Poppins-Regular',
+    },
+    image: {
+      tintColor: colors.grey,
+      width: DimensionsUtils.getDP(20),
+      height: DimensionsUtils.getDP(20),
+    },
+    divider: {
+      width: '100%',
+      height: DimensionsUtils.getDP(16),
+    },
+    forgotLabel: {
+      color: colors.black,
+      alignSelf: 'flex-end',
+      marginVertical: DimensionsUtils.getDP(8),
+      textDecorationLine: 'underline',
+      fontFamily: 'Poppins-Regular',
+      fontSize: DimensionsUtils.getDP(12),
+    },
+    buttonContainer: {
+      marginHorizontal: 0,
+      borderRadius: DimensionsUtils.getDP(12),
+      marginTop: DimensionsUtils.getDP(8),
+    },
+    signUpContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      alignSelf: 'center',
+      marginTop: DimensionsUtils.getDP(12),
+    },
+    dontHaveLabel: {
+      color: colors.black,
+      fontFamily: 'Poppins-Regular',
+    },
+    hitSlop: {
+      top: DimensionsUtils.getDP(8),
+      right: DimensionsUtils.getDP(16),
+      bottom: DimensionsUtils.getDP(16),
+      left: DimensionsUtils.getDP(16),
+    },
+    signUpLabel: {
+      fontFamily: 'Poppins-Regular',
+      color: colors.orange,
+      fontWeight: '700',
+      textDecorationLine: 'underline',
+      top: !isIOS ? -DimensionsUtils.getDP(3) : 0,
+    },
+    inputStyle: {
+      fontFamily: 'Poppins-Regular',
+    },
+  });
 
 export default SignIn;

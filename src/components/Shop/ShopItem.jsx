@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import Counter from '../Common/Counter';
 import ShopImage from './ShopImage';
-import {colors, sizes} from '../../constants';
+import {sizes} from '../../constants';
+import Counter from '../Common/Counter';
 import ShopDescription from './ShopDescription';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     top: -DimensionsUtils.getDP(32),
     width: DimensionsUtils.getDP(118),
     borderRadius: DimensionsUtils.getDP(30),
-    backgroundColor: colors.white,
+    backgroundColor: 'white',
     alignSelf: 'center',
     shadowColor: '#000',
     shadowOffset: {

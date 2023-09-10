@@ -1,13 +1,16 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Animated, {useAnimatedStyle} from 'react-native-reanimated';
 
 import Button from '../Common/Button';
-import {colors, images} from '../../constants';
+import {images} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
 const LoginMethods = ({widthValue}) => {
+  const {colors} = useTheme();
+  const styles = customStyle(colors);
   const insets = useSafeAreaInsets();
 
   const paddingBottom =
@@ -44,23 +47,23 @@ const LoginMethods = ({widthValue}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: DimensionsUtils.getDP(16),
-  },
-  button1: {
-    backgroundColor: '#0d59ad',
-    flex: 1,
-    marginHorizontal: 0,
-  },
-
-  button2: {
-    flex: 1,
-    backgroundColor: colors.grey,
-    marginHorizontal: 0,
-  },
-});
+const customStyle = colors =>
+  StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginHorizontal: DimensionsUtils.getDP(16),
+    },
+    button1: {
+      backgroundColor: '#0d59ad',
+      flex: 1,
+      marginHorizontal: 0,
+    },
+    button2: {
+      flex: 1,
+      backgroundColor: colors.grey,
+      marginHorizontal: 0,
+    },
+  });
 
 export default LoginMethods;
