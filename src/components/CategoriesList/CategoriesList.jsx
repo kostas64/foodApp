@@ -4,8 +4,18 @@ import {View, FlatList} from 'react-native';
 import CategoriesListItem from './CategoriesListItem';
 import {categories} from '../../assets/data/categories';
 
-const CategoriesList = () => {
+const CategoriesList = ({scrollY}) => {
   const [selectedItem, setSelectedItem] = useState(categories[0]);
+
+  const renderItem = ({item, index}) => (
+    <CategoriesListItem
+      item={item}
+      index={index}
+      scrollY={scrollY}
+      selectedItem={selectedItem}
+      setSelectedItem={setSelectedItem}
+    />
+  );
 
   return (
     <View>
@@ -14,14 +24,7 @@ const CategoriesList = () => {
         data={categories}
         showsHorizontalScrollIndicator={false}
         keyExtractor={item => `${item.id}`}
-        renderItem={({item, index}) => (
-          <CategoriesListItem
-            item={item}
-            index={index}
-            selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
-          />
-        )}
+        renderItem={renderItem}
       />
     </View>
   );

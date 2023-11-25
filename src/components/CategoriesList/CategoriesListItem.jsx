@@ -1,11 +1,24 @@
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 import React from 'react';
 import {useTheme} from '@react-navigation/native';
-import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 
 import {categories} from '../../assets/data/categories';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
 
-const CategoriesListItem = ({item, index, selectedItem, setSelectedItem}) => {
+const AnimTouch = Animated.createAnimatedComponent(TouchableOpacity);
+
+const CategoriesListItem = ({
+  item,
+  index,
+  scrollY,
+  selectedItem,
+  setSelectedItem,
+}) => {
   const {colors} = useTheme();
   const styles = customStyle(colors);
 
@@ -16,33 +29,88 @@ const CategoriesListItem = ({item, index, selectedItem, setSelectedItem}) => {
   const labelColor = selectedItem.id === index ? 'white' : colors.black;
   const hasLeftPadding = index === 0;
 
+  const animTouch = useAnimatedStyle(() => ({
+    borderRadius: interpolate(
+      scrollY.value,
+      [170, 250],
+      [36, 16],
+      Extrapolate.CLAMP,
+    ),
+  }));
+
+  const animStyleImg = useAnimatedStyle(() => {
+    const interpolation = interpolate(
+      scrollY.value,
+      [90, 200],
+      [24, 0],
+      Extrapolate.CLAMP,
+    );
+
+    return {
+      height: interpolation,
+      width: interpolation,
+    };
+  });
+
+  const animStyleContImg = useAnimatedStyle(() => {
+    const interpolation = interpolate(
+      scrollY.value,
+      [90, 200],
+      [50, 0],
+      Extrapolate.CLAMP,
+    );
+
+    return {
+      width: interpolation,
+      height: interpolation,
+    };
+  });
+
+  const animText = useAnimatedStyle(() => ({
+    marginBottom: interpolate(
+      scrollY.value,
+      [150, 210],
+      [16, 0],
+      Extrapolate.CLAMP,
+    ),
+    marginTop: interpolate(
+      scrollY.value,
+      [170, 230],
+      [8, 0],
+      Extrapolate.CLAMP,
+    ),
+  }));
+
   return (
-    <TouchableOpacity
+    <AnimTouch
       onPress={() => setSelectedItem(categories[index])}
       style={[
+        animTouch,
         styles.listContainer,
         {backgroundColor},
         hasLeftPadding && styles.itemMargin,
       ]}>
-      <View
+      <Animated.View
         style={[
+          animStyleContImg,
           styles.imageContainer,
           {
             backgroundColor: itemCircleColor,
           },
         ]}>
-        <Image source={item.image} style={styles.image} />
-      </View>
-      <Text
+        <Animated.Image source={item.image} style={animStyleImg} />
+      </Animated.View>
+      <Animated.Text
         style={[
+          animText,
           styles.label,
           {
             color: labelColor,
           },
         ]}>
         {item.name}
-      </Text>
-    </TouchableOpacity>
+      </Animated.Text>
+    </AnimTouch>
   );
 };
 
@@ -69,12 +137,9 @@ const customStyle = colors =>
       marginLeft: DimensionsUtils.getDP(16),
     },
     imageContainer: {
-      padding: DimensionsUtils.getDP(14),
+      alignItems: 'center',
+      justifyContent: 'center',
       borderRadius: DimensionsUtils.getDP(28),
-    },
-    image: {
-      height: 24,
-      width: 24,
     },
     label: {
       color: colors.black,
