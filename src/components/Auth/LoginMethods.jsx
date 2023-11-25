@@ -13,11 +13,6 @@ const LoginMethods = ({widthValue}) => {
   const styles = customStyle(colors);
   const insets = useSafeAreaInsets();
 
-  const paddingBottom =
-    insets.bottom > 0
-      ? {paddingBottom: insets.bottom}
-      : {paddingBottom: DimensionsUtils.getDP(18)};
-
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: widthValue.value,
     transform: [{translateY: widthValue.value * -4}],
@@ -26,22 +21,25 @@ const LoginMethods = ({widthValue}) => {
   return (
     <>
       {/* Footer */}
-      <Animated.View style={[styles.container, paddingBottom, animatedStyle]}>
-        <Button
-          iconLeft={images.facebook}
-          label={'Facebook login'}
-          containerStyle={styles.button1}
-          inputStyle={{fontSize: DimensionsUtils.getFontSize(14)}}
-        />
-
-        <View style={{width: DimensionsUtils.getDP(16)}} />
-
-        <Button
-          iconLeft={images.google}
-          label={'Google login'}
-          containerStyle={styles.button2}
-          inputStyle={{fontSize: DimensionsUtils.getFontSize(14)}}
-        />
+      <Animated.View style={[styles.container, animatedStyle]}>
+        <View style={[{height: insets.bottom + 54}, styles.buttonContainer]}>
+          <Button
+            noBorderRadius
+            iconLeft={images.facebook}
+            label={'Facebook login'}
+            containerStyle={[styles.button1]}
+            inputStyle={{fontSize: DimensionsUtils.getFontSize(14)}}
+          />
+        </View>
+        <View style={[{height: insets.bottom + 54}, styles.buttonContainer]}>
+          <Button
+            noBorderRadius
+            iconLeft={images.google}
+            label={'Google login'}
+            containerStyle={[styles.button2]}
+            inputStyle={{fontSize: DimensionsUtils.getFontSize(14)}}
+          />
+        </View>
       </Animated.View>
     </>
   );
@@ -51,8 +49,10 @@ const customStyle = colors =>
   StyleSheet.create({
     container: {
       flexDirection: 'row',
-      justifyContent: 'space-between',
-      marginHorizontal: DimensionsUtils.getDP(16),
+    },
+    buttonContainer: {
+      width: '50%',
+      bottom: -4,
     },
     button1: {
       backgroundColor: '#0d59ad',

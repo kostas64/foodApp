@@ -30,6 +30,8 @@ const SignUp = ({
   isLoginVisible,
   setIsLoginVisible,
   showBackdrop,
+  opacitySignUp,
+  opacitySignIn,
 }) => {
   const {colors} = useTheme();
   const navigation = useNavigation();
@@ -45,7 +47,7 @@ const SignUp = ({
   const [errorUser, setErrorUser] = useState('');
 
   const validateUser = value => {
-    if (value === '' || username.length >= 8) {
+    if (username.length >= 8) {
       setErrorUser(null);
       return;
     } else {
@@ -61,39 +63,56 @@ const SignUp = ({
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       );
 
-    if (value === '' || !!isValid) {
+    if (!!isValid) {
       setErrorEmail(null);
-      return;
+      return true;
     } else {
       setErrorEmail('Provide valid email address');
-      return;
+      return false;
     }
   };
 
   const validatePass = password => {
-    if (password.length === 0 || password.length >= 8) {
-      setErrorPass(null);
-      return;
-    }
-
     if (password.length < 8) {
       setErrorPass('Password must be at least 8 characters');
-      return;
+      return false;
     }
+
+    return true;
   };
 
   const onPressSignIn = () => {
     setEmail('');
     setPassword('');
+    setUsername('');
     setErrorEmail('');
     setErrorPass('');
     setErrorUser('');
     setIsLoginVisible(true);
 
+    animateOpacity();
+    animateRotation();
+  };
+
+  const animatedStyle = useAnimatedStyle(() => {
+    const rotate = interpolate(rotateValue.value, [0, 180], [180, 360]);
+
+    return {
+      opacity: opacitySignUp.value,
+      transform: [{rotateY: `${rotate}deg`}],
+    };
+  });
+
+  const animateOpacity = () => {
+    opacitySignIn.value = withTiming(1);
+    opacitySignUp.value = withTiming(0, {duration: 150});
+  };
+
+  const animateRotation = () => {
     rotateValue.value = withSpring(0, {
       mass: 1,
-      damping: 8,
-      stiffness: 100,
+      damping: 10,
+      stiffness: 180,
       overshootClamping: false,
       restDisplacementThreshold: 0.01,
       restSpeedThreshold: 2,
@@ -104,28 +123,14 @@ const SignUp = ({
     });
   };
 
-  const animatedStyle = useAnimatedStyle(() => {
-    const rotate = interpolate(rotateValue.value, [0, 180], [180, 360]);
-
-    return {
-      transform: [{rotateY: `${rotate}deg`}],
-    };
-  });
-
   const onPressSignUp = () => {
-    let isValid = true;
+    let isValidEmail, isValidPass, isValidUser;
 
-    if (email.length === 0) {
-      setErrorEmail('Provide valid email address');
-      isValid = false;
-    }
+    isValidEmail = validateEmail(email);
+    isValidPass = validatePass(password);
+    isValidUser = validateUser(username);
 
-    if (password.length < 8) {
-      setErrorPass('Password must be at least 8 characters');
-      isValid = false;
-    }
-
-    if (errorEmail || errorPass || errorUser || !isValid) return;
+    if (!isValidUser || !isValidEmail || !isValidPass) return;
 
     setEmail('');
     setUsername('');
@@ -145,7 +150,9 @@ const SignUp = ({
 
   return (
     <>
-      <Animated.View
+      <Animated.ScrollView
+        bounces={false}
+        keyboardShouldPersistTaps={'handled'}
         style={[
           {
             zIndex: isLoginVisible ? 1 : 2,
@@ -260,7 +267,7 @@ const SignUp = ({
             <Text style={styles.loginLabel}>Login</Text>
           </TouchableOpacity>
         </View>
-      </Animated.View>
+      </Animated.ScrollView>
     </>
   );
 };
@@ -272,6 +279,7 @@ const customStyle = colors =>
     },
     justifyCenter: {
       justifyContent: 'center',
+      paddingLeft: DimensionsUtils.getDP(8),
     },
     cardContainer: {
       borderRadius: DimensionsUtils.getDP(16),
@@ -281,7 +289,6 @@ const customStyle = colors =>
       paddingHorizontal: DimensionsUtils.getDP(16),
       marginHorizontal: DimensionsUtils.getDP(16),
       backgroundColor: colors.white,
-      backfaceVisibility: 'hidden',
       position: 'absolute',
       width: sizes.WIDTH - DimensionsUtils.getDP(32),
     },
@@ -296,8 +303,8 @@ const customStyle = colors =>
     },
     image: {
       tintColor: colors.grey,
-      width: DimensionsUtils.getDP(20),
-      height: DimensionsUtils.getDP(20),
+      width: DimensionsUtils.getDP(16),
+      height: DimensionsUtils.getDP(16),
     },
     divider: {
       width: '100%',

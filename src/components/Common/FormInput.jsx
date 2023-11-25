@@ -97,7 +97,7 @@ const customStyle = colors =>
     },
     inputContainer: {
       flexDirection: 'row',
-      height: DimensionsUtils.getDP(50),
+      height: DimensionsUtils.getDP(48),
       marginTop: DimensionsUtils.getDP(2),
       borderRadius: DimensionsUtils.getDP(10),
       paddingHorizontal: DimensionsUtils.getDP(20),

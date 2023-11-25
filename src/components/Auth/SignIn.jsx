@@ -6,6 +6,7 @@ import {
   Keyboard,
   Pressable,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import Animated, {
   withSpring,
@@ -20,7 +21,6 @@ import Button from '../Common/Button';
 import {images} from '../../constants';
 import FormInput from '../Common/FormInput';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -30,6 +30,8 @@ const SignIn = ({
   isLoginVisible,
   setIsLoginVisible,
   showBackdrop,
+  opacitySignUp,
+  opacitySignIn,
 }) => {
   const {colors} = useTheme();
   const navigation = useNavigation();
@@ -80,24 +82,15 @@ const SignIn = ({
     clear();
     setIsLoginVisible(false);
 
-    rotateValue.value = withSpring(180, {
-      mass: 1,
-      damping: 8,
-      stiffness: 100,
-      overshootClamping: false,
-      restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 2,
-    });
-
-    widthValue.value = withTiming(0, {
-      duration: 250,
-    });
+    animateOpacity();
+    animateRotation();
   };
 
   const animatedStyle = useAnimatedStyle(() => {
     const rotate = interpolate(rotateValue.value, [0, 180], [0, 180]);
 
     return {
+      opacity: opacitySignIn.value,
       transform: [{rotateY: `${rotate}deg`}],
     };
   });
@@ -132,10 +125,32 @@ const SignIn = ({
     }, 1500);
   };
 
+  const animateOpacity = () => {
+    opacitySignIn.value = withTiming(0, {duration: 150});
+    opacitySignUp.value = withTiming(1);
+  };
+
+  const animateRotation = () => {
+    rotateValue.value = withSpring(180, {
+      mass: 1,
+      damping: 10,
+      stiffness: 180,
+      overshootClamping: false,
+      restDisplacementThreshold: 0.01,
+      restSpeedThreshold: 2,
+    });
+
+    widthValue.value = withTiming(0, {
+      duration: 250,
+    });
+  };
+
   return (
     <>
       {/* Card container */}
-      <Animated.View
+      <Animated.ScrollView
+        bounces={false}
+        keyboardShouldPersistTaps={'handled'}
         style={[
           {
             zIndex: isLoginVisible ? 2 : 1,
@@ -225,7 +240,7 @@ const SignIn = ({
             <Text style={styles.signUpLabel}>Sign up</Text>
           </TouchableOpacity>
         </View>
-      </Animated.View>
+      </Animated.ScrollView>
     </>
   );
 };
@@ -240,6 +255,7 @@ const customStyle = colors =>
     },
     justifyCenter: {
       justifyContent: 'center',
+      paddingLeft: DimensionsUtils.getDP(8),
     },
     cardContainer: {
       borderRadius: DimensionsUtils.getDP(16),
@@ -249,7 +265,6 @@ const customStyle = colors =>
       paddingHorizontal: DimensionsUtils.getDP(16),
       marginHorizontal: DimensionsUtils.getDP(16),
       backgroundColor: colors.white,
-      backfaceVisibility: 'hidden',
     },
     title: {
       color: colors.black,
@@ -262,8 +277,8 @@ const customStyle = colors =>
     },
     image: {
       tintColor: colors.grey,
-      width: DimensionsUtils.getDP(20),
-      height: DimensionsUtils.getDP(20),
+      width: DimensionsUtils.getDP(16),
+      height: DimensionsUtils.getDP(16),
     },
     divider: {
       width: '100%',

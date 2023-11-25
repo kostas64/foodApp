@@ -12,6 +12,8 @@ import LoginMethods from '../components/Auth/LoginMethods';
 const AuthScreen = () => {
   const widthValue = useSharedValue(1);
   const rotateValue = useSharedValue(0);
+  const opacitySignUp = useSharedValue(0);
+  const opacitySignIn = useSharedValue(1);
 
   const [backdrop, showBackdrop] = useState(false);
   const [isLoginVisible, setIsLoginVisible] = useState(true);
@@ -32,6 +34,8 @@ const AuthScreen = () => {
                 isLoginVisible={isLoginVisible}
                 setIsLoginVisible={setIsLoginVisible}
                 showBackdrop={showBackdrop}
+                opacitySignUp={opacitySignUp}
+                opacitySignIn={opacitySignIn}
               />
               <SignUp
                 widthValue={widthValue}
@@ -39,6 +43,8 @@ const AuthScreen = () => {
                 isLoginVisible={isLoginVisible}
                 setIsLoginVisible={setIsLoginVisible}
                 showBackdrop={showBackdrop}
+                opacitySignUp={opacitySignUp}
+                opacitySignIn={opacitySignIn}
               />
             </View>
           </View>

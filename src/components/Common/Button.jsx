@@ -18,19 +18,23 @@ const Button = ({
   inputStyle,
   buttonPressed,
   containerStyle,
+  noBorderRadius,
 }) => {
   const {colors} = useTheme();
   const styles = customStyle(colors);
+
+  const buttonStyle = [
+    styles.buttonContainer,
+    containerStyle,
+    buttonPressed && {opacity: 0.6},
+    noBorderRadius && {borderRadius: 0},
+  ];
 
   return (
     <TouchableOpacity
       disabled={buttonPressed}
       onPress={onPress}
-      style={[
-        styles.buttonContainer,
-        containerStyle,
-        buttonPressed && {opacity: 0.6},
-      ]}>
+      style={buttonStyle}>
       {buttonPressed ? (
         <ActivityIndicator size={'small'} color={colors.white} />
       ) : (
@@ -47,7 +51,6 @@ const customStyle = colors =>
   StyleSheet.create({
     buttonContainer: {
       height: DimensionsUtils.getDP(50),
-      marginHorizontal: DimensionsUtils.getDP(20),
       backgroundColor: colors.orange,
       alignItems: 'center',
       justifyContent: 'center',
