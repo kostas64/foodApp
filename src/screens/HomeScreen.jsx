@@ -1,15 +1,19 @@
 import React from 'react';
-import {Appearance, StyleSheet, Text, useColorScheme} from 'react-native';
+import {useSharedValue} from 'react-native-reanimated';
+import {Appearance, useColorScheme} from 'react-native';
 
 import {images} from '../constants';
 import Screen from '../components/Common/Screen';
 import Header from '../components/Common/Header';
-import {DimensionsUtils} from '../utils/DimensionsUtils';
+import HomeTitle from '../components/Home/HomeTitle';
 import ShopsList from '../components/ShopsList/ShopsList';
 import CategoriesList from '../components/CategoriesList/CategoriesList';
 
 const HomeScreen = () => {
+  const listRef = React.useRef();
   const scheme = useColorScheme();
+  const scrollY = useSharedValue(0);
+
   const color = scheme === 'dark' ? 'white' : 'black';
 
   const onChnageMode = () => {
@@ -26,25 +30,15 @@ const HomeScreen = () => {
       />
 
       {/* Title */}
-      <Text style={[styles.title, {color}]}>{`Main\nCategories`}</Text>
+      <HomeTitle title={'Choose cuisine'} color={color} scrollY={scrollY} />
 
       {/* Categories List */}
-      <CategoriesList />
+      <CategoriesList scrollY={scrollY} />
 
       {/* Shops List */}
-      <ShopsList />
+      <ShopsList listRef={listRef} scrollY={scrollY} />
     </Screen>
   );
 };
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: DimensionsUtils.getFontSize(26),
-    marginTop: DimensionsUtils.getDP(16),
-    marginBottom: DimensionsUtils.getDP(4),
-    paddingLeft: DimensionsUtils.getDP(20),
-    fontFamily: 'Poppins-Medium',
-  },
-});
 
 export default HomeScreen;
