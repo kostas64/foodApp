@@ -114,7 +114,14 @@ const TypeOtp = () => {
             ref={otpRef}
             autoFocus
             value={otp}
-            onChange={setOtp}
+            onChange={value => {
+              const regex = /^[0-9]*$/;
+
+              //Type safe for Android
+              if (regex.test(value)) {
+                setOtp(value);
+              }
+            }}
             maxLength={4}
             containerStyle={styles.hiddenInput}
             keyboardType={'number-pad'}

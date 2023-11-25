@@ -228,8 +228,8 @@ const SignIn = ({
 
         {/* Sign In Button + Register */}
         <Button
-          onPress={onPressSignIn}
           label={'Sign In'}
+          onPress={onPressSignIn}
           containerStyle={styles.buttonContainer}
         />
 
