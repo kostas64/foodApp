@@ -136,7 +136,10 @@ const ShopCartModal = ({
         label={'Order'}
         onPress={onPressOrder}
         buttonPressed={loadingOrder}
-        containerStyle={{marginBottom}}
+        containerStyle={{
+          marginBottom,
+          marginHorizontal: DimensionsUtils.getDP(20),
+        }}
       />
     </Animated.View>
   );
