@@ -2,6 +2,8 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import HomeScreen from '../screens/HomeScreen';
+import SearchScreen from '../screens/SearchScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import CustomBottomTab from '../components/CustomTab/CustomBottomTab';
 
 const Tab = createBottomTabNavigator();
@@ -21,12 +23,12 @@ const BottomStack = () => {
       />
       <Tab.Screen
         name="Search"
-        component={HomeScreen}
+        component={SearchScreen}
         options={{tabBarLabel: 'Search'}}
       />
       <Tab.Screen
         name="Profile"
-        component={HomeScreen}
+        component={ProfileScreen}
         options={{tabBarLabel: 'Profile'}}
       />
     </Tab.Navigator>
