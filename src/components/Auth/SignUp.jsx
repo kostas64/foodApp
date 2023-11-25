@@ -23,6 +23,8 @@ import {DimensionsUtils} from '../../utils/DimensionsUtils';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const isIOS = Platform.OS === 'ios';
+const EMAIL_REG =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const SignUp = ({
   widthValue,
@@ -57,11 +59,7 @@ const SignUp = ({
   };
 
   const validateEmail = value => {
-    const isValid = String(value)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      );
+    const isValid = String(value).toLowerCase().match(EMAIL_REG);
 
     if (!!isValid) {
       setErrorEmail(null);
@@ -229,6 +227,7 @@ const SignUp = ({
         <View style={styles.divider} />
 
         <FormInput
+          enterKeyHint={'done'}
           value={password}
           label={'Password'}
           labelColor={colors.black}
@@ -241,6 +240,7 @@ const SignUp = ({
           inputStyle={isIOS ? styles.inputStyle : {}}
           errorMsg={errorPass}
           errorColor={colors.tomato}
+          onSubmitEditing={onPressSignUp}
           appendComponent={
             <Pressable
               onPress={() => setShowPass(!showPass)}

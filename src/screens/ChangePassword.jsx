@@ -91,6 +91,7 @@ const ChangePassword = () => {
           <View style={styles.divider} />
 
           <FormInput
+            autoFocus
             containerStyle={styles.innerCardWidth}
             value={password}
             label={'New password'}
@@ -121,6 +122,7 @@ const ChangePassword = () => {
           <View style={styles.divider} />
 
           <FormInput
+            enterKeyHint={'done'}
             containerStyle={styles.innerCardWidth}
             value={repeatPassword}
             label={'Repeat new password'}
@@ -135,6 +137,7 @@ const ChangePassword = () => {
             textContentType="oneTimeCode"
             errorMsg={errorRepeatPass}
             errorColor={colors.tomato}
+            onSubmitEditing={onPressChangePass}
             appendComponent={
               <Pressable
                 onPress={() => setShowRepeatPass(!showRepeatPass)}

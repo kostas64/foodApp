@@ -81,6 +81,7 @@ const SignIn = ({
   const onPressSignUp = () => {
     clear();
     setIsLoginVisible(false);
+    Keyboard.dismiss();
 
     animateOpacity();
     animateRotation();
@@ -196,6 +197,7 @@ const SignIn = ({
         <View style={styles.divider} />
 
         <FormInput
+          enterKeyHint={'done'}
           value={password}
           label={'Password'}
           labelColor={colors.black}
@@ -209,6 +211,7 @@ const SignIn = ({
           inputStyle={isIOS ? styles.inputStyle : {}}
           errorMsg={errorPass}
           errorColor={colors.tomato}
+          onSubmitEditing={onPressSignIn}
           appendComponent={
             <Pressable
               onPress={() => setShowPass(!showPass)}

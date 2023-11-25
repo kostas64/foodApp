@@ -17,6 +17,7 @@ const FormInput = React.forwardRef(
       containerStyle,
       prependComponent,
       appendComponent,
+      enterKeyHint,
       secureTextEntry = false,
       keyboardType = 'default',
       autoCompleteType = 'off',
@@ -31,6 +32,7 @@ const FormInput = React.forwardRef(
       blurOnSubmit,
       autoFocus,
       textContentType,
+      onSubmitEditing,
     },
     ref,
   ) => {
@@ -54,8 +56,10 @@ const FormInput = React.forwardRef(
             caretHidden={caretHidden}
             editable={editable}
             value={value}
+            enterKeyHint={enterKeyHint}
             maxLength={maxLength}
             textAlign={textAlign}
+            onSubmitEditing={onSubmitEditing}
             style={{...inputStyle, color: colors.black, flex: 1}}
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}
@@ -64,6 +68,7 @@ const FormInput = React.forwardRef(
             autoCompleteType={autoCompleteType}
             autoCapitalize={autoCapitalize}
             onChangeText={onChange}
+            multiline={false}
           />
 
           {appendComponent}
