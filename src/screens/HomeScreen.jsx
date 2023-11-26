@@ -7,6 +7,7 @@ import Screen from '../components/Common/Screen';
 import Header from '../components/Common/Header';
 import HomeTitle from '../components/Home/HomeTitle';
 import ShopsList from '../components/ShopsList/ShopsList';
+import {setBarStyle} from '../components/Common/StatusBarManager';
 import CategoriesList from '../components/CategoriesList/CategoriesList';
 
 const HomeScreen = () => {
@@ -16,7 +17,8 @@ const HomeScreen = () => {
 
   const color = scheme === 'dark' ? 'white' : 'black';
 
-  const onChnageMode = () => {
+  const onChangeMode = () => {
+    setBarStyle(scheme === 'dark' ? 'dark-content' : 'light-content');
     Appearance.setColorScheme(scheme === 'dark' ? 'light' : 'dark');
   };
 
@@ -25,7 +27,7 @@ const HomeScreen = () => {
       <Header
         label={'745 Lincoln 3605'}
         rightIcon={images.colorMode}
-        onPressRight={onChnageMode}
+        onPressRight={onChangeMode}
         rightIconStyle={{tintColor: color}}
       />
 
