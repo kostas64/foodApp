@@ -148,8 +148,8 @@ const customStyle = colors =>
     },
     image: {
       tintColor: colors.grey,
-      width: DimensionsUtils.getDP(20),
-      height: DimensionsUtils.getDP(20),
+      width: DimensionsUtils.getDP(16),
+      height: DimensionsUtils.getDP(16),
     },
     inputStyle: {
       fontFamily: 'Poppins-Regular',
