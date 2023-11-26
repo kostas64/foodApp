@@ -2,17 +2,20 @@ import {
   View,
   Text,
   Image,
+  Keyboard,
+  Platform,
   StyleSheet,
   ScrollView,
   useColorScheme,
 } from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {useNavigation, useTheme} from '@react-navigation/native';
 
 import {images, sizes} from '../constants';
 import Logo from '../components/Common/Logo';
 import Screen from '../components/Common/Screen';
 import Button from '../components/Common/Button';
+import Backdrop from '../components/Common/Backdrop';
 import FormInput from '../components/Common/FormInput';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
 
@@ -22,8 +25,9 @@ const AskEmail = () => {
   const scheme = useColorScheme();
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('');
-  const [errorEmail, setErrorEmail] = useState('');
+  const [email, setEmail] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+  const [errorEmail, setErrorEmail] = React.useState('');
 
   const tintColor = scheme === 'dark' ? 'white' : colors.green;
 
@@ -53,70 +57,78 @@ const AskEmail = () => {
 
     if (errorEmail || !isValid) return;
 
+    setLoading(true);
+    Platform.OS === 'android' && Keyboard.dismiss();
     setEmail('');
 
-    navigation.navigate('TypeOtp');
+    setTimeout(() => {
+      setLoading(false);
+      navigation.navigate('TypeOtp');
+    }, 500);
   };
 
   return (
-    <Screen>
-      <ScrollView keyboardShouldPersistTaps={'handled'} bounces={false}>
-        {/* Logo */}
-        <Logo />
+    <>
+      <Screen>
+        <ScrollView keyboardShouldPersistTaps={'handled'} bounces={false}>
+          {/* Logo */}
+          <Logo />
 
-        <View style={styles.cardContainer}>
-          {/* Title & Subtitle */}
-          <View style={{marginBottom: DimensionsUtils.getDP(8)}}>
-            <Text style={[styles.title, styles.textCenter]}>
-              Type your email
-            </Text>
-            <Text style={[styles.subtitle, styles.textCenter]}>
-              We will send you a 4-digit code to your email address
-            </Text>
+          <View style={styles.cardContainer}>
+            {/* Title & Subtitle */}
+            <View style={{marginBottom: DimensionsUtils.getDP(8)}}>
+              <Text style={[styles.title, styles.textCenter]}>
+                Type your email
+              </Text>
+              <Text style={[styles.subtitle, styles.textCenter]}>
+                We will send you a 4-digit code to your email address
+              </Text>
+            </View>
+
+            {/* Divider */}
+            <View style={styles.divider} />
+
+            <FormInput
+              containerStyle={styles.innerCardWidth}
+              value={email}
+              label={'Email'}
+              labelColor={colors.black}
+              keyboardType="email-address"
+              autoCompleteType="email"
+              onChange={value => {
+                setEmail(value);
+                validateEmail(value);
+              }}
+              inputStyle={styles.inputStyle}
+              errorMsg={errorEmail}
+              errorColor={colors.tomato}
+              appendComponent={
+                <View style={styles.justifyCenter}>
+                  <Image
+                    source={images.correct}
+                    style={[
+                      styles.image,
+                      !errorEmail && email.length > 0 && {tintColor},
+                    ]}
+                  />
+                </View>
+              }
+            />
+
+            {/* Divider */}
+            <View style={styles.divider} />
+
+            {/* Send code button */}
+            <Button
+              label={'Send code'}
+              containerStyle={styles.innerCardWidth}
+              onPress={onPressSendCode}
+            />
           </View>
-
-          {/* Divider */}
-          <View style={styles.divider} />
-
-          <FormInput
-            containerStyle={styles.innerCardWidth}
-            value={email}
-            label={'Email'}
-            labelColor={colors.black}
-            keyboardType="email-address"
-            autoCompleteType="email"
-            onChange={value => {
-              setEmail(value);
-              validateEmail(value);
-            }}
-            inputStyle={styles.inputStyle}
-            errorMsg={errorEmail}
-            errorColor={colors.tomato}
-            appendComponent={
-              <View style={styles.justifyCenter}>
-                <Image
-                  source={images.correct}
-                  style={[
-                    styles.image,
-                    !errorEmail && email.length > 0 && {tintColor},
-                  ]}
-                />
-              </View>
-            }
-          />
-
-          {/* Divider */}
-          <View style={styles.divider} />
-
-          {/* Send code button */}
-          <Button
-            label={'Send code'}
-            containerStyle={styles.innerCardWidth}
-            onPress={onPressSendCode}
-          />
-        </View>
-      </ScrollView>
-    </Screen>
+        </ScrollView>
+      </Screen>
+      {loading && <Backdrop />}
+    </>
   );
 };
 

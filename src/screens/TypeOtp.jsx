@@ -112,7 +112,6 @@ const TypeOtp = () => {
           {/* Hidden input */}
           <FormInput
             ref={otpRef}
-            autoFocus
             value={otp}
             onChange={value => {
               const regex = /^[0-9]*$/;
@@ -135,11 +134,7 @@ const TypeOtp = () => {
 
           {/* Resend Code button */}
           <AnimatedTouchable
-            style={[
-              styles.resendCodeContainer,
-              paddingBottom,
-              !isAndroid && animatedStyle,
-            ]}
+            style={[styles.resendCodeContainer, paddingBottom, animatedStyle]}
             disabled={secodsToResend > 0}
             onPress={() => setSecondsToResend(59)}>
             <Text
