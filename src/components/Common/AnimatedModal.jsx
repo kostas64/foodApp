@@ -16,7 +16,7 @@ const AnimatedModal = React.forwardRef(({content}, ref) => {
   const scheme = useColorScheme();
   const styles = customStyle(colors);
 
-  const backgroundColor = scheme === 'dark' ? 'rgb(0,0,10)' : colors.white;
+  const backgroundColor = scheme === 'dark' ? 'rgb(90,90,90)' : colors.white;
 
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(0)).current;
