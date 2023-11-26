@@ -16,7 +16,6 @@ const SearchScreen = () => {
   const inputRef = React.useRef();
   const scheme = useColorScheme();
   const isFocused = useIsFocused();
-  const styles = customStyle(colors);
   const [input, setInput] = React.useState('');
   const [typing, setTyping] = React.useState(false);
 
@@ -32,6 +31,7 @@ const SearchScreen = () => {
       value={input}
       onChange={setInput}
       placeholder={'Search shop'}
+      placeholderTextColor={colors.grey}
       appendComponent={CloseButton}
       containerStyle={styles.searchPadding}
       inputContainerStyle={{backgroundColor}}
@@ -89,16 +89,15 @@ const SearchScreen = () => {
 
 export default SearchScreen;
 
-const customStyle = colors =>
-  StyleSheet.create({
-    container: {
-      overflow: 'hidden',
-      paddingHorizontal: DimensionsUtils.getDP(20),
-    },
-    searchPadding: {
-      paddingBottom: DimensionsUtils.getDP(8),
-    },
-    listContentContainer: {
-      paddingBottom: DimensionsUtils.getDP(128),
-    },
-  });
+const styles = StyleSheet.create({
+  container: {
+    overflow: 'hidden',
+    paddingHorizontal: DimensionsUtils.getDP(20),
+  },
+  searchPadding: {
+    paddingBottom: DimensionsUtils.getDP(8),
+  },
+  listContentContainer: {
+    paddingBottom: DimensionsUtils.getDP(128),
+  },
+});
