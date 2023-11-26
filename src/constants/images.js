@@ -56,6 +56,7 @@ const passHide = require('../assets/images/passHide.png');
 const google = require('../assets/images/google.png');
 const facebook = require('../assets/images/facebook.png');
 const colorMode = require('../assets/images/color-mode.png');
+const clock = require('../assets/images/clock.png');
 
 export default {
   visaDark,
@@ -116,4 +117,5 @@ export default {
   fishShop,
   beefKingShop,
   burgerShop,
+  clock,
 };
