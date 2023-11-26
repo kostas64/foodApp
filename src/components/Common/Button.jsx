@@ -66,7 +66,7 @@ const customStyle = colors =>
       alignItems: 'center',
     },
     iconLeft: {
-      tintColor: colors.white,
+      tintColor: 'white',
       width: DimensionsUtils.getDP(16),
       height: DimensionsUtils.getDP(16),
       marginRight: DimensionsUtils.getDP(16),
