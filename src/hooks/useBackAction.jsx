@@ -1,7 +1,9 @@
 import React from 'react';
-import {BackHandler} from 'react-native';
+import {BackHandler, Platform} from 'react-native';
 
 const useBackAction = custonBackAction => {
+  if (Platform.OS === 'ios') return;
+
   React.useEffect(() => {
     const backAction = () => {
       !!custonBackAction && custonBackAction();

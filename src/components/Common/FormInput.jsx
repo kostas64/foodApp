@@ -33,6 +33,7 @@ const FormInput = React.forwardRef(
       autoFocus,
       textContentType,
       onSubmitEditing,
+      inputContainerStyle,
     },
     ref,
   ) => {
@@ -42,10 +43,17 @@ const FormInput = React.forwardRef(
     return (
       <View style={{...containerStyle}}>
         {/* Label  */}
-        <Text style={[styles.label, {color: labelColor}]}>{label}</Text>
+        {!!label && (
+          <Text style={[styles.label, {color: labelColor}]}>{label}</Text>
+        )}
 
         {/* Input */}
-        <View style={styles.inputContainer}>
+        <View
+          style={[
+            styles.inputContainer,
+            inputContainerStyle,
+            !!label && styles.marginLabel,
+          ]}>
           {prependComponent}
           <TextInput
             ref={ref}
@@ -103,10 +111,12 @@ const customStyle = colors =>
     inputContainer: {
       flexDirection: 'row',
       height: DimensionsUtils.getDP(48),
-      marginTop: DimensionsUtils.getDP(2),
       borderRadius: DimensionsUtils.getDP(10),
       paddingHorizontal: DimensionsUtils.getDP(20),
       backgroundColor: colors.lightGrey,
+    },
+    marginLabel: {
+      marginTop: DimensionsUtils.getDP(2),
     },
   });
 

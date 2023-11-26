@@ -2,18 +2,22 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import BottomStack from './BottomStack';
+import TypeOtp from '../screens/TypeOtp';
+import AskEmail from '../screens/AskEmail';
+import MapScreen from '../screens/MapScreen';
 import ShopScreen from '../screens/ShopScreen';
 import CardScreen from '../screens/CardScreen';
-import MapScreen from '../screens/MapScreen';
 import AuthScreen from '../screens/AuthScreen';
-import AskEmail from '../screens/AskEmail';
-import TypeOtp from '../screens/TypeOtp';
 import ChangePassword from '../screens/ChangePassword';
 
 const Stack = createNativeStackNavigator();
 
 const slideFromBottom = {
   animation: 'slide_from_bottom',
+};
+
+const popReplaceOptions = {
+  animationTypeForReplace: 'pop',
 };
 
 const HomeStack = () => {
@@ -27,7 +31,11 @@ const HomeStack = () => {
       <Stack.Screen name="AskEmail" component={AskEmail} />
       <Stack.Screen name="TypeOtp" component={TypeOtp} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
-      <Stack.Screen name="HomeStack" component={BottomStack} />
+      <Stack.Screen
+        name="HomeStack"
+        component={BottomStack}
+        options={popReplaceOptions}
+      />
       <Stack.Screen name="Shop" component={ShopScreen} />
       <Stack.Screen
         name="Card"

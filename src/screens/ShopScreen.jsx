@@ -6,13 +6,15 @@ import {cards} from '../assets/data/cards';
 import Screen from '../components/Common/Screen';
 import Header from '../components/Common/Header';
 import ShopItem from '../components/Shop/ShopItem';
+import {navigateBack} from '../utils/GenericUtils';
+import useBackAction from '../hooks/useBackAction';
 import Pagination from '../components/Common/Pagination';
 import {DimensionsUtils} from '../utils/DimensionsUtils';
 import ShopCartModal from '../components/Shop/ShopCartModal';
 import AnimatedModal from '../components/Common/AnimatedModal';
 
 const ShopScreen = ({navigation, route}) => {
-  const {shop} = route?.params || {};
+  const {shop, from} = route?.params || {};
 
   const [cart, setCart] = useState([]);
   const [modalContent, setModalContent] = useState();
@@ -23,7 +25,12 @@ const ShopScreen = ({navigation, route}) => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const scrollY = useRef(new Animated.Value(0)).current;
 
-  const onPressBack = () => navigation.pop();
+  const onPressBack = () => {
+    navigateBack(navigation, from);
+  };
+
+  //Pass custom back action for Android
+  useBackAction(() => navigateBack(navigation, from));
 
   const renderItem = ({item, index}) => (
     <ShopItem
