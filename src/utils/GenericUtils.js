@@ -34,3 +34,12 @@ export const navigateBack = (navigation, from) => {
     navigation.pop();
   }
 };
+
+export const logout = navigation => {
+  navigation.dispatch(
+    CommonActions.reset({
+      index: 0,
+      routes: [{name: 'Auth'}],
+    }),
+  );
+};

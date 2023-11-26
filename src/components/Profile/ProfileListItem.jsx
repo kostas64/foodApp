@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import {useTheme} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 
 import {images} from '../../constants';
 import {DimensionsUtils} from '../../utils/DimensionsUtils';
@@ -17,10 +17,13 @@ const {width} = Dimensions.get('screen');
 const ProfileListItem = ({item, isLast}) => {
   const {colors} = useTheme();
   const styles = customStyle(colors);
+  const navigation = useNavigation();
 
   return (
     <>
-      <TouchableOpacity style={[styles.container, styles.rowCenter]}>
+      <TouchableOpacity
+        onPress={() => item.onPress(navigation)}
+        style={[styles.container, styles.rowCenter]}>
         <View style={styles.rowCenter}>
           <Image
             source={item.icon}

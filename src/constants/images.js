@@ -65,8 +65,10 @@ const rate = require('../assets/images/rate.png');
 const pin = require('../assets/images/pin.png');
 const wallet = require('../assets/images/wallet.png');
 const support = require('../assets/images/support.png');
+const logout = require('../assets/images/logout.png');
 
 export default {
+  logout,
   heart,
   language,
   orders,
