@@ -1,11 +1,16 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text} from 'react-native';
+
+import Screen from '../components/Common/Screen';
+import useBackAction from '../hooks/useBackAction';
 
 const ProfileScreen = () => {
+  useBackAction();
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <Screen>
       <Text>ProfileScreen</Text>
-    </View>
+    </Screen>
   );
 };
 
