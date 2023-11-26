@@ -46,6 +46,7 @@ const customStyle = colors =>
     },
     container: {
       justifyContent: 'space-between',
+      height: DimensionsUtils.getDP(58),
     },
     image: {
       tintColor: colors.orange,
@@ -57,7 +58,6 @@ const customStyle = colors =>
       fontFamily: 'Poppins-Regular',
     },
     hr: {
-      marginVertical: DimensionsUtils.getDP(16),
       left: DimensionsUtils.getDP(36),
       width: width - DimensionsUtils.getDP(76),
       height: 1,
