@@ -1,5 +1,12 @@
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  useColorScheme,
+} from 'react-native';
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
 import {useNavigation, useTheme} from '@react-navigation/native';
 
 import {images, sizes} from '../constants';
@@ -12,10 +19,13 @@ import {DimensionsUtils} from '../utils/DimensionsUtils';
 const AskEmail = () => {
   const {colors} = useTheme();
   const styles = customStyle(colors);
+  const scheme = useColorScheme();
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
+
+  const tintColor = scheme === 'dark' ? 'white' : colors.green;
 
   const validateEmail = value => {
     const isValid = String(value)
@@ -50,7 +60,7 @@ const AskEmail = () => {
 
   return (
     <Screen>
-      <View style={{flex: 1}}>
+      <ScrollView keyboardShouldPersistTaps={'handled'} bounces={false}>
         {/* Logo */}
         <Logo />
 
@@ -88,8 +98,7 @@ const AskEmail = () => {
                   source={images.correct}
                   style={[
                     styles.image,
-                    !errorEmail &&
-                      email.length > 0 && {tintColor: colors.green},
+                    !errorEmail && email.length > 0 && {tintColor},
                   ]}
                 />
               </View>
@@ -106,7 +115,7 @@ const AskEmail = () => {
             onPress={onPressSendCode}
           />
         </View>
-      </View>
+      </ScrollView>
     </Screen>
   );
 };

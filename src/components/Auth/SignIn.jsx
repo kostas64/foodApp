@@ -6,6 +6,7 @@ import {
   Keyboard,
   Pressable,
   StyleSheet,
+  useColorScheme,
   TouchableOpacity,
 } from 'react-native';
 import Animated, {
@@ -34,6 +35,7 @@ const SignIn = ({
   opacitySignIn,
 }) => {
   const {colors} = useTheme();
+  const scheme = useColorScheme();
   const navigation = useNavigation();
   const styles = customStyle(colors);
 
@@ -42,6 +44,8 @@ const SignIn = ({
   const [showPass, setShowPass] = useState(false);
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPass, setErrorPass] = useState('');
+
+  const tintColor = scheme === 'dark' ? 'white' : colors.green;
 
   const validateEmail = value => {
     const isValid = String(value)
@@ -186,7 +190,7 @@ const SignIn = ({
                 source={images.correct}
                 style={[
                   styles.image,
-                  !errorEmail && email.length > 0 && {tintColor: colors.green},
+                  !errorEmail && email.length > 0 && {tintColor},
                 ]}
               />
             </View>

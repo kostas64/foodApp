@@ -1,11 +1,15 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, useColorScheme} from 'react-native';
 
 export const setBarStyle = barStyle => StatusBar.setBarStyle(barStyle);
 
 const StatusBarManager = ({children}) => {
+  const scheme = useColorScheme();
+
   React.useEffect(() => {
-    StatusBar.setBarStyle('dark-content');
+    StatusBar.setBarStyle(
+      scheme === 'light' ? 'dark-content' : 'light-content',
+    );
   }, []);
 
   return (

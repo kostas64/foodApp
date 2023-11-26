@@ -6,6 +6,7 @@ import {
   Platform,
   Pressable,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation, useTheme} from '@react-navigation/native';
@@ -76,90 +77,95 @@ const ChangePassword = () => {
   return (
     <>
       <Screen>
-        {/* Logo */}
-        <Logo />
+        <ScrollView
+          bounces={false}
+          scrollEnabled={false}
+          keyboardShouldPersistTaps={'handled'}>
+          {/* Logo */}
+          <Logo />
 
-        {/*Card container */}
-        <View style={styles.cardContainer}>
-          {/* Title  */}
-          <View
-            style={[styles.center, {marginBottom: DimensionsUtils.getDP(8)}]}>
-            <Text style={styles.title}>Change password</Text>
+          {/*Card container */}
+          <View style={styles.cardContainer}>
+            {/* Title  */}
+            <View
+              style={[styles.center, {marginBottom: DimensionsUtils.getDP(8)}]}>
+              <Text style={styles.title}>Change password</Text>
+            </View>
+
+            {/* Divider */}
+            <View style={styles.divider} />
+
+            <FormInput
+              autoFocus
+              containerStyle={styles.innerCardWidth}
+              value={password}
+              label={'New password'}
+              labelColor={colors.black}
+              secureTextEntry={!showPass}
+              autoCompleteType="password"
+              onChange={value => {
+                setPassword(value);
+                validatePass(value, setErrorPass);
+              }}
+              inputStyle={isIOS ? styles.inputStyle : {}}
+              textContentType="oneTimeCode"
+              errorMsg={errorPass}
+              errorColor={colors.tomato}
+              appendComponent={
+                <Pressable
+                  onPress={() => setShowPass(!showPass)}
+                  style={styles.justifyCenter}>
+                  <Image
+                    source={showPass ? images.passShow : images.passHide}
+                    style={[styles.image]}
+                  />
+                </Pressable>
+              }
+            />
+
+            {/* Divider */}
+            <View style={styles.divider} />
+
+            <FormInput
+              enterKeyHint={'done'}
+              containerStyle={styles.innerCardWidth}
+              value={repeatPassword}
+              label={'Repeat new password'}
+              labelColor={colors.black}
+              secureTextEntry={!showRepeatPass}
+              autoCompleteType="password"
+              onChange={value => {
+                setRepeatPassword(value);
+                validatePass(value, setErrorRepeatPass);
+              }}
+              inputStyle={isIOS ? styles.inputStyle : {}}
+              textContentType="oneTimeCode"
+              errorMsg={errorRepeatPass}
+              errorColor={colors.tomato}
+              onSubmitEditing={onPressChangePass}
+              appendComponent={
+                <Pressable
+                  onPress={() => setShowRepeatPass(!showRepeatPass)}
+                  style={styles.justifyCenter}>
+                  <Image
+                    source={showRepeatPass ? images.passShow : images.passHide}
+                    style={[styles.image]}
+                  />
+                </Pressable>
+              }
+            />
+
+            {/* Divider */}
+            <View style={styles.divider} />
+
+            {/* Change password button */}
+            <Button
+              onPress={onPressChangePass}
+              label={'Change password'}
+              containerStyle={styles.buttonContainer}
+            />
           </View>
-
-          {/* Divider */}
-          <View style={styles.divider} />
-
-          <FormInput
-            autoFocus
-            containerStyle={styles.innerCardWidth}
-            value={password}
-            label={'New password'}
-            labelColor={colors.black}
-            secureTextEntry={!showPass}
-            autoCompleteType="password"
-            onChange={value => {
-              setPassword(value);
-              validatePass(value, setErrorPass);
-            }}
-            inputStyle={isIOS ? styles.inputStyle : {}}
-            textContentType="oneTimeCode"
-            errorMsg={errorPass}
-            errorColor={colors.tomato}
-            appendComponent={
-              <Pressable
-                onPress={() => setShowPass(!showPass)}
-                style={styles.justifyCenter}>
-                <Image
-                  source={showPass ? images.passShow : images.passHide}
-                  style={[styles.image]}
-                />
-              </Pressable>
-            }
-          />
-
-          {/* Divider */}
-          <View style={styles.divider} />
-
-          <FormInput
-            enterKeyHint={'done'}
-            containerStyle={styles.innerCardWidth}
-            value={repeatPassword}
-            label={'Repeat new password'}
-            labelColor={colors.black}
-            secureTextEntry={!showRepeatPass}
-            autoCompleteType="password"
-            onChange={value => {
-              setRepeatPassword(value);
-              validatePass(value, setErrorRepeatPass);
-            }}
-            inputStyle={isIOS ? styles.inputStyle : {}}
-            textContentType="oneTimeCode"
-            errorMsg={errorRepeatPass}
-            errorColor={colors.tomato}
-            onSubmitEditing={onPressChangePass}
-            appendComponent={
-              <Pressable
-                onPress={() => setShowRepeatPass(!showRepeatPass)}
-                style={styles.justifyCenter}>
-                <Image
-                  source={showRepeatPass ? images.passShow : images.passHide}
-                  style={[styles.image]}
-                />
-              </Pressable>
-            }
-          />
-
-          {/* Divider */}
-          <View style={styles.divider} />
-
-          {/* Change password button */}
-          <Button
-            onPress={onPressChangePass}
-            label={'Change password'}
-            containerStyle={styles.buttonContainer}
-          />
-        </View>
+        </ScrollView>
       </Screen>
       {backdrop && <Backdrop />}
     </>
