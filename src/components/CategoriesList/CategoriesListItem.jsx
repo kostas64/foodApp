@@ -41,7 +41,7 @@ const CategoriesListItem = ({
   const animStyleImg = useAnimatedStyle(() => {
     const interpolation = interpolate(
       scrollY.value,
-      [90, 200],
+      [90, 210],
       [24, 0],
       Extrapolate.CLAMP,
     );
@@ -55,7 +55,7 @@ const CategoriesListItem = ({
   const animStyleContImg = useAnimatedStyle(() => {
     const interpolation = interpolate(
       scrollY.value,
-      [90, 200],
+      [90, 210],
       [50, 0],
       Extrapolate.CLAMP,
     );
