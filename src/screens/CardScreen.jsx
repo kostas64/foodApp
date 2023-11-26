@@ -49,7 +49,7 @@ const CardScreen = ({navigation, route}) => {
         <Header
           label={'Choose card'}
           onPressLeft={onPressBack}
-          leftIcon={images.arrowLeft}
+          leftIcon={images.chevron}
           leftIconStyle={styles.leftIconStyle}
           rightIcon={images.add}
           rightIconStyle={styles.rightIconStyle}

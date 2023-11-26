@@ -20,7 +20,8 @@ const star = require('../assets/images/star.png');
 const user = require('../assets/images/user.png');
 const search = require('../assets/images/search.png');
 const knifeFork = require('../assets/images/knife-and-fork.png');
-const arrowLeft = require('../assets/images/arrowLeft.png');
+const chevron = require('../assets/images/arrowLeft.png');
+const arrowLong = require('../assets/images/arrowLong.png');
 const menu = require('../assets/images/menu.png');
 const minus = require('../assets/images/minus.png');
 const plus = require('../assets/images/plus.png');
@@ -57,8 +58,22 @@ const google = require('../assets/images/google.png');
 const facebook = require('../assets/images/facebook.png');
 const colorMode = require('../assets/images/color-mode.png');
 const clock = require('../assets/images/clock.png');
+const heart = require('../assets/images/heart.png');
+const language = require('../assets/images/language.png');
+const orders = require('../assets/images/orders.png');
+const rate = require('../assets/images/rate.png');
+const pin = require('../assets/images/pin.png');
+const wallet = require('../assets/images/wallet.png');
+const support = require('../assets/images/support.png');
 
 export default {
+  heart,
+  language,
+  orders,
+  rate,
+  pin,
+  wallet,
+  support,
   visaDark,
   colorMode,
   google,
@@ -94,7 +109,8 @@ export default {
   minus,
   plus,
   menu,
-  arrowLeft,
+  chevron,
+  arrowLong,
   knifeFork,
   search,
   user,

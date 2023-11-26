@@ -58,7 +58,7 @@ const ShopScreen = ({navigation, route}) => {
         <Header
           label={shop.name}
           onPressLeft={onPressBack}
-          leftIcon={images.arrowLeft}
+          leftIcon={images.chevron}
           isLeftPressDisabled={loadingOrder}
         />
         <Animated.ScrollView

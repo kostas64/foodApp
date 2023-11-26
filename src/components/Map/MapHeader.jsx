@@ -26,7 +26,7 @@ const MapHeader = ({onPressBack}) => {
         onPress={onPressBack}
         style={[styles.shadow, styles.backIconContainer, {backgroundColor}]}>
         <Image
-          source={images.arrowLeft}
+          source={images.chevron}
           style={[styles.backIcon, {tintColor: labelColor}]}
         />
       </Pressable>
